@@ -1,10 +1,8 @@
-package ch.nte.wro.main;
+package ch.nte.wro.base;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.nte.wro.base.RobotBase;
-import ch.nte.wro.base.Sensors;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 
@@ -14,7 +12,7 @@ public class Robot implements RobotBase {
 	private RegulatedMotor mLeft;
 	private RegulatedMotor mRight;
 	
-	private Map<Integer, Sensors> sensors = new HashMap<>();
+	private Map<Integer, Sensor> sensors = new HashMap<>();
 	private Map<Integer, RegulatedMotor> motors = new HashMap<>();
 	
 	public Robot(String name, RegulatedMotor mLeft, RegulatedMotor mRight) {
@@ -55,11 +53,11 @@ public class Robot implements RobotBase {
 
 	@Override
 	public void setSensorOnPort(SensorModes sensor, int port) {
-		sensors.put(port, new Sensors(sensor));
+		sensors.put(port, new Sensor(sensor));
 	}
 
 	@Override
-	public Sensors getSensorOnPort(int port) {
+	public Sensor getSensorOnPort(int port) {
 		return sensors.get(port);
 	}
 

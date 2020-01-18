@@ -15,7 +15,7 @@ public interface RobotBase {
 	public RegulatedMotor getMotorRight();
 	
 	public void setSensorOnPort(SensorModes sensor, int port);
-	public Sensors getSensorOnPort(int port);
+	public Sensor getSensorOnPort(int port);
 	
 	public void setMotorOnPort(RegulatedMotor motor, int port);
 	public RegulatedMotor getMotorOnPort(int port);

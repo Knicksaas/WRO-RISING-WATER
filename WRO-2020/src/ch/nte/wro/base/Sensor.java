@@ -3,14 +3,14 @@ package ch.nte.wro.base;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 
-public class Sensors implements SensorBase {
+public class Sensor implements SensorBase {
 	
 	private SensorModes sensor;
 
 	private SampleProvider sampleProvider;
 	private float[] status;
 			
-	public Sensors(SensorModes sensor) {
+	public Sensor(SensorModes sensor) {
 		this.sensor = sensor;
 	}
 
