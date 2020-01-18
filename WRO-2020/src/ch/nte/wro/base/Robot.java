@@ -6,7 +6,7 @@ import java.util.Map;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 
-public class Robot implements RobotBase {
+public class Robot extends BasicMovment implements RobotBase {
 	
 	private String name;
 	private RegulatedMotor mLeft;
