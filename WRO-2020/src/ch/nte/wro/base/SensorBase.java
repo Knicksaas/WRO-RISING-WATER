@@ -7,5 +7,7 @@ public interface SensorBase {
 	public void checkSenor();
 	
 	public float[] getValue();
+	
+	public float[] mesure();
 
 }

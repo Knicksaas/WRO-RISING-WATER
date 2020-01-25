@@ -58,8 +58,7 @@ public class Calibrator {
 	}
 	
 	private static float mesure(Sensor sensor) {
-		sensor.checkSenor();
-		float[] values = sensor.getValue();
+		float[] values = sensor.mesure();
 		float worth = values[0];
 		return worth;
 	}

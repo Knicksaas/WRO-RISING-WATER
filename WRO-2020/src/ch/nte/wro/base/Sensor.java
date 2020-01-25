@@ -14,10 +14,6 @@ public class Sensor implements SensorBase {
 		this.sensor = sensor;
 	}
 
-	public void sayHi() {
-		System.out.println("Hi");
-	}
-
 	@Override
 	public void setMode(String mode) {
 		sampleProvider = sensor.getMode(mode);
@@ -32,5 +28,11 @@ public class Sensor implements SensorBase {
 	@Override
 	public float[] getValue() {
 		return status;
+	}
+
+	@Override
+	public float[] mesure() {
+		checkSenor();
+		return getValue();
 	}
 }
