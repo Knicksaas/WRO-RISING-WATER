@@ -20,6 +20,11 @@ public class Robot extends ExtendedMovment implements RobotBase {
 		this.mLeft = mLeft;
 		this.mRight = mRight;
 	}
+	
+	public void followLine(int speed, String mode, int msTime, int sensitivity, 
+			Sensor sensorLeft, Sensor sensorRight) {
+		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
+	}
 
 	@Override
 	public void setName(String name) {

@@ -1,6 +1,7 @@
 package ch.nte.wro.base;
 
 import ch.nte.wro.variables.MainVariables;
+import lejos.utility.Delay;
 
 public class BasicMovment implements MovmentBase {
 
@@ -9,11 +10,11 @@ public class BasicMovment implements MovmentBase {
 		if(MainVariables.inverMotorDirections) {
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
-			setSpeed(speed);
+			setSpeeds(speed);
 		} else {
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
-			setSpeed(speed);
+			setSpeeds(speed);
 		}
 	}
 
@@ -22,11 +23,11 @@ public class BasicMovment implements MovmentBase {
 		if(!MainVariables.inverMotorDirections) {
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
-			setSpeed(speed);
+			setSpeeds(speed);
 		} else {
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
-			setSpeed(speed);
+			setSpeeds(speed);
 		}
 	}
 
@@ -36,21 +37,21 @@ public class BasicMovment implements MovmentBase {
 			if(!MainVariables.inverMotorDirections) {
 				MainVariables.mLeft.forward();
 				MainVariables.mRight.backward();
-				setSpeed(speed);
+				setSpeeds(speed);
 			} else {
 				MainVariables.mLeft.backward();
 				MainVariables.mRight.forward();
-				setSpeed(speed);
+				setSpeeds(speed);
 			}
 		} else {
 			if(MainVariables.inverMotorDirections) {
 				MainVariables.mLeft.forward();
 				MainVariables.mRight.backward();
-				setSpeed(speed);
+				setSpeeds(speed);
 			} else {
 				MainVariables.mLeft.backward();
 				MainVariables.mRight.forward();
-				setSpeed(speed);
+				setSpeeds(speed);
 			}
 		}
 	}
@@ -77,17 +78,27 @@ public class BasicMovment implements MovmentBase {
 	}
 
 	@Override
-	public void setSpeed(int speed) {
+	public void setSpeeds(int speed) {
 		MainVariables.mLeft.setSpeed(speed);
 		MainVariables.mRight.setSpeed(speed);
 	}
 
 	@Override
 	public void motorsOff() {
+		Delay.msDelay(10);
 		MainVariables.mLeft.setSpeed(0);
 		MainVariables.mRight.setSpeed(0);
 		MainVariables.mLeft.stop();
 		MainVariables.mRight.stop();
+	}
+
+	@Override
+	public void setSpeed(int speed, String side) {
+		if(side.equalsIgnoreCase("left")) {
+			MainVariables.mLeft.setSpeed(speed);
+		} else if (side.equalsIgnoreCase("right")) {
+			MainVariables.mRight.setSpeed(speed);
+		}
 	}
 	
 	

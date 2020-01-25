@@ -6,6 +6,7 @@ public interface MovmentBase {
 	public void backward(int speed);
 	public void turnAtPlace(int speed, String side);
 	public void motorOn(int speed, String side);
-	public void setSpeed(int speed);
+	public void setSpeeds(int speed);
 	public void motorsOff();
+	public void setSpeed(int speed, String side);
 }

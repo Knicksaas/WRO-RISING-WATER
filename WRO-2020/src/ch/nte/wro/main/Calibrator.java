@@ -55,6 +55,7 @@ public class Calibrator {
 		
 		LCD.drawString("Black: "+blackIntensity, 0, 0);
 		LCD.drawString("White: "+whiteIntetsity, 0, 1);
+		Button.waitForAnyPress();
 	}
 	
 	private static float mesure(Sensor sensor) {

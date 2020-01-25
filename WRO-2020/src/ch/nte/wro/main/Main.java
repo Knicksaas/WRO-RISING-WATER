@@ -16,5 +16,6 @@ public class Main {
 		bot.getSensorOnPort(1).setMode("red");
 		bot.getSensorOnPort(1).checkSenor();
 		bot.getSensorOnPort(1).getValue();
+		bot.getSensorOnPort(1).mesure();
 	}
 }
