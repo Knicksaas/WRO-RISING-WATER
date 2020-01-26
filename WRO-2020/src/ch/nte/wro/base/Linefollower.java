@@ -3,7 +3,8 @@ package ch.nte.wro.base;
 import ch.nte.wro.threds.LightIntensityChecker;
 import ch.nte.wro.threds.Timer;
 import ch.nte.wro.variables.SensorValues;
-import ch.nte.wro.variables.TempVariables;
+import ch.nte.wro.variables.SynchedBoolean;
+import ch.nte.wro.variables.SynchedVariables;
 import lejos.hardware.Sound;
 
 public class Linefollower extends BasicMovment{
@@ -12,7 +13,7 @@ public class Linefollower extends BasicMovment{
 	private String mode;
 	private int msTime;
 	private int sensitivity;
-	private boolean running = false;
+	private SynchedBoolean running;
 	private Sensor sensorLeft;
 	private Sensor sensorRight;
 	
@@ -36,12 +37,13 @@ public class Linefollower extends BasicMovment{
 	}
 	
 	private void doubleSensor() {
+		running.set(true);
 		float valueSensorLeft;
 		float valueSensorRight;
-		if(TempVariables.globalSpeed == 0) {
-			TempVariables.globalSpeed = speed;
+		if(SynchedVariables.globalSpeed.get() == 0) {
+			SynchedVariables.globalSpeed.set(speed);
 		}
-		forward(TempVariables.globalSpeed);
+		forward(SynchedVariables.globalSpeed.get());
 		if(mode.equalsIgnoreCase("double.time")) {
 			if(msTime < 1) {
 				return;
@@ -53,8 +55,8 @@ public class Linefollower extends BasicMovment{
 					SensorValues.intensityBlack, SensorValues.allowedSensorVariation);
 			thread.run();
 		}
-		while(running) {
-			speed = TempVariables.globalSpeed;
+		while(running.get()) {
+			speed = SynchedVariables.globalSpeed.get();
 			valueSensorLeft = sensorLeft.mesure()[0];
 			valueSensorRight = sensorRight.mesure()[0];
 			if(valueSensorLeft < valueSensorRight) {
@@ -72,10 +74,10 @@ public class Linefollower extends BasicMovment{
 	}
 	
 	public boolean isRunning() {
-		return running;
+		return running.get();
 	}
 	
 	public void abort() {
-		running = false;
+		running.set(false);
 	}
 }

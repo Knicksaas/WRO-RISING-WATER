@@ -1,10 +1,10 @@
 package ch.nte.wro.threds;
 
 import ch.nte.wro.variables.MainVariables;
-import ch.nte.wro.variables.TempVariables;
+import ch.nte.wro.variables.SynchedVariables;
 import lejos.utility.Delay;
 
-public class AccelerationThred implements Runnable {
+public class AccelerationThred extends Thread {
 	
 	private int speedFrom;
 	private int speedTo;
@@ -21,15 +21,15 @@ public class AccelerationThred implements Runnable {
 		int speed = speedFrom;
 		MainVariables.mLeft.setSpeed(speed);
 		MainVariables.mLeft.setSpeed(speed);
-		TempVariables.globalSpeed = speed;
+		SynchedVariables.globalSpeed.set(speed);
 		int intervallTime = Math.round((time)/(speedTo-speedFrom));
 		while(speed < speedTo) {
 			MainVariables.mLeft.setSpeed(speed);
 			MainVariables.mLeft.setSpeed(speed);
-			TempVariables.globalSpeed = speed;
+			SynchedVariables.globalSpeed.set(speed);
 			Delay.msDelay(intervallTime);
 			speed++;
 		}
-		TempVariables.globalSpeed = 0;
+		SynchedVariables.globalSpeed.set(0);
 	}
 }

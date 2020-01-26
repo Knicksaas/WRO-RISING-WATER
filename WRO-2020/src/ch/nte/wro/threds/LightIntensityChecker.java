@@ -1,16 +1,17 @@
 package ch.nte.wro.threds;
 
 import ch.nte.wro.base.Sensor;
+import ch.nte.wro.variables.SynchedBoolean;
 
-public class LightIntensityChecker implements Runnable{
+public class LightIntensityChecker extends Thread {
 	
-	private boolean carrier;
+	private SynchedBoolean carrier;
 	private Sensor sensorLeft;
 	private Sensor sensorRight;
 	private float averageIntensity;
 	private float diff;
 
-	public LightIntensityChecker(boolean carier, Sensor sensorLeft, Sensor sensorRight, float averageIntensity, float diff) {
+	public LightIntensityChecker(SynchedBoolean carier, Sensor sensorLeft, Sensor sensorRight, float averageIntensity, float diff) {
 		this.carrier = carier;
 		this.sensorLeft = sensorLeft;
 		this.sensorRight = sensorRight;
@@ -25,9 +26,7 @@ public class LightIntensityChecker implements Runnable{
 			intensity1 = sensorLeft.mesure()[0];
 			intensity2 = sensorRight.mesure()[0];
 		}
-		if(carrier) {
-			carrier = false;
-		}
+		carrier.set(false);
 	}
 
 }

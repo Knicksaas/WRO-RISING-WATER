@@ -1,23 +1,22 @@
 package ch.nte.wro.threds;
 
+import ch.nte.wro.variables.SynchedBoolean;
 import lejos.utility.Delay;
 
-public class Timer implements Runnable{
+public class Timer extends Thread {
 	
 	private int msTime;
-	private boolean carier;
+	private SynchedBoolean carrier;
 	
-	public Timer(int msTime, boolean carier) {
+	public Timer(int msTime, SynchedBoolean carrier) {
 		this.msTime = msTime;
-		this.carier = carier;
+		this.carrier = carrier;
 	}
 
 	@Override
 	public void run() {
 		Delay.msDelay(msTime);
-		if(carier == true) {
-			carier = false;
-		}
+		carrier.set(false);
 	}
 
 }
