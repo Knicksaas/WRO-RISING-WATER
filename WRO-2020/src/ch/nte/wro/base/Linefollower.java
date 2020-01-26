@@ -1,6 +1,8 @@
 package ch.nte.wro.base;
 
+import ch.nte.wro.threds.LightIntensityChecker;
 import ch.nte.wro.threds.Timer;
+import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.TempVariables;
 import lejos.hardware.Sound;
 
@@ -41,7 +43,14 @@ public class Linefollower extends BasicMovment{
 		}
 		forward(TempVariables.globalSpeed);
 		if(mode.equalsIgnoreCase("double.time")) {
+			if(msTime < 1) {
+				return;
+			}
 			Timer thread = new Timer(msTime, running);
+			thread.run();
+		} else if (mode.equalsIgnoreCase("double.cross")) {
+			LightIntensityChecker thread = new LightIntensityChecker(running, sensorLeft, sensorRight, 
+					SensorValues.intensityBlack, SensorValues.allowedSensorVariation);
 			thread.run();
 		}
 		while(running) {

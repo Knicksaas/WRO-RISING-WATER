@@ -1,14 +1,17 @@
 package ch.nte.wro.test.main;
 
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-
 public class Main {
+	
+	public static volatile boolean running;
 
-	public static void main(String[] args) {
-		Robot bot = new Robot("robi", new EV3LargeRegulatedMotor(MotorPort.A), new EV3LargeRegulatedMotor(MotorPort.B));
-		
-		bot.sayHi();
+	public static void main(String[] args) throws InterruptedException {
+		SynchronisedClass sc = new SynchronisedClass();
+		sc.set(true);
+		ThreadTester thread = new ThreadTester(sc);
+		thread.start();
+		while(sc.get()) {
+			System.out.println("running");
+			Thread.sleep(100);
+		}
 	}
-
 }
