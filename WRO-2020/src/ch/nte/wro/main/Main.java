@@ -19,9 +19,5 @@ public class Main {
 	 
 	private static void sensorInit(Robot bot) {
 		bot.setSensorOnPort(GlobalSensors.colorSensor1, 1);
-		bot.getSensorOnPort(1).setMode("red");
-		bot.getSensorOnPort(1).checkSenor();
-		bot.getSensorOnPort(1).getValue();
-		bot.getSensorOnPort(1).mesure();
 	}
 }
