@@ -7,4 +7,5 @@ import lejos.hardware.sensor.SensorModes;
 public class GlobalSensors {
 
 	public static SensorModes colorSensor1 = new EV3ColorSensor(LocalEV3.get().getPort("S1"));
+	public static SensorModes colorSensor2 = new EV3ColorSensor(LocalEV3.get().getPort("S2"));
 }
