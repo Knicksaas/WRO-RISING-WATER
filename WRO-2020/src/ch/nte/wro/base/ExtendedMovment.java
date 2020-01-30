@@ -2,6 +2,7 @@ package ch.nte.wro.base;
 
 import ch.nte.wro.threds.AccelerationThred;
 import ch.nte.wro.variables.SensorValues;
+import ch.nte.wro.variables.SynchedFloat;
 
 public class ExtendedMovment extends BasicMovment{
 
@@ -13,9 +14,9 @@ public class ExtendedMovment extends BasicMovment{
 	public void turnToLine(int speed, String mode, Sensor sensor) {
 		if(mode.contains("single")) {
 			if(mode.contains("right")) {
-				motorOn(speed, "right");
+				motorOn(speed, "right", true);
 			} else if (mode.contains("left")) {
-				motorOn(speed, "left");
+				motorOn(speed, "left", true);
 			}
 		} else if (mode.contains("double")) {
 			if(mode.contains("right")) {
@@ -30,5 +31,17 @@ public class ExtendedMovment extends BasicMovment{
 				value < SensorValues.intensityBlack+SensorValues.allowedSensorVariation) {
 			value = sensor.mesure()[0];
 		}
+	}
+	
+	public void followLine(int speed, String mode, int msTime, float sensitivity, 
+			Sensor sensorLeft, Sensor sensorRight) {
+		SynchedFloat sens = new SynchedFloat();
+		sens.set(sensitivity);
+		new Linefollower(speed, mode, msTime, sens, sensorLeft, sensorRight);
+	}
+	
+	public void followLine(int speed, String mode, int msTime, SynchedFloat sensitivity, 
+			Sensor sensorLeft, Sensor sensorRight) {
+		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
 	}
 }

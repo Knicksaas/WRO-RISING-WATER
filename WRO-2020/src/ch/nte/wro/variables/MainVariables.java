@@ -6,7 +6,7 @@ import lejos.robotics.RegulatedMotor;
 
 public class MainVariables {
 
-	public static RegulatedMotor mLeft = new EV3LargeRegulatedMotor(MotorPort.A);
-	public static RegulatedMotor mRight = new EV3LargeRegulatedMotor(MotorPort.B);
-	public static boolean inverMotorDirections = false;
+	public static RegulatedMotor mLeft = new EV3LargeRegulatedMotor(MotorPort.B);
+	public static RegulatedMotor mRight = new EV3LargeRegulatedMotor(MotorPort.C);
+	public static boolean inverMotorDirections = true;
 }

@@ -20,12 +20,12 @@ public class AccelerationThred extends Thread {
 	public void run() {
 		int speed = speedFrom;
 		MainVariables.mLeft.setSpeed(speed);
-		MainVariables.mLeft.setSpeed(speed);
+		MainVariables.mRight.setSpeed(speed);
 		SynchedVariables.globalSpeed.set(speed);
-		int intervallTime = Math.round(((time)/(speedTo-speedFrom))/5);
+		int intervallTime = Math.round(((time)/(speedTo-speedFrom))*5);
 		while(speed < speedTo) {
 			MainVariables.mLeft.setSpeed(speed);
-			MainVariables.mLeft.setSpeed(speed);
+			MainVariables.mRight.setSpeed(speed);
 			SynchedVariables.globalSpeed.set(speed);
 			Delay.msDelay(intervallTime);
 			speed = speed + 5;

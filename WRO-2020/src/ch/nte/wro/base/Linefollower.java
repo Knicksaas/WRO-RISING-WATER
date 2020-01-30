@@ -4,8 +4,12 @@ import ch.nte.wro.threds.LightIntensityChecker;
 import ch.nte.wro.threds.Timer;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedBoolean;
+import ch.nte.wro.variables.SynchedFloat;
 import ch.nte.wro.variables.SynchedVariables;
+import lejos.hardware.Button;
 import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
+import lejos.utility.Delay;
 
 public class Linefollower extends BasicMovment{
 	
@@ -13,12 +17,12 @@ public class Linefollower extends BasicMovment{
 	private int speed;
 	private String mode;
 	private int msTime;
-	private int sensitivity;
-	private SynchedBoolean running;
+	private SynchedFloat sensitivity;
+	private SynchedBoolean running = new SynchedBoolean();
 	private Sensor sensorLeft;
 	private Sensor sensorRight;
 	
-	public Linefollower(int speed, String mode, int msTime, int sensitivity, Sensor sensorLeft, Sensor sensorRight) {
+	public Linefollower(int speed, String mode, int msTime, SynchedFloat sensitivity, Sensor sensorLeft, Sensor sensorRight) {
 		this.finalSpeed = speed;
 		this.speed = speed;
 		this.mode = mode;
@@ -27,14 +31,15 @@ public class Linefollower extends BasicMovment{
 		this.sensorLeft = sensorLeft;
 		this.sensorRight = sensorRight;
 		if(mode.contains("double")) {
-			this.sensorLeft.setMode("red");
-			this.sensorRight.setMode("red");
+			this.sensorLeft.setMode("Red");
+			this.sensorRight.setMode("Red");
 			doubleSensor();
 		} else if (mode.contains("single")) {
 			singleSensor();
 		} else {
 			System.out.println("Unknown mode!");
 			Sound.buzz();
+			Button.waitForAnyPress();
 		}
 	}
 	
@@ -61,6 +66,10 @@ public class Linefollower extends BasicMovment{
 					SensorValues.averageIntensityHalfCross, SensorValues.allowedSensorVariation);
 			thread.start();
 		}
+		float ki = 0;
+		float errI = 0;
+		float errP;
+		float err;
 		while(running.get()) {
 			if(SynchedVariables.globalSpeed.get() == 0) {
 				SynchedVariables.globalSpeed.set(speed);
@@ -68,12 +77,21 @@ public class Linefollower extends BasicMovment{
 			speed = SynchedVariables.globalSpeed.get();
 			valueSensorLeft = sensorLeft.mesure()[0];
 			valueSensorRight = sensorRight.mesure()[0];
-			if(valueSensorLeft < valueSensorRight) {
+			
+			errP = valueSensorLeft - valueSensorRight;
+			errI = errI + errP*ki;
+			err = errP + errI;
+			
+			LCD.drawString("left: " + String.valueOf(valueSensorLeft), 0, 0);
+			LCD.drawString("right: " + String.valueOf(valueSensorRight), 0, 1);
+			Delay.msDelay(200);
+			
+			if(err < 0) {
+				setSpeed(Math.round(speed-(err*sensitivity.get())), "right");
 				setSpeed(speed, "left");
-				setSpeed(Math.round((valueSensorRight - valueSensorLeft)*sensitivity+speed), "right");
-			} else if(valueSensorLeft > valueSensorRight) {
+			} else {
+				setSpeed(Math.round(speed+(err*sensitivity.get())), "left");
 				setSpeed(speed, "right");
-				setSpeed(Math.round((valueSensorRight - valueSensorLeft)*sensitivity+speed), "left");
 			}
 		}
 	}
@@ -85,14 +103,13 @@ public class Linefollower extends BasicMovment{
 		}
 		float valueSensor;
 		Sensor sensor = null;
-		float targetIntensity = (SensorValues.intensityBlack+SensorValues.intensityWhite)/2;
 		//TODO: init sensors
 		if(mode.contains("single") && mode.contains("time")) {
 			if(mode.contains("left")) {
-				sensorLeft.setMode("red");
+				sensorLeft.setMode("Red");
 				sensor = sensorLeft;
 			} else if (mode.contains("right")) {
-				sensorRight.setMode("red");
+				sensorRight.setMode("Red");
 				sensor = sensorRight;
 			}
 			Timer thread = new Timer(msTime, running);
@@ -100,41 +117,51 @@ public class Linefollower extends BasicMovment{
 		} else if (mode.contains("single") && mode.contains("cross")) {
 			LightIntensityChecker thread = null;
 			if(mode.contains("left")) {
-				sensorLeft.setMode("red");
+				sensorLeft.setMode("Red");
 				sensor = sensorLeft;
 				thread = new LightIntensityChecker(running, sensorLeft, sensorLeft,
 						SensorValues.intensityBlack, SensorValues.allowedSensorVariation);
 			} else if (mode.contains("right")) {
-				sensorRight.setMode("red");
+				sensorRight.setMode("Red");
 				sensor = sensorRight;
 				thread = new LightIntensityChecker(running, sensorRight, sensorRight,
 						SensorValues.intensityBlack, SensorValues.allowedSensorVariation);
 			}
 			thread.start();
 		}
+		float ki = 0;
+		float errI = 0;
+		float errP;
+		float err;
 		while(running.get()) {
 			if(SynchedVariables.globalSpeed.get() == 0) {
-				SynchedVariables.globalSpeed.set(finalSpeed);
+				SynchedVariables.globalSpeed.set(speed);
 			}
 			speed = SynchedVariables.globalSpeed.get();
 			valueSensor = sensor.mesure()[0];
-			if(valueSensor < targetIntensity) {
-				if(mode.contains("left")){
+			
+			errP = valueSensor - SensorValues.targetIntensityLinefollower;
+			errI = errI + errP*ki;
+			err = errP + errI;
+			
+			if(mode.contains("left")) {
+				if(err > 0) {
+					setSpeed(Math.round(speed-(err*sensitivity.get())), "right");
 					setSpeed(speed, "left");
-					setSpeed((int) Math.round(0.1*sensitivity), "right");
-				} else if (mode.contains("right")) {
+				} else {
+					setSpeed(Math.round(speed+(err*sensitivity.get())), "left");
 					setSpeed(speed, "right");
-					setSpeed((int) Math.round(0.1*sensitivity), "left");
 				}
-			} else if (valueSensor > targetIntensity) {
-				if(mode.contains("right")){
+			} else if (mode.contains("right")) {
+				if(err < 0) {
+					setSpeed(Math.round(speed-(err*sensitivity.get())), "right");
 					setSpeed(speed, "left");
-					setSpeed((int) Math.round(0.1*sensitivity), "right");
-				} else if (mode.contains("left")) {
+				} else {
+					setSpeed(Math.round(speed+(err*sensitivity.get())), "left");
 					setSpeed(speed, "right");
-					setSpeed((int) Math.round(0.1*sensitivity), "left");
 				}
 			}
+			
 		}
 	}
 	
