@@ -1,5 +1,7 @@
 package ch.nte.wro.main;
 
+import javax.jws.Oneway;
+
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
@@ -12,23 +14,22 @@ public class Main {
 	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
-<<<<<<< HEAD
-//		init(bot);
-=======
+
 		init(bot);
+
 		
-		Navigation.startPointToHouse("right", bot, speed);
-		Handling.unloadEvacuationRequest(bot, speed);
-		Navigation.driveToOtherStartPlace("left", bot, speed);
->>>>>>> 40448bdd805dfc485c0943760ab465846b06c6d3
-		
-		bot.setArmAngle(200, 50);
-		Delay.msDelay(8000);
+		bot.oneStepBelt(200, false);
+		Delay.msDelay(1500);
+		/*bot.oneStepBelt(200, false);
+		Delay.msDelay(1500);
+		bot.oneStepBelt(200, false);*/
+		bot.sandBagPickUp(100, null);
+		Delay.msDelay(5000);
 		bot.setArmAngle(0, 50);
-		/*bot.sandBagPickUp(100, null);
-		Delay.msDelay(5000);
-		bot.setArmAngle(0, 50);*/
-		Delay.msDelay(5000);
+		Delay.msDelay(4000);
+		
+		
+		
 	}
 	 
 	private static void init(Robot bot) {

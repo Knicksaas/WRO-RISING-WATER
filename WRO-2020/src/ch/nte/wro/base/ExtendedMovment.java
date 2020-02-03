@@ -6,6 +6,7 @@ import ch.nte.wro.threds.ConveyorBeltThread;
 import ch.nte.wro.threds.DynamicSensitivity;
 import ch.nte.wro.threds.LiftingArmThread;
 import ch.nte.wro.threds.LightIntensityChecker;
+import ch.nte.wro.variables.ConveyorbeltStatus;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedBoolean;
 import ch.nte.wro.variables.SynchedFloat;
@@ -60,16 +61,14 @@ public class ExtendedMovment extends BasicMovment{
 		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
 	}
 	
-<<<<<<< HEAD
+
 	public void setArmAngle(int angle, int speed) {
 		LiftingArmThread thread = new LiftingArmThread(angle, speed);
-=======
-		
-	public void setArmAngle(int angle) {
-		LiftingArmThread thread = new LiftingArmThread(angle);
->>>>>>> 40448bdd805dfc485c0943760ab465846b06c6d3
 		thread.start();
 	}
+
+		
+	
 	
 	public int getArmAngle() {
 		return MainVariables.armAngle;
@@ -139,17 +138,29 @@ public class ExtendedMovment extends BasicMovment{
 		}
 	}
 	
-<<<<<<< HEAD
+
 	public int sandBagPickUp(int speed, Sensor sensor) {
 		
-		rotate(speed, 0.55f);
+		rotate(speed, 0.5f);
 		//color check
-		setArmAngle(2000, 50);
-		
-		
+		String colour = "Green";
+		setArmAngle(30, 50);
+		Delay.msDelay(2000);
+		setArmAngle(200, 75);
+		rotate(100, -0.3f);
+		Delay.msDelay(2000);
+		setArmAngle(0, 200);
+		ConveyorbeltStatus.slot1 = (colour + "SandBag");
+		oneStepBelt(100, true);
+		Delay.msDelay(590);
+		rotate(100, 0.3f);
+		setArmAngle(200, 75);
+		ConveyorbeltStatus.slot1 = (colour + "SandBag");
+		rotate(100, 0.5f);
+		setArmAngle(0, 100);
 		
 		return 0;
-=======
+	}
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);
 		if(MainVariables.inverMotorDirections) {
@@ -170,6 +181,6 @@ public class ExtendedMovment extends BasicMovment{
 			Delay.msDelay(10);
 		}
 
->>>>>>> 40448bdd805dfc485c0943760ab465846b06c6d3
+
 	}
 }
