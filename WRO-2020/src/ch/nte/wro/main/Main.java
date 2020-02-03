@@ -1,7 +1,5 @@
 package ch.nte.wro.main;
 
-import javax.jws.Oneway;
-
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
@@ -20,13 +18,7 @@ public class Main {
 		
 		bot.oneStepBelt(200, false);
 		Delay.msDelay(1500);
-		/*bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
-		bot.oneStepBelt(200, false);*/
 		bot.sandBagPickUp(100, null);
-		Delay.msDelay(5000);
-		bot.setArmAngle(0, 50);
-		Delay.msDelay(4000);
 		
 		
 		
