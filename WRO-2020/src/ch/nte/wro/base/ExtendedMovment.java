@@ -60,6 +60,7 @@ public class ExtendedMovment extends BasicMovment{
 		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
 	}
 	
+		
 	public void setArmAngle(int angle) {
 		LiftingArmThread thread = new LiftingArmThread(angle);
 		thread.start();
@@ -81,17 +82,17 @@ public class ExtendedMovment extends BasicMovment{
 				angle *= -1;
 			}
 			setSpeed(speed, "left");
-			Delay.msDelay(10);
+			Delay.msDelay(50);
 			MainVariables.mLeft.rotate(angle);
-			Delay.msDelay(10);
+			Delay.msDelay(50);
 		} else if (side.equalsIgnoreCase("right")) {
 			if(MainVariables.inverMotorDirections) {
 				angle *= -1;
 			}
 			setSpeed(speed, "right");
-			Delay.msDelay(10);
+			Delay.msDelay(50);
 			MainVariables.mRight.rotate(angle);
-			Delay.msDelay(10);
+			Delay.msDelay(50);
 		}
 	}
 	public void rotate(int speed, float rotations) {
@@ -131,5 +132,27 @@ public class ExtendedMovment extends BasicMovment{
 				return;
 			}
 		}
+	}
+	
+	public void turnWithRotations(int speed, float rotations, String side) {
+		int angle = Math.round(rotations*360);
+		if(MainVariables.inverMotorDirections) {
+			angle *= -1;
+		}
+		setSpeeds(speed);
+		if(side.equalsIgnoreCase("left")) {
+			Delay.msDelay(10);
+			MainVariables.mLeft.rotate(angle, true);
+			Delay.msDelay(10);
+			MainVariables.mRight.rotate(-angle);
+			Delay.msDelay(10);
+		} else if (side.equalsIgnoreCase("right")) {
+			Delay.msDelay(10);
+			MainVariables.mRight.rotate(angle, true);
+			Delay.msDelay(10);
+			MainVariables.mLeft.rotate(-angle);
+			Delay.msDelay(10);
+		}
+
 	}
 }

@@ -7,11 +7,15 @@ import ch.nte.wro.variables.SynchedVariables;
 
 public class Main {
 	
+	public static final int speed = 200;
+	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 		init(bot);
 		
-		Navigation.startPointToHouse("right", bot, 200);
+		Navigation.startPointToHouse("right", bot, speed);
+		Handling.unloadEvacuationRequest(bot, speed);
+		Navigation.driveToOtherStartPlace("left", bot, speed);
 		
 	}
 	 
