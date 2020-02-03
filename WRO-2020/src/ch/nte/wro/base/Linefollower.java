@@ -8,8 +8,7 @@ import ch.nte.wro.variables.SynchedFloat;
 import ch.nte.wro.variables.SynchedVariables;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
-import lejos.hardware.lcd.LCD;
-import lejos.utility.Delay;
+
 
 public class Linefollower extends BasicMovment{
 	
@@ -81,10 +80,6 @@ public class Linefollower extends BasicMovment{
 			errP = valueSensorLeft - valueSensorRight;
 			errI = errI + errP*ki;
 			err = errP + errI;
-			
-			LCD.drawString("left: " + String.valueOf(valueSensorLeft), 0, 0);
-			LCD.drawString("right: " + String.valueOf(valueSensorRight), 0, 1);
-			Delay.msDelay(200);
 			
 			if(err < 0) {
 				setSpeed(Math.round(speed-(err*sensitivity.get())), "right");

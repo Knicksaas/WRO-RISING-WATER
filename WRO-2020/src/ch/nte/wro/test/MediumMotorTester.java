@@ -8,11 +8,13 @@ import lejos.utility.Delay;
 public class MediumMotorTester {
 	
 	public static void main(String[] args) {
-		RegulatedMotor m = new EV3MediumRegulatedMotor(MotorPort.A);
-		m.forward();
-		m.setSpeed(250);
-		Delay.msDelay(10000);
-		m.close();
+		RegulatedMotor mArm = new EV3MediumRegulatedMotor(MotorPort.D);
+		mArm.setSpeed(200);
+		mArm.rotate(240);
+		Delay.msDelay(1000);
+		mArm.rotate(-240);
+		mArm.stop();
+		mArm.close();
 	}
 
 }

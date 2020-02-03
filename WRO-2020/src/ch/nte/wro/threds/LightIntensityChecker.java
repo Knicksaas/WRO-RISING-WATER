@@ -20,13 +20,18 @@ public class LightIntensityChecker extends Thread {
 	}
 	@Override
 	public void run() {
-		float intensity1 = 0;
-		float intensity2 = 0;
-		while(averageIntensity-diff < (intensity1+intensity2)/2 && (intensity1+intensity2)/2 < averageIntensity+diff) {
+		sensorLeft.setMode("Red");
+		sensorRight.setMode("Red");
+		float intensity1 = sensorLeft.mesure()[0];
+		float intensity2 = sensorRight.mesure()[0];
+		while(true) {
 			intensity1 = sensorLeft.mesure()[0];
 			intensity2 = sensorRight.mesure()[0];
+			if(averageIntensity-diff < (intensity1+intensity2)/2 && (intensity1+intensity2)/2 < averageIntensity+diff) {
+				carrier.set(false);
+				return;
+			}
 		}
-		carrier.set(false);
 	}
 
 }

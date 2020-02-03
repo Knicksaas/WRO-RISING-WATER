@@ -14,53 +14,56 @@ import lejos.utility.Delay;
 
 public class Calibrator {
 	
-	private static String blackIntensity;
-	private static String whiteIntetsity;
-	private static List<Float> value1 = new ArrayList<Float>();
-	private static List<Float> value2 = new ArrayList<Float>();
+	private static Float blackIntensity;
+	private static Float whiteIntetsity;
+	private static Float blueIntensity;
+	private static Float greenIntensity;
+	private static Float yellowIntensity;
+	private static Float redIntensity;
 
 	public static void main(String[] args) {
 		Robot bot = new Robot("calibartor bot", MainVariables.mLeft, MainVariables.mRight);
 		bot.setSensorOnPort(GlobalSensors.colorSensor1, 1);
 		Sensor colorsensor =  bot.getSensorOnPort(1);
-		colorsensor.setMode("red");
+		colorsensor.setMode("Red");
 		Button.waitForAnyPress();
 		Sound.beep();
-		for(int i = 0; i < 10; i++) {
-			value1.add(mesure(colorsensor));
-			Delay.msDelay(500);
-		}
-		float valueSum1 = 0;
-		for(int x = 0; x<value1.size(); x++) {
-			valueSum1 = valueSum1 + value1.get(x);
-		}
-		blackIntensity = String.valueOf(valueSum1/value1.size());
-		Sound.beep();
-		Delay.msDelay(200);
+		blackIntensity = getNewIntensity(colorsensor);
 		Sound.beep();
 		Button.waitForAnyPress();
+		whiteIntetsity = getNewIntensity(colorsensor);
 		Sound.beep();
-		for(int i = 0; i < 10; i++) {
-			value2.add(mesure(colorsensor));
-			Delay.msDelay(500);
-		}
-		float valueSum2 = 0;
-		for(int x = 0; x<value1.size(); x++) {
-			valueSum2 = valueSum2 + value1.get(x);
-		}
-		whiteIntetsity = String.valueOf(valueSum2/value2.size());
+		Button.waitForAnyPress();
+		blueIntensity = getNewIntensity(colorsensor);
 		Sound.beep();
-		Delay.msDelay(200);
+		Button.waitForAnyPress();
+		greenIntensity = getNewIntensity(colorsensor);
 		Sound.beep();
-		
-		LCD.drawString("Black: "+blackIntensity, 0, 0);
-		LCD.drawString("White: "+whiteIntetsity, 0, 1);
+		Button.waitForAnyPress();
+		yellowIntensity = getNewIntensity(colorsensor);
+		Sound.beep();
+		Button.waitForAnyPress();
+		redIntensity = getNewIntensity(colorsensor);
+		Sound.beep();
+		LCD.drawString("black: "+blackIntensity.toString(), 0, 0);
+		LCD.drawString("white: "+whiteIntetsity.toString(), 0, 1);
+		LCD.drawString("blue: "+blueIntensity.toString(), 0, 2);
+		LCD.drawString("green: "+greenIntensity.toString(), 0, 3);
+		LCD.drawString("yellow: "+yellowIntensity.toString(), 0, 4);
+		LCD.drawString("red: "+redIntensity.toString(), 0, 5);
 		Button.waitForAnyPress();
 	}
 	
-	private static float mesure(Sensor sensor) {
-		float[] values = sensor.mesure();
-		float worth = values[0];
-		return worth;
+	private static float getNewIntensity(Sensor sensor) {
+		List<Float> mesurements = new ArrayList<Float>();
+		for(int i = 0; i<10; i++) {
+			mesurements.add(sensor.mesure()[0]);
+			Delay.msDelay(200);
+		}
+		float value = 0;
+		for(int i = 0; i<mesurements.size(); i++) {
+			value = value+mesurements.get(i);
+		}
+		return value/mesurements.size();
 	}
 }

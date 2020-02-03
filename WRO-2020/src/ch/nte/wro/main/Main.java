@@ -11,7 +11,7 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 		init(bot);
 		
-		bot.followLine(150, "double.time", 30000, 60F, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		Navigation.startPointToHouse("right", bot, 300);
 		
 	}
 	 
@@ -22,6 +22,8 @@ public class Main {
 	 
 	private static void sensorInit(Robot bot) {
 		bot.setSensorOnPort(GlobalSensors.colorSensor1, 1);
+		bot.getSensorOnPort(1).setMode("Red");
 		bot.setSensorOnPort(GlobalSensors.colorSensor2, 2);
+		bot.getSensorOnPort(2).setMode("Red");
 	}
 }

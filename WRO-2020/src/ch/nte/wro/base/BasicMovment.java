@@ -8,10 +8,12 @@ public class BasicMovment implements MovmentBase {
 	@Override
 	public void forward(int speed) {
 		if(MainVariables.inverMotorDirections) {
+			setSpeeds(1);
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
 			setSpeeds(speed);
 		} else {
+			setSpeeds(1);
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
 			setSpeeds(speed);
@@ -35,20 +37,24 @@ public class BasicMovment implements MovmentBase {
 	public void turnAtPlace(int speed, String side) {
 		if(side.equalsIgnoreCase("left")) {
 			if(MainVariables.inverMotorDirections) {
+				setSpeeds(speed);
 				MainVariables.mLeft.forward();
 				MainVariables.mRight.backward();
 				setSpeeds(speed);
 			} else {
+				setSpeeds(speed);
 				MainVariables.mLeft.backward();
 				MainVariables.mRight.forward();
 				setSpeeds(speed);
 			}
 		} else {
 			if(!MainVariables.inverMotorDirections) {
+				setSpeeds(speed);
 				MainVariables.mLeft.forward();
 				MainVariables.mRight.backward();
 				setSpeeds(speed);
 			} else {
+				setSpeeds(speed);
 				MainVariables.mLeft.backward();
 				MainVariables.mRight.forward();
 				setSpeeds(speed);
@@ -61,17 +67,21 @@ public class BasicMovment implements MovmentBase {
 		if(forward) {
 			if(side.contains("left")) {
 				if(MainVariables.inverMotorDirections) {
+					MainVariables.mLeft.setSpeed(speed);
 					MainVariables.mLeft.backward();
 					MainVariables.mLeft.setSpeed(speed);
 				} else {
+					MainVariables.mLeft.setSpeed(speed);
 					MainVariables.mLeft.forward();
 					MainVariables.mLeft.setSpeed(speed);
 				}
 			} else if (side.contains("right")) {
 				if(MainVariables.inverMotorDirections) {
+					MainVariables.mRight.setSpeed(speed);
 					MainVariables.mRight.backward();
 					MainVariables.mRight.setSpeed(speed);
 				} else {
+					MainVariables.mRight.setSpeed(speed);
 					MainVariables.mRight.forward();
 					MainVariables.mRight.setSpeed(speed);
 				}
@@ -79,17 +89,21 @@ public class BasicMovment implements MovmentBase {
 		} else {
 			if(side.contains("left")) {
 				if(!MainVariables.inverMotorDirections) {
+					MainVariables.mLeft.setSpeed(speed);
 					MainVariables.mLeft.backward();
 					MainVariables.mLeft.setSpeed(speed);
 				} else {
+					MainVariables.mLeft.setSpeed(speed);
 					MainVariables.mLeft.forward();
 					MainVariables.mLeft.setSpeed(speed);
 				}
 			} else if (side.contains("right")) {
 				if(!MainVariables.inverMotorDirections) {
+					MainVariables.mRight.setSpeed(speed);
 					MainVariables.mRight.backward();
 					MainVariables.mRight.setSpeed(speed);
 				} else {
+					MainVariables.mRight.setSpeed(speed);
 					MainVariables.mRight.forward();
 					MainVariables.mRight.setSpeed(speed);
 				}
@@ -108,8 +122,9 @@ public class BasicMovment implements MovmentBase {
 		setSpeeds(0);
 		MainVariables.mLeft.stop();
 		MainVariables.mRight.stop();
+		Delay.msDelay(50);
 		setSpeeds(100);
-		Delay.msDelay(10);
+		Delay.msDelay(50);
 	}
 
 	@Override
