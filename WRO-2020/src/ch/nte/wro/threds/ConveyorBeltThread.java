@@ -11,6 +11,9 @@ public class ConveyorBeltThread extends Thread {
 	public ConveyorBeltThread(int speed, boolean forward) {
 		this.speed = speed;
 		this.forward = forward;
+		if(SynchedVariables.isBeltMoving.get()) {
+			return;
+		}
 	}
 	
 	@Override

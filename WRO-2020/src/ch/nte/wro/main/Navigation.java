@@ -3,6 +3,7 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.SensorValues;
 import lejos.hardware.Sound;
+import lejos.utility.Delay;
 
 public class Navigation {
 	
@@ -25,6 +26,7 @@ public class Navigation {
 			bot.rotate(speed, 1F, "right");
 			Sound.beep();
 		}
+		Delay.msDelay(100);
 		bot.followLine(speed/3, "double.cross", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 	}
 }

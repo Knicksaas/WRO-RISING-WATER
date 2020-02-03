@@ -11,7 +11,7 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 		init(bot);
 		
-		Navigation.startPointToHouse("right", bot, 300);
+		Navigation.startPointToHouse("right", bot, 200);
 		
 	}
 	 

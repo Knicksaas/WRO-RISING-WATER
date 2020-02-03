@@ -11,7 +11,22 @@ public class Speedtest {
 	public static void main(String[] args) {
 		Robot bot = new Robot("test", MainVariables.mLeft, MainVariables.mRight);
 		init(bot);
-		bot.rotate(300, 1, "right");
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+//		bot.oneStepBelt(200, true);
+//		Delay.msDelay(1500);
+		bot.oneStepBelt(300, false);
+		
 	}
 
 	private static void init(Robot bot) {
