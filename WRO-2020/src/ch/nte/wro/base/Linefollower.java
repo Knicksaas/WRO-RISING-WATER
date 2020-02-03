@@ -1,5 +1,6 @@
 package ch.nte.wro.base;
 
+import ch.nte.wro.threds.DetectLineColorThread;
 import ch.nte.wro.threds.LightIntensityChecker;
 import ch.nte.wro.threds.Timer;
 import ch.nte.wro.variables.SensorValues;
@@ -63,6 +64,9 @@ public class Linefollower extends BasicMovment{
 		} else if (mode.equalsIgnoreCase("double.halfcross")) {
 			LightIntensityChecker thread = new LightIntensityChecker(running, sensorLeft, sensorRight,
 					SensorValues.averageIntensityHalfCross, SensorValues.allowedSensorVariation);
+			thread.start();
+		} else if (mode.equalsIgnoreCase("double.changeLineColor")) {
+			DetectLineColorThread thread = new DetectLineColorThread(running, sensorLeft, sensorRight, 0.05F);
 			thread.start();
 		}
 		float ki = 0;

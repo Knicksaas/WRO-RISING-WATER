@@ -8,9 +8,19 @@ import lejos.utility.Delay;
 
 public class Main {
 	
+	public static final int speed = 200;
+	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
+<<<<<<< HEAD
 //		init(bot);
+=======
+		init(bot);
+		
+		Navigation.startPointToHouse("right", bot, speed);
+		Handling.unloadEvacuationRequest(bot, speed);
+		Navigation.driveToOtherStartPlace("left", bot, speed);
+>>>>>>> 40448bdd805dfc485c0943760ab465846b06c6d3
 		
 		bot.setArmAngle(200, 50);
 		Delay.msDelay(8000);
