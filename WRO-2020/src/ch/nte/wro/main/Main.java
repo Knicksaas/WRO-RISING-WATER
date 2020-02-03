@@ -13,9 +13,9 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 		init(bot);
 		
-		Navigation.startPointToHouse("right", bot, speed);
+		Navigation.startPointToHouse("left", bot, speed);
 		Handling.unloadEvacuationRequest(bot, speed);
-		Navigation.driveToOtherStartPlace("left", bot, speed);
+		Navigation.driveToOtherStartPlace("right", bot, speed);
 		
 	}
 	 
