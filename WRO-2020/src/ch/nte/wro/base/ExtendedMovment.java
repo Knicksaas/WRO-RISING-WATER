@@ -60,8 +60,8 @@ public class ExtendedMovment extends BasicMovment{
 		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
 	}
 	
-	public void setArmAngle(int angle) {
-		LiftingArmThread thread = new LiftingArmThread(angle);
+	public void setArmAngle(int angle, int speed) {
+		LiftingArmThread thread = new LiftingArmThread(angle, speed);
 		thread.start();
 	}
 	
@@ -131,5 +131,16 @@ public class ExtendedMovment extends BasicMovment{
 				return;
 			}
 		}
+	}
+	
+	public int sandBagPickUp(int speed, Sensor sensor) {
+		
+		rotate(speed, 0.55f);
+		//color check
+		setArmAngle(2000, 50);
+		
+		
+		
+		return 0;
 	}
 }
