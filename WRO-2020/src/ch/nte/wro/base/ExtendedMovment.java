@@ -60,9 +60,14 @@ public class ExtendedMovment extends BasicMovment{
 		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
 	}
 	
+<<<<<<< HEAD
+	public void setArmAngle(int angle, int speed) {
+		LiftingArmThread thread = new LiftingArmThread(angle, speed);
+=======
 		
 	public void setArmAngle(int angle) {
 		LiftingArmThread thread = new LiftingArmThread(angle);
+>>>>>>> 40448bdd805dfc485c0943760ab465846b06c6d3
 		thread.start();
 	}
 	
@@ -134,6 +139,17 @@ public class ExtendedMovment extends BasicMovment{
 		}
 	}
 	
+<<<<<<< HEAD
+	public int sandBagPickUp(int speed, Sensor sensor) {
+		
+		rotate(speed, 0.55f);
+		//color check
+		setArmAngle(2000, 50);
+		
+		
+		
+		return 0;
+=======
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);
 		if(MainVariables.inverMotorDirections) {
@@ -154,5 +170,6 @@ public class ExtendedMovment extends BasicMovment{
 			Delay.msDelay(10);
 		}
 
+>>>>>>> 40448bdd805dfc485c0943760ab465846b06c6d3
 	}
 }

@@ -4,6 +4,7 @@ import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
+import lejos.utility.Delay;
 
 public class Main {
 	
@@ -11,12 +12,16 @@ public class Main {
 	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
+
 		init(bot);
 		
-		Navigation.startPointToHouse("left", bot, speed);
-		Handling.unloadEvacuationRequest(bot, speed);
-		Navigation.driveToOtherStartPlace("right", bot, speed);
-		
+		bot.setArmAngle(200, 50);
+		Delay.msDelay(8000);
+		bot.setArmAngle(0, 50);
+		/*bot.sandBagPickUp(100, null);
+		Delay.msDelay(5000);
+		bot.setArmAngle(0, 50);*/
+		Delay.msDelay(5000);
 	}
 	 
 	private static void init(Robot bot) {
