@@ -1,11 +1,13 @@
 package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
+import ch.nte.wro.variables.ConveyorbeltStatus;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
+import lejos.hardware.Sound;
 
-public class Main {
+public class TestMain {
 	
 	public static final int speed = 200;
 	
@@ -13,6 +15,13 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
+		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.sandBagPickUp(100, bot.getSensorOnPort(3));
+		if(ConveyorbeltStatus.slot2.equalsIgnoreCase("blueSandbag")) {
+			Sound.beep();
+		}else {
+			Sound.buzz();
+		}
 		
 	}
 	 
@@ -30,3 +39,6 @@ public class Main {
 		bot.getSensorOnPort(3).setMode("ColorID");
 	}
 }
+
+
+

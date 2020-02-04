@@ -141,22 +141,7 @@ public class ExtendedMovment extends BasicMovment{
 	public void sandBagPickUp(int speed, Sensor sensor) {
 		
 		rotate(speed, 0.53f);
-		int colornumber = 0;
-		while(colornumber != 2 || colornumber != 4) {
-			colornumber = (int) sensor.mesure()[0];
-		}
-		
-		String color;
-		
-		
-		if(colornumber == 2) { 
-			
-			 color = "Blue";
-		}else {
-			
-			 color = "Green";
-		}
-		
+		String color = ColorGetter.getColor(sensor);
 		setArmAngle(25, 50);
 		Delay.msDelay(2000);
 		setArmAngle(200, 100);
