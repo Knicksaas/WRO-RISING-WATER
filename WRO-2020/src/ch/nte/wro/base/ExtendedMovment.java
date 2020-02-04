@@ -137,28 +137,30 @@ public class ExtendedMovment extends BasicMovment{
 		}
 	}
 
-	public int sandBagPickUp(int speed, Sensor sensor) {
+	public void sandBagPickUp(int speed, Sensor sensor) {
 		
-		rotate(speed, 0.5f);
+		rotate(speed, 0.53f);
 		//color check
-		setArmAngle(2000, 50);
 		String color = "Green";
-		setArmAngle(30, 50);
+		setArmAngle(25, 50);
 		Delay.msDelay(2000);
-		setArmAngle(200, 75);
-		rotate(100, -0.3f);
+		setArmAngle(200, 100);
+		rotate(125, -0.3f);
 		Delay.msDelay(2000);
 		setArmAngle(0, 200);
 		ConveyorbeltStatus.slot1 = (color + "SandBag");
 		oneStepBelt(100, true);
 		Delay.msDelay(590);
 		rotate(100, 0.3f);
-		setArmAngle(200, 75);
+		setArmAngle(200, 100);
+		Delay.msDelay(3000);
 		ConveyorbeltStatus.slot1 = (color + "SandBag");
-		rotate(100, 0.5f);
-		setArmAngle(0, 100);
+		rotate(100, -0.5f);
+		setArmAngle(0, 300);
+		Delay.msDelay(2000);
 		
-		return 0;
+		
+		return;
 	}
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);

@@ -12,7 +12,7 @@ public class LiftingArmThread extends Thread {
 		if(SynchedVariables.isArmMoving.get()) {
 			return;
 		}
-		if(angle>200 || angle<0) {
+		if(angle>201 || angle<-1) {
 			return;
 		}
 		this.angle = angle;

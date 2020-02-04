@@ -6,6 +6,7 @@ import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
 import lejos.utility.Delay;
 
+
 public class Main {
 	
 	public static final int speed = 200;
@@ -15,9 +16,11 @@ public class Main {
 
 		init(bot);
 
+		/*bot.oneStepBelt(200, true);
+		Delay.msDelay(1500);*/
 		
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
+		bot.followLine(200, "double.cross", 0, 60f, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		
 		bot.sandBagPickUp(100, null);
 		
 		
