@@ -14,14 +14,14 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
+
 		
-		bot.setArmAngle(200, 50);
-		Delay.msDelay(8000);
-		bot.setArmAngle(0, 50);
-		/*bot.sandBagPickUp(100, null);
-		Delay.msDelay(5000);
-		bot.setArmAngle(0, 50);*/
-		Delay.msDelay(5000);
+		bot.oneStepBelt(200, false);
+		Delay.msDelay(1500);
+		bot.sandBagPickUp(100, null);
+		
+		
+		
 	}
 	 
 	private static void init(Robot bot) {
