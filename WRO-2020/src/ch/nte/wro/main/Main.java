@@ -36,5 +36,7 @@ public class Main {
 		bot.getSensorOnPort(1).setMode("Red");
 		bot.setSensorOnPort(GlobalSensors.colorSensor2, 2);
 		bot.getSensorOnPort(2).setMode("Red");
+		bot.setSensorOnPort(GlobalSensors.hiTechnicsColorSensor, 3);
+		bot.getSensorOnPort(3).setMode("ColorID");
 	}
 }
