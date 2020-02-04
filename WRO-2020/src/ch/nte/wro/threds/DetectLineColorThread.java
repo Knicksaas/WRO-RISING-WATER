@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.nte.wro.base.Sensor;
 import ch.nte.wro.variables.SynchedBoolean;
+import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
 public class DetectLineColorThread extends Thread {
@@ -23,13 +24,14 @@ public class DetectLineColorThread extends Thread {
 	
 	@Override
 	public void run() {
-		Delay.msDelay(500);
 		float basicValue = getAverageIntensity(sensorLeft, sensorRight);
+		Sound.beep();
 		float actualValue;
 		while(true) {
 			actualValue = getAverageIntensity(sensorLeft, sensorRight);
-			if(actualValue < basicValue-diff && actualValue > basicValue+diff) {
+			if(actualValue < basicValue-diff || actualValue > basicValue+diff) {
 				carrier.set(false);
+				Sound.beep();
 				return;
 			}
 		}

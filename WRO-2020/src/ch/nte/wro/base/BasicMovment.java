@@ -8,14 +8,20 @@ public class BasicMovment implements MovmentBase {
 	@Override
 	public void forward(int speed) {
 		if(MainVariables.inverMotorDirections) {
-			setSpeeds(1);
+			setSpeeds(speed);
+			Delay.msDelay(10);
 			MainVariables.mLeft.backward();
+			Delay.msDelay(10);
 			MainVariables.mRight.backward();
+			Delay.msDelay(10);
 			setSpeeds(speed);
 		} else {
-			setSpeeds(1);
+			setSpeeds(speed);
+			Delay.msDelay(10);
 			MainVariables.mLeft.forward();
+			Delay.msDelay(10);
 			MainVariables.mRight.forward();
+			Delay.msDelay(10);
 			setSpeeds(speed);
 		}
 	}

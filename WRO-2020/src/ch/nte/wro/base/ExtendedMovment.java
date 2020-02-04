@@ -51,6 +51,7 @@ public class ExtendedMovment extends BasicMovment{
 	
 	public void followLine(int speed, String mode, int msTime, float sensitivity, 
 		Sensor sensorLeft, Sensor sensorRight) {
+		Delay.msDelay(100);
 		SynchedFloat sens = new SynchedFloat();
 		sens.set(sensitivity);
 		new Linefollower(speed, mode, msTime, sens, sensorLeft, sensorRight);
@@ -167,6 +168,7 @@ public class ExtendedMovment extends BasicMovment{
 		if(MainVariables.inverMotorDirections) {
 			angle *= -1;
 		}
+		Delay.msDelay(100);
 		setSpeeds(speed);
 		if(side.equalsIgnoreCase("left")) {
 			Delay.msDelay(10);
@@ -181,5 +183,6 @@ public class ExtendedMovment extends BasicMovment{
 			MainVariables.mLeft.rotate(-angle);
 			Delay.msDelay(10);
 		}
+		Delay.msDelay(100);
 	}
 }

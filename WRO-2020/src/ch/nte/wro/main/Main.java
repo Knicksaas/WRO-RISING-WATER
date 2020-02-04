@@ -3,8 +3,8 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
+import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
-import lejos.utility.Delay;
 
 
 public class Main {
@@ -15,14 +15,13 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
-
-		/*bot.oneStepBelt(200, true);
-		Delay.msDelay(1500);*/
 		
-		bot.followLine(200, "double.cross", 0, 60f, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		
-		bot.sandBagPickUp(100, null);
-		
+		Navigation.startPointToHouse("right", SensorValues.intensityGreen, bot, speed);
+		Handling.unloadEvacuationRequest(bot, speed);
+		Navigation.driveToOtherStartPlace("left", bot, speed);
+		Navigation.startPointToHouse("left", SensorValues.intensityYellow, bot, speed);
+		Handling.unloadEvacuationRequest(bot, speed);
+		Handling.uploadSandBags(bot, "left", 100);
 		
 		
 	}
