@@ -22,14 +22,26 @@ public class AccelerationThred extends Thread {
 		MainVariables.mLeft.setSpeed(speed);
 		MainVariables.mRight.setSpeed(speed);
 		SynchedVariables.globalSpeed.set(speed);
-		int intervallTime = Math.round(((time)/(speedTo-speedFrom))*5);
-		while(speed < speedTo) {
-			MainVariables.mLeft.setSpeed(speed);
-			MainVariables.mRight.setSpeed(speed);
-			SynchedVariables.globalSpeed.set(speed);
-			Delay.msDelay(intervallTime);
-			speed = speed + 5;
+		if(speed < speedTo) {
+			int intervallTime = Math.round(((time)/(speedTo-speedFrom))*5);
+			while(speed < speedTo) {
+				MainVariables.mLeft.setSpeed(speed);
+				MainVariables.mRight.setSpeed(speed);
+				SynchedVariables.globalSpeed.set(speed);
+				Delay.msDelay(intervallTime);
+				speed = speed + 5;
+			}
+		} else {
+			int intervallTime = Math.round(((time)/(speedFrom-speedTo))*5);
+			while(speed > speedTo) {
+				MainVariables.mLeft.setSpeed(speed);
+				MainVariables.mRight.setSpeed(speed);
+				SynchedVariables.globalSpeed.set(speed);
+				Delay.msDelay(intervallTime);
+				speed = speed - 5;
+			}
 		}
+		
 		SynchedVariables.globalSpeed.set(0);
 	}
 }

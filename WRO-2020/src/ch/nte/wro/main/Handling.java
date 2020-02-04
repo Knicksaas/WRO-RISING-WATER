@@ -25,6 +25,6 @@ public class Handling {
 			bot.rotate(speed, 0.5f, "left");
 		}
 		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.sandBagPickUp(speed, null);
+		bot.sandBagPickUp(speed, bot.getSensorOnPort(3));
 	}
 }

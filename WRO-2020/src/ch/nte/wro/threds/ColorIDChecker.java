@@ -8,12 +8,10 @@ public class ColorIDChecker extends Thread {
 	private SynchedBoolean carrier;
 	private Sensor sensor;
 	private int colorID;
-	private float diff;
 
-	public ColorIDChecker(SynchedBoolean carier, Sensor sensor, int colorID, float diff) {
+	public ColorIDChecker(SynchedBoolean carier, Sensor sensor, int colorID) {
 		this.carrier = carier;
 		this.sensor = sensor;
-		this.diff = diff;
 	}
 	@Override
 	public void run() {

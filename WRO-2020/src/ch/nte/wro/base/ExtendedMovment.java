@@ -129,7 +129,7 @@ public class ExtendedMovment extends BasicMovment{
 		SynchedBoolean running = new SynchedBoolean();
 		running.set(true);
 		forward(speed);
-		ColorIDChecker thread = new ColorIDChecker(running, sensor, colorID, diff);
+		ColorIDChecker thread = new ColorIDChecker(running, sensor, colorID);
 		thread.start();
 		while (true) {
 			if(!running.get()) {

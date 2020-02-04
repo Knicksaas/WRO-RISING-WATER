@@ -1,11 +1,10 @@
 package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
-import ch.nte.wro.variables.ConveyorbeltStatus;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
+import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
-import lejos.hardware.Sound;
 
 
 public class Main {
@@ -16,10 +15,15 @@ public class Main {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
-		bot.sandBagPickUp(100, bot.getSensorOnPort(3));
-		if(ConveyorbeltStatus.slot2 == "BlueSandBag") {
-			Sound.beep();
-		}
+		
+		Navigation.startPointToHouse("right", SensorValues.intensityGreen, bot, speed);
+		Handling.unloadEvacuationRequest(bot, speed);
+		Navigation.driveToOtherStartPlace("left", bot, speed);
+		Navigation.startPointToHouse("left", SensorValues.intensityYellow, bot, speed);
+		Handling.unloadEvacuationRequest(bot, speed);
+		Handling.uploadSandBags(bot, "left", 100);
+		Navigation.driveToColoredLine("right", bot, speed);
+		
 		
 	}
 	 
@@ -34,6 +38,6 @@ public class Main {
 		bot.setSensorOnPort(GlobalSensors.colorSensor2, 2);
 		bot.getSensorOnPort(2).setMode("Red");
 		bot.setSensorOnPort(GlobalSensors.hiTechnicsColorSensor, 3);
-		bot.getSensorOnPort(3).setMode("ColorID");
+		bot.getSensorOnPort(3).setMode("RGB");
 	}
 }
