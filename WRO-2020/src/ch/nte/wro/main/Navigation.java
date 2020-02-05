@@ -60,6 +60,11 @@ public class Navigation {
 		
 	}
 	
+	public static void driveForwardToHouse(Robot bot, int speed) {
+		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.followLine(speed/2, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+	}
+	
 	public static void driveToColoredLine(String side, Robot bot, int speed) {
 		Delay.msDelay(100);
 		bot.turnWithRotations(speed, 1f, side);
