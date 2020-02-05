@@ -62,18 +62,8 @@ public class Navigation {
 	
 	public static void driveToColoredLine(String side, Robot bot, int speed) {
 		Delay.msDelay(100);
-		if(side.equalsIgnoreCase("left")) {
-			bot.turnWithRotations(speed, 1f, side);
-		} else if (side.equalsIgnoreCase("right")) {
-			bot.turnWithRotations(speed, 1f, side);
-		}
-		bot.rotate(speed, -1f);
-		bot.followLine(speed, "double.changeLineColor", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.rotate(speed, 0.5f);
-		if(side.equalsIgnoreCase("left")) {
-			bot.turnWithRotations(speed, 0.5f, side);
-		} else if (side.equalsIgnoreCase("right")) {
-			bot.turnWithRotations(speed, 0.5f, side);
-		}
+		bot.turnWithRotations(speed, 1f, side);
+		bot.followLine(200, "double.time", 2000, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.turnWithRotations(speed, 0.5f, side);
 	}
 }
