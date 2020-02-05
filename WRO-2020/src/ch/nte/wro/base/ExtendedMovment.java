@@ -142,7 +142,7 @@ public class ExtendedMovment extends BasicMovment{
 		rotate(200, 0.52f);
 		String color = ColorGetter.getColor(sensor);
 		setArmAngle(25, 50);
-		Delay.msDelay(2000);
+		Delay.msDelay(1500);
 		setArmAngle(200, 100);
 		rotate(150, -0.3f);
 		Delay.msDelay(2000);
@@ -155,7 +155,7 @@ public class ExtendedMovment extends BasicMovment{
 		Delay.msDelay(3000);
 		ConveyorbeltStatus.slot1 = (color + "SandBag");
 		setArmAngle(0, 300);
-		rotate(speed, -0.5f); 
+		rotate(200, -0.5f); 
 	}
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);

@@ -36,6 +36,7 @@ public class Handling {
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
 		bot.rotate(speed, -0.2f);
+		bot.oneStepBelt(100, true);
 		bot.turnWithRotations(speed, 0.5f, "left");
 		bot.rotate(speed, -0.2f);
 		bot.turnWithRotations(speed, 0.5f, "left");
@@ -46,6 +47,7 @@ public class Handling {
 		bot.rotate(speed, 0.5f);
 		bot.turnWithRotations(speed, 0.5f, "left");
 		bot.rotate(speed, -0.2f);
+		bot.oneStepBelt(100, true);
 		bot.turnWithRotations(speed, 0.1f, "right");
 		bot.rotate(speed, 0.2f);
 		bot.turnWithRotations(speed, 0.6f, "left");
