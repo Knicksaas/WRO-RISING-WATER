@@ -4,27 +4,37 @@ import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
-import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
 public class TestMain {
 	
-	public static final int speed = 200;
+	public static final int speed = 100;
 	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
+		
 		/*bot.oneStepBelt(100, false);
 		Delay.msDelay(2000);
-		bot.oneStepBelt(100, false);
-		Delay.msDelay(2000);*/
 		bot.oneStepBelt(100, false);
 		Delay.msDelay(2000);
 		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.sandBagPickUp(100, bot.getSensorOnPort(3));
 		Sound.beep();								
 		Sound.buzz();
+		Sound.twoBeeps();*/
+		
+		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		Handling.unloadSandBagsInHouse(bot, speed);
+		
+		
+		bot.oneStepBelt(100, false);
+		Delay.msDelay(2000);
+		bot.oneStepBelt(100, false);
+		Delay.msDelay(2000);
+		bot.oneStepBelt(100, false);
+		Delay.msDelay(2000);
 		
 	}
 	 
