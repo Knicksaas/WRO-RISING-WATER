@@ -15,6 +15,10 @@ public class TestMain {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
+		/*bot.oneStepBelt(100, false);
+		Delay.msDelay(2000);
+		bot.oneStepBelt(100, false);
+		Delay.msDelay(2000);*/
 		bot.oneStepBelt(100, false);
 		Delay.msDelay(2000);
 		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
