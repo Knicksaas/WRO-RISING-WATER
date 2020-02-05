@@ -22,6 +22,7 @@ public class Main {
 		Handling.unloadEvacuationRequest(bot, speed);
 		Handling.uploadSandBags(bot, "left", 100);
 		Navigation.driveToColoredLine("right", bot, speed);
+		Navigation.driveToOtherStartPlace("left", bot, speed);
 
 	}
 	 
