@@ -140,12 +140,12 @@ public class ExtendedMovment extends BasicMovment{
 
 	public void sandBagPickUp(int speed, Sensor sensor) {
 		
-		rotate(speed, 0.53f);
+		rotate(200, 0.52f);
 		String color = ColorGetter.getColor(sensor);
 		setArmAngle(25, 50);
 		Delay.msDelay(2000);
 		setArmAngle(200, 100);
-		rotate(125, -0.3f);
+		rotate(150, -0.3f);
 		Delay.msDelay(2000);
 		setArmAngle(0, 200);
 		ConveyorbeltStatus.slot1 = (color + "SandBag");
@@ -155,9 +155,10 @@ public class ExtendedMovment extends BasicMovment{
 		setArmAngle(200, 100);
 		Delay.msDelay(3000);
 		ConveyorbeltStatus.slot1 = (color + "SandBag");
-		rotate(speed, -0.5f);
 		setArmAngle(0, 300);
-		Delay.msDelay(2000);
+		rotate(speed, -0.5f); 
+		
+		
 		
 		
 		return;
