@@ -1,7 +1,7 @@
 package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
-import ch.nte.wro.variables.ConveyorbeltStatus;
+import ch.nte.wro.variables.Status;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SensorValues;
@@ -16,7 +16,7 @@ public class Main {
 
 		init(bot);
 		
-		if(MainVariables.greenSlot.contains("house")) {
+		if(Status.getHouseOnSide("right").equalsIgnoreCase("right")) {
 			Navigation.startPointToHouse("right", SensorValues.intensityGreen, bot, speed);
 			Handling.unloadEvacuationRequest(bot, speed);
 			Navigation.driveToOtherStartPlace("left", bot, speed);
@@ -26,7 +26,7 @@ public class Main {
 			Navigation.driveToOtherStartPlace("right", bot, speed);
 		}
 		
-		if(MainVariables.redSlot.contains("house")) {
+		if(Status.getColorOnSide("left").equalsIgnoreCase("left")) {
 			Navigation.startPointToHouse("left", SensorValues.intensityYellow, bot, speed);
 			Handling.unloadEvacuationRequest(bot, speed);
 			Handling.uploadSandBags(bot, "left", 100);
@@ -38,28 +38,25 @@ public class Main {
 			Navigation.driveToColoredLine("left", bot, speed);
 		}
 		
-		String onlyColorOfSecondHouseString;
-		if(MainVariables.redSlot.contains("house")) {
-			onlyColorOfSecondHouseString = MainVariables.redSlot.toLowerCase().replace("house", "");
-			if(onlyColorOfSecondHouseString.equalsIgnoreCase(ConveyorbeltStatus.slot3.toLowerCase().replace("sandbag", ""))) {
-				Navigation.driveForwardToHouse(bot, speed);
-			} else {
-				Navigation.driveToOtherStartPlace("left", bot, speed);
-				if(MainVariables.greenSlot.contains("house")) {
-					Navigation.startPointToHouse("right", SensorValues.intensityGreen, bot, speed);
-				} else {
-					Navigation.startPointToHouse("left", SensorValues.intensityGreen, bot, speed);
-				}
-			}
+		if(Status.getColorOnSide("left").equalsIgnoreCase(Status.slot3)) {
+			Navigation.driveForwardToHouse(bot, speed);
+			//Unload Sandbags
 		} else {
-			onlyColorOfSecondHouseString = MainVariables.yellowSlot.toLowerCase().replace("house", "");
-			//TODO: understand if-else and finish it
+			if(Status.getHouseOnSide("right").equalsIgnoreCase("right")) {
+				Navigation.driveToOtherStartPlace("left", bot, speed);
+				Navigation.startPointToHouse("right", SensorValues.intensityGreen, bot, speed);
+				//Unload Sandbags
+			} else {
+				Navigation.driveToOtherStartPlace("right", bot, speed);
+				Navigation.startPointToHouse("left", SensorValues.intensityGreen, bot, speed);
+				//Unload Sandbags
+			}
 		}
-
 	}
 	 
 	private static void init(Robot bot) {
 		SynchedVariables.globalSpeed.set(0);
+		Status.initHouses("green", "blue", "red", "green");
 		sensorInit(bot);
 	}
 	 
