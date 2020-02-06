@@ -35,23 +35,22 @@ public class Handling {
 	}
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
-		bot.rotate(speed, -0.2f);
+		bot.rotate(speed, -0.4f);
+		//bot.oneStepBelt(100, true);
+		bot.turnWithRotations(speed, 1.001f, "left");
+		bot.rotate(speed, -0.5f, "right");
+		bot.rotate(speed, -0.5f, "left");
 		bot.oneStepBelt(100, true);
-		bot.turnWithRotations(speed, 0.5f, "left");
-		bot.rotate(speed, -0.2f);
-		bot.turnWithRotations(speed, 0.5f, "left");
+		Delay.msDelay(2500);
+		bot.rotate(speed, 0.5f, "left");
+		bot.rotate(speed, 0.5f, "right");
+		bot.rotate(speed, -0.5f, "left");
+		bot.rotate(speed, -0.5f, "right");
 		bot.oneStepBelt(100, true);
-		bot.rotate(speed, -0.2f);
-		bot.rotate(speed, 0.2f);
-		bot.turnWithRotations(speed, 0.5f, "right");
-		bot.rotate(speed, 0.5f);
-		bot.turnWithRotations(speed, 0.5f, "left");
-		bot.rotate(speed, -0.2f);
-		bot.oneStepBelt(100, true);
-		bot.turnWithRotations(speed, 0.1f, "right");
-		bot.rotate(speed, 0.2f);
-		bot.turnWithRotations(speed, 0.6f, "left");
-		bot.rotate(speed, 0.2f);
-		bot.turnWithRotations(speed, 0.5f, "right");
+		Delay.msDelay(2500);
+		bot.rotate(speed, 0.5f, "right");
+		bot.rotate(speed, 0.5F, "left");
+		bot.rotate(speed, -0.74f);
+		
 	}
 }
