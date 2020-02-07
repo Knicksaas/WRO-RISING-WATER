@@ -1,6 +1,6 @@
 package ch.nte.wro.threds;
 
-import ch.nte.wro.variables.ConveyorbeltStatus;
+import ch.nte.wro.variables.Status;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
 
@@ -24,15 +24,15 @@ public class ConveyorBeltThread extends Thread {
 		MainVariables.mBelt.setSpeed(speed);
 		if(forward) {
 			MainVariables.mBelt.rotate(144);
-			ConveyorbeltStatus.slot3 = ConveyorbeltStatus.slot2;
-			ConveyorbeltStatus.slot2 = ConveyorbeltStatus.slot1;
-			ConveyorbeltStatus.slot1 = null;
+			Status.slot3 = Status.slot2;
+			Status.slot2 = Status.slot1;
+			Status.slot1 = null;
 			
 		} else {
 			MainVariables.mBelt.rotate(-144);
-			ConveyorbeltStatus.slot1 = ConveyorbeltStatus.slot2;
-			ConveyorbeltStatus.slot2 = ConveyorbeltStatus.slot3;
-			ConveyorbeltStatus.slot3 = null;
+			Status.slot1 = Status.slot2;
+			Status.slot2 = Status.slot3;
+			Status.slot3 = null;
 
 			
 

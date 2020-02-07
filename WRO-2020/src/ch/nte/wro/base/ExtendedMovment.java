@@ -6,7 +6,7 @@ import ch.nte.wro.threds.ConveyorBeltThread;
 import ch.nte.wro.threds.DynamicSensitivity;
 import ch.nte.wro.threds.LiftingArmThread;
 import ch.nte.wro.threds.LightIntensityChecker;
-import ch.nte.wro.variables.ConveyorbeltStatus;
+import ch.nte.wro.variables.Status;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedBoolean;
 import ch.nte.wro.variables.SynchedFloat;
@@ -147,13 +147,13 @@ public class ExtendedMovment extends BasicMovment{
 		rotate(150, -0.3f);
 		Delay.msDelay(2000);
 		setArmAngle(0, 200);
-		ConveyorbeltStatus.slot1 = (color + "SandBag");
+		Status.slot1 = (color);
 		oneStepBelt(100, true);
 		Delay.msDelay(590);
 		rotate(speed, 0.3f);
 		setArmAngle(200, 100);
 		Delay.msDelay(3000);
-		ConveyorbeltStatus.slot1 = (color + "SandBag");
+		Status.slot1 = (color);
 		setArmAngle(0, 300);
 		rotate(200, -0.5f); 
 	}

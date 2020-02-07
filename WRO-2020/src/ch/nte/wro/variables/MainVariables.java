@@ -13,9 +13,4 @@ public class MainVariables {
 	public static RegulatedMotor mBelt = new EV3MediumRegulatedMotor(MotorPort.A);
 	public static boolean inverMotorDirections = true;
 	public static int armAngle = 0;
-	public static final String redSlot = "GreenHouse";
-	public static final String greenSlot = "BlueHouse";
-	public static final String blueSlot = "";
-	public static final String yellowSlot = "";
-	
 }	
