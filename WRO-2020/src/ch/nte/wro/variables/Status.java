@@ -10,11 +10,14 @@ public class Status {
 	public static String slot3;
 
 	private static String areaGreen = null;
+	private static Status areaBlue = null;
 	private static String areaYellow = null;
+	private static String areaRed = null;
 
 	public static void initHouses(String houseRightArea, String colorHouseRight, String houseLeftArea, String colorHouseLeft) {
 		if(houseRightArea.equalsIgnoreCase("green")) {
 			areaGreen = colorHouseRight;
+			
 		} else if (houseRightArea.equalsIgnoreCase("blue")) {
 			areaGreen = null;
 		} else {
@@ -50,8 +53,8 @@ public class Status {
 			Sound.buzz();
 			System.out.println("Unknown Side! ERROR!");
 			Button.waitForAnyPress();
+			return null;
 		}
-		return null;
 	}
 	
 	public static String getColorOnSide(String side) {
