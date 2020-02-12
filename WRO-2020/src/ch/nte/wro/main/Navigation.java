@@ -29,14 +29,24 @@ public class Navigation {
 		}
 		bot.motorsOff();
 		Delay.msDelay(200);
-		bot.followLine(speed/2, "double.cross", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.followLine(speed/2, "double.time", 1000, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.followLine(speed/3, "double.cross", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		if(lineIntensity == SensorValues.intensityYellow) {
+			bot.followLine(speed/2, "double.cross", 0, 200, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.followLine(speed/2, "double.time", 500, 200, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.followLine(speed/3, "double.cross", 0, 200, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		} else {
+			bot.followLine(speed/2, "double.cross", 0, 100, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.followLine(speed/2, "double.time", 500, 100, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.followLine(speed/3, "double.cross", 0, 100, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		}
 	}
 	
-	public static void driveToOtherStartPlace(String side, Robot bot, int speed) {
+	public static void driveToOtherStartPlace(String side, Robot bot, float lineIntenstiy, int speed) {
 		Delay.msDelay(100);
-		bot.followLine(speed/2, "double.changeLineColor", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		if(lineIntenstiy == SensorValues.intensityYellow) {
+			bot.followLine(speed/2, "double.changeLineColor", 0, 200, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		} else {
+			bot.followLine(speed/2, "double.changeLineColor", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		}
 		Delay.msDelay(100);
 		bot.rotate(speed, 0.5F);
 		Delay.msDelay(50);
@@ -61,15 +71,16 @@ public class Navigation {
 	}
 	
 	public static void driveForwardToHouse(Robot bot, int speed) {
-		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.followLine(speed/2, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.followLine(speed, "double.cross", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.followLine(speed, "double.time", 500, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.followLine(speed/2, "double.cross", 0, 80, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 	}
 	
 	public static void driveToColoredLine(String side, Robot bot, int speed) {
 		Delay.msDelay(100);
-		bot.turnWithRotations(speed, 1f, side);
-		bot.followLine(200, "double.time", 2000, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.turnWithRotations(speed, 0.5f, side);
+		bot.turnWithRotations(speed/2, 1f, side);
+		bot.rotate(speed, 0.4f);
+		bot.turnWithRotations(speed/2, 0.5f, side);
 	}
 	
 	public static void driveFromStartPointToColoredLine(Robot bot, int speed, float lineIntensity, String side) {
