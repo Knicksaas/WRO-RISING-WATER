@@ -10,9 +10,7 @@ public class Status {
 	public static String slot3;
 
 	private static String areaGreen = null;
-	private static Status areaBlue = null;
 	private static String areaYellow = null;
-	private static String areaRed = null;
 
 	public static void initHouses(String houseRightArea, String colorHouseRight, String houseLeftArea, String colorHouseLeft) {
 		if(houseRightArea.equalsIgnoreCase("green")) {
@@ -38,13 +36,13 @@ public class Status {
 	
 	public static String getHouseOnSide(String side) {
 		if(side.equalsIgnoreCase("right")) {
-			if(areaGreen.equals(null)) {
+			if(areaGreen == null) {
 				return "left";
 			} else {
 				return "right";
 			}
 		} else if (side.equalsIgnoreCase("left")) {
-			if(areaYellow.equals(null)) {
+			if(areaYellow == null) {
 				return "left";
 			} else {
 				return "right";
@@ -59,13 +57,13 @@ public class Status {
 	
 	public static String getColorOnSide(String side) {
 		if(side.equalsIgnoreCase("right")) {
-			if(areaGreen.equals(null)) {
+			if(areaGreen == null) {
 				return "blue";
 			} else {
 				return "green";
 			}
 		} else if (side.equalsIgnoreCase("left")) {
-			if(areaYellow.equals(null)) {
+			if(areaYellow == null) {
 				return "red";
 			} else {
 				return "yellow";

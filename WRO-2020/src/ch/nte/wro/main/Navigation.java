@@ -71,4 +71,26 @@ public class Navigation {
 		bot.followLine(200, "double.time", 2000, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.turnWithRotations(speed, 0.5f, side);
 	}
+	
+	public static void driveFromStartPointToColoredLine(Robot bot, int speed, float lineIntensity, String side) {
+		Delay.msDelay(100);
+		bot.accelerate(100, speed, 100);
+		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
+				SensorValues.intensityWhite, SensorValues.allowedSensorVariation*5);
+		Sound.beep();
+		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
+				lineIntensity, SensorValues.allowedSensorVariation*10);
+		Sound.beep();
+		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
+				SensorValues.intensityWhite, SensorValues.allowedSensorVariation*10);
+		Sound.beep();
+		bot.setSpeeds(0);
+		if(side.equalsIgnoreCase("right")) {
+			bot.rotate(speed, 1F, "left");
+			Sound.beep();
+		} else if (side.equalsIgnoreCase("left")) {
+			bot.rotate(speed, 1F, "right");
+			Sound.beep();
+		}
+	}
 }
