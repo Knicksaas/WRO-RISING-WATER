@@ -1,5 +1,7 @@
 package ch.nte.wro.variables;
 
+import ch.nte.wro.base.RGBValue;
+
 public class SensorValues {
 	
 //	NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN: colorIDs of Ev3ColorSensor (0-7)
@@ -11,10 +13,13 @@ public class SensorValues {
 	public static float intensityYellow = 0.521F;
 	public static float intensityRed = 0.475F;
 	
+	public static RGBValue valueBlack = new RGBValue(0, 0, 0);
+	
 	public static float targetIntensityLinefollower = (intensityBlack+intensityWhite)/2;
 	
 	public static float averageIntensityHalfCross = 0F;
 	
 	public static float allowedSensorVariation = 0.01F;
+	public static float allowedRGBVariation = 0f;
 
 }
