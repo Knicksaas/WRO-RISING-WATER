@@ -66,9 +66,6 @@ public class ExtendedMovment extends BasicMovment{
 		LiftingArmThread thread = new LiftingArmThread(angle, speed);
 		thread.start();
 	}
-
-		
-	
 	
 	public int getArmAngle() {
 		return MainVariables.armAngle;
@@ -156,6 +153,7 @@ public class ExtendedMovment extends BasicMovment{
 		Status.slot1 = (color);
 		setArmAngle(0, 300);
 		rotate(200, -0.5f); 
+		oneStepBelt(speed, true);
 	}
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);

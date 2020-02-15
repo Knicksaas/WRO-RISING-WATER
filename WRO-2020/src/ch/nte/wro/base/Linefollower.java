@@ -66,7 +66,7 @@ public class Linefollower extends BasicMovment{
 					SensorValues.averageIntensityHalfCross, SensorValues.allowedSensorVariation);
 			thread.start();
 		} else if (mode.equalsIgnoreCase("double.changeLineColor")) {
-			DetectLineColorThread thread = new DetectLineColorThread(running, sensorLeft, sensorRight, 0.008F);
+			DetectLineColorThread thread = new DetectLineColorThread(running, sensorLeft, sensorRight, 0.005F);
 			thread.start();
 		}
 		float ki = 0;

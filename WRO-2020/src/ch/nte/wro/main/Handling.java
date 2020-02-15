@@ -22,13 +22,17 @@ public class Handling {
 		Delay.msDelay(200);
 	}
 	
-	public static void uploadSandBags(Robot bot, String side, int speed) {
-		bot.followLine(speed, "double.cross", 0, 100, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.rotate(speed, 0.5F);
+	public static void uploadSandBags(Robot bot, String side, float lineintensity, int speed) {
+		if(lineintensity == SensorValues.intensityYellow) {
+			bot.followLine(speed, "double.cross", 0, 200, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		} else {
+			bot.followLine(speed, "double.cross", 0, 100, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		}
+		bot.rotate(speed, 0.3F);
 		if(side.equalsIgnoreCase("left")) {
-			bot.rotate(speed, 0.5f, "right");
+			bot.rotate(speed, 1f, "right");
 		} else if (side.equalsIgnoreCase("right")) {
-			bot.rotate(speed, 0.5f, "left");
+			bot.rotate(speed, 1f, "left");
 		}
 		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.sandBagPickUp(speed, bot.getSensorOnPort(3));
@@ -36,7 +40,6 @@ public class Handling {
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
 		bot.rotate(speed, -0.4f);
-		//bot.oneStepBelt(100, true);
 		bot.turnWithRotations(speed, 1.001f, "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
