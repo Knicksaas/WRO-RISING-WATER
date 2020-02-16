@@ -16,17 +16,9 @@ public class TestMain {
 
 		init(bot);
 			
-		bot.followLineRGB(200, "double.changeLineColor", 0, 50, bot.getSensorOnPort(1), bot.getSensorOnPort(2) );
 	
 		
 
-		/*bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		Handling.unloadSandBagsInHouse(bot, speed);
-		bot.oneStepBelt(speed, false);
-		Delay.msDelay(2000);
-		bot.oneStepBelt(speed, false);
-		Delay.msDelay(2000);
-		*/				
 		
 	}
 	 
