@@ -28,19 +28,10 @@ public class MovmentBlocks {
 		Delay.msDelay(100);
 		bot.accelerate(speed*2, speed, 1000);
 		bot.rotate(speed*2, 1F);
-		startPointToLine(bot, speed, side2);
 		if(Position.botPosition.equalsIgnoreCase("red") || Position.botPosition.equalsIgnoreCase("yellow")) {
-			if(side2.equalsIgnoreCase("right")) {
-				Position.botPosition = "blue";
-			} else {
-				Position.botPosition = "green";
-			}
+			startPointToLine(bot, speed, side2, "R6");
 		} else {
-			if(side2.equalsIgnoreCase("right")) {
-				Position.botPosition = "red";
-			} else {
-				Position.botPosition = "yellow";
-			}
+			startPointToLine(bot, speed, side2, "R5");
 		}
 	}
 	
@@ -56,9 +47,11 @@ public class MovmentBlocks {
 		bot.followLineRGB(speed, "double.cross", 0, 40, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.sandBagPickUp(speed, bot.getSensorOnPort(3));
 		bot.turnWithRotations(speed, 1f, side);
+		bot.rotate(speed, 0.4f);
+		bot.turnWithRotations(speed, 0.5f, side);
 	}
 	
-	public static void startPointToLine(Robot bot, int speed, String side) {
+	public static void startPointToLine(Robot bot, int speed, String side, String startPoint) {
 		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityWhite, SensorValues.allowedSensorVariation*3);
 		bot.rotate(speed, 0.5f);
@@ -70,6 +63,21 @@ public class MovmentBlocks {
 			bot.turnToLine(speed, "double.right", bot.getSensorOnPort(2), SensorValues.intensityWhite, SensorValues.allowedSensorVariation*2);
 			new BeepThread().start();
 			bot.turnWithRotations(speed, 0.2f, "right");
+		}
+		if(startPoint.equalsIgnoreCase("R6")) {
+			if(side.equalsIgnoreCase("right")) {
+				Position.botPosition = "blue";
+			} else {
+				Position.botPosition = "green";
+			}
+		} else {
+			if(startPoint.equalsIgnoreCase("R5")) {
+				if(side.equalsIgnoreCase("right")) {
+					Position.botPosition = "red";
+				} else {
+					Position.botPosition = "yellow";
+				}
+			}
 		}
 	}
 	
