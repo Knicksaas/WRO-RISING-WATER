@@ -1,5 +1,8 @@
 package ch.nte.wro.variables;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ch.nte.wro.base.RGBValue;
 
 public class SensorValues {
@@ -21,6 +24,9 @@ public class SensorValues {
 	
 	public static final float allowedSensorVariation = 0.01F;
 	public static final float allowedRGBVariation = 0.03f;
+	
+	public static final Map<String, Integer> sensitivity = new HashMap<String, Integer>();
+
 	public static final float otherLineColorDiff = 0.0275f;
 
 }
