@@ -60,6 +60,7 @@ public class ExtendedMovment extends BasicMovment{
 	 * MODES:
 	 *  - double.time: follows the line a given time in milliseconds with two sensors
 	 *  - double.cross: follows the line until it detects a black cross with two sensors
+	 *  - double.changeLineColor: follows the line until it detects a line color change with two sensors
 	 */
 	public void followLineRGB(int speed, String mode, int msTime, float sensitivity,
 			Sensor sensorLeft, Sensor sensorRight) {
