@@ -21,6 +21,6 @@ public class SensorValues {
 	
 	public static final float allowedSensorVariation = 0.01F;
 	public static final float allowedRGBVariation = 0.03f;
-	public static final float otherLineColorDiff = 0.01f;
+	public static final float otherLineColorDiff = 0.0275f;
 
 }
