@@ -3,9 +3,8 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
+import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SynchedVariables;
-import lejos.hardware.Sound;
-import lejos.utility.Delay;
 
 public class TestMain {
 	
@@ -16,15 +15,15 @@ public class TestMain {
 
 		init(bot);
 			
-	
-		
-
+		Position.botPosition = "red";
+		MovmentBlocks.driveToHouse(bot, speed, "EvacuationRequest");
 		
 	}
 	 
 	private static void init(Robot bot) {
 		SynchedVariables.globalSpeed.set(0);
 		sensorInit(bot);
+		Initsialization.sensitivityInit();
 	}
 	 
 	private static void sensorInit(Robot bot) {

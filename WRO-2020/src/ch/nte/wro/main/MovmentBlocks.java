@@ -35,13 +35,6 @@ public class MovmentBlocks {
 		}
 	}
 	
-	public static void driveToHouse(Robot bot, int speed, String mode) {
-	//if for sensitivity 
-	bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition), bot.getSensorOnPort(1), bot.getSensorOnPort(2));	
-	bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition), bot.getSensorOnPort(1), bot.getSensorOnPort(2));	
-	//if for mode
-	}
-	
 	public static void pickUpSandBags(Robot bot, int speed, String side) {
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
@@ -85,6 +78,16 @@ public class MovmentBlocks {
 					Position.botPosition = "yellow";
 				}
 			}
+		}
+	}
+	
+	public static void driveToHouse(Robot bot, int speed, String mode) {
+		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition), bot.getSensorOnPort(1), bot.getSensorOnPort(2));	
+		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition), bot.getSensorOnPort(1), bot.getSensorOnPort(2));	
+		if (mode.equalsIgnoreCase("sandbags")){
+			Handling.unloadSandBagsInHouse(bot, speed);
+		} else {
+			Handling.unloadEvacuationRequest(bot, speed);
 		}
 	}
 }
