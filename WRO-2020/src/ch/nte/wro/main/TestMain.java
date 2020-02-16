@@ -8,7 +8,7 @@ import ch.nte.wro.variables.SynchedVariables;
 
 public class TestMain {
 	
-	public static final int speed = 200;
+	public static final int speed = 100;
 	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
@@ -16,7 +16,9 @@ public class TestMain {
 		init(bot);
 			
 		Position.botPosition = "red";
-		MovmentBlocks.driveToHouse(bot, speed, "EvacuationRequest");
+		//MovmentBlocks.driveToHouse(bot, speed, "EvacuationRequest");
+		//MovmentBlocks.changeSide(bot, speed, "left", "right");
+		bot.followLineRGB(speed, "double.cross", 0, 10, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		
 	}
 	 

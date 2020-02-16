@@ -19,6 +19,6 @@ public class Initsialization {
 		SensorValues.sensitivity.put("yellow", 300);
 		SensorValues.sensitivity.put("blue", 50);
 		SensorValues.sensitivity.put("green", 50);
-		SensorValues.sensitivity.put("red", 150);
+		SensorValues.sensitivity.put("red", 200);
 	}
 }

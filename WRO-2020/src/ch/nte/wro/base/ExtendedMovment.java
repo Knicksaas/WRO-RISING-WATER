@@ -65,7 +65,6 @@ public class ExtendedMovment extends BasicMovment{
 	public void followLineRGB(int speed, String mode, int msTime, float sensitivity,
 			Sensor sensorLeft, Sensor sensorRight) {
 		Delay.msDelay(100);
-		Delay.msDelay(100);
 		SynchedFloat sens = new SynchedFloat();
 		sens.set(sensitivity);
 		new RGBLinefollower(speed, mode, msTime, sens, sensorLeft, sensorRight);
