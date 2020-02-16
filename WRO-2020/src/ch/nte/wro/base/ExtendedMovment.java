@@ -24,6 +24,13 @@ public class ExtendedMovment extends BasicMovment{
 		thread.start();
 	}
 	
+	/*
+	 * MODES:
+	 *  - single.left: turn with one motor to the left side
+	 *  - singel.right: turn with one motor to the right side
+	 *  - double.left: turn with two motors to the left side
+	 *  - double.right: turn with two motors to the right side
+	 */
 	public void turnToLine(int speed, String mode, Sensor sensor, float lineIntensity, float diff) {
 		if(mode.contains("single")) {
 			if(mode.contains("right")) {
@@ -49,6 +56,28 @@ public class ExtendedMovment extends BasicMovment{
 		}
 	}
 	
+	/*
+	 * MODES:
+	 *  - double.time: follows the line a given time in milliseconds with two sensors
+	 *  - double.cross: follows the line until it detects a black cross with two sensors
+	 */
+	public void followLineRGB(int speed, String mode, int msTime, float sensitivity,
+			Sensor sensorLeft, Sensor sensorRight) {
+		Delay.msDelay(100);
+		Delay.msDelay(100);
+		SynchedFloat sens = new SynchedFloat();
+		sens.set(sensitivity);
+		new RGBLinefollower(speed, mode, msTime, sens, sensorLeft, sensorRight);
+	}
+	
+	/*
+	 * MODES:
+	 *  - double.time: follows the line a given time in milliseconds with two sensors
+	 *  - double.cross: follows the line until it detects a black cross with two sensors
+	 *  - single.time: follows the line a given time in milliseconds with one sensor
+	 *  - single.cross: follows the line until it detects a black cross with one sensor 
+	 *  	KEEP IN MIND: (it will detects only branches where are on the same side as the sensor)
+	 */
 	public void followLine(int speed, String mode, int msTime, float sensitivity, 
 		Sensor sensorLeft, Sensor sensorRight) {
 		Delay.msDelay(100);
@@ -60,6 +89,11 @@ public class ExtendedMovment extends BasicMovment{
 	public void followLine(int speed, String mode, int msTime, SynchedFloat sensitivity, 
 			Sensor sensorLeft, Sensor sensorRight) {
 		new Linefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
+	}
+	
+	public void followLineRGB(int speed, String mode, int msTime, SynchedFloat sensitivity, 
+			Sensor sensorLeft, Sensor sensorRight) {
+		new RGBLinefollower(speed, mode, msTime, sensitivity, sensorLeft, sensorRight);
 	}
 	
 	public void setArmAngle(int angle, int speed) {
