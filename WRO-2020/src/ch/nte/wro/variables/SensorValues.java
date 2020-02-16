@@ -24,8 +24,12 @@ public class SensorValues {
 	
 	public static final float allowedSensorVariation = 0.01F;
 	public static final float allowedRGBVariation = 0.03f;
+<<<<<<< HEAD
 	public static final float otherLineColorDiff = 0.01f;
 	
 	public static final Map<String, Integer> sensitivity = new HashMap<String, Integer>();
+=======
+	public static final float otherLineColorDiff = 0.0275f;
+>>>>>>> 76df6604a3107fe1193726fe89b270b1f6b0b10a
 
 }

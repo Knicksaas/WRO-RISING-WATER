@@ -16,24 +16,9 @@ public class TestMain {
 
 		init(bot);
 			
-		Delay.msDelay(5000);
-		Sound.beep();
-		Delay.msDelay(2500);
-		Sound.beep();
-		Delay.msDelay(1250);
-		Sound.beep();
-		Delay.msDelay(512);
-		Sound.beep();
-		Delay.msDelay(512);
-		Sound.twoBeeps();
+	
+		
 
-		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		Handling.unloadSandBagsInHouse(bot, speed);
-		bot.oneStepBelt(speed, false);
-		Delay.msDelay(2000);
-		bot.oneStepBelt(speed, false);
-		Delay.msDelay(2000);
-							
 		
 	}
 	 

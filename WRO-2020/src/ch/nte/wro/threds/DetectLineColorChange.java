@@ -48,7 +48,7 @@ public class DetectLineColorChange extends Thread {
 			green = (sensorLeft.mesure()[1]+sensorRight.mesure()[1])/2;
 			blue = (sensorLeft.mesure()[2]+sensorRight.mesure()[2])/2;
 			values.add(new RGBValue(red, green, blue));
-			Delay.msDelay(50);
+			Delay.msDelay(30);
 		}
 		float returnRed = 0;
 		float returnGreen = 0;
