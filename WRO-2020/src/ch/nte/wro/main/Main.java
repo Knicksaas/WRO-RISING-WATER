@@ -2,7 +2,6 @@ package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.Status;
-import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
@@ -127,15 +126,7 @@ public class Main {
 	private static void init(Robot bot) {
 		SynchedVariables.globalSpeed.set(0);
 		Status.initHouses("green", "green", "yellow", "blue");
-		sensorInit(bot);
-	}
-	 
-	private static void sensorInit(Robot bot) {
-		bot.setSensorOnPort(GlobalSensors.colorSensor1, 1);
-		bot.getSensorOnPort(1).setMode("Red");
-		bot.setSensorOnPort(GlobalSensors.colorSensor2, 2);
-		bot.getSensorOnPort(2).setMode("Red");
-		bot.setSensorOnPort(GlobalSensors.hiTechnicsColorSensor, 3);
-		bot.getSensorOnPort(3).setMode("RGB");
+		Initsialization.sensorInit(bot);
+		Initsialization.sensitivityInit();
 	}
 }
