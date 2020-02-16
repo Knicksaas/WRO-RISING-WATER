@@ -49,16 +49,19 @@ public class Calibrator {
 		Button.waitForAnyPress();
 		redIntensity = getNewIntensity(colorsensor);
 		LCD.drawString("black: "+blackIntensity.toString(), 0, 0);
-		LCD.drawString(getMsg(valueBlack), 0, 1);
 		LCD.drawString("white: "+whiteIntetsity.toString(), 0, 2);
 		LCD.drawString("blue: "+blueIntensity.toString(), 0, 3);
 		LCD.drawString("green: "+greenIntensity.toString(), 0, 4);
 		LCD.drawString("yellow: "+yellowIntensity.toString(), 0, 5);
 		LCD.drawString("red: "+redIntensity.toString(), 0, 6);
 		Button.waitForAnyPress();
+		LCD.drawString(String.valueOf(valueBlack.getRed()), 0, 0);
+		LCD.drawString(String.valueOf(valueBlack.getGreen()), 0, 1);
+		LCD.drawString(String.valueOf(valueBlack.getBlue()), 0, 2);
+		Button.waitForAnyPress();
 	}
 	
-	private static float getNewIntensity(Sensor sensor) {
+	public static float getNewIntensity(Sensor sensor) {
 		sensor.setMode("Red");
 		List<Float> mesurements = new ArrayList<Float>();
 		for(int i = 0; i<10; i++) {
@@ -72,7 +75,7 @@ public class Calibrator {
 		return value/mesurements.size();
 	}
 	
-	private static RGBValue getNewRGBValue(Sensor sensor) {
+	public static RGBValue getNewRGBValue(Sensor sensor) {
 		sensor.setMode("RGB");
 		List<RGBValue> mesurements = new ArrayList<>();
 		for(int i = 0; i<10; i++) {
@@ -90,7 +93,7 @@ public class Calibrator {
 		return new RGBValue(valueRed/mesurements.size(), valueGreen/mesurements.size(), valueBlue/mesurements.size());
 	}
 	
-	private static String getMsg(RGBValue value) {
+	public static String getMsg(RGBValue value) {
 		return "RGB: " + String.valueOf(value.getRed()) + " " + String.valueOf(value.getGreen()) + " " + String.valueOf(value.getBlue());
 	}
 }

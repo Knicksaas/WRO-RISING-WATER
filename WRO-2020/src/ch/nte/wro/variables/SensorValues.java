@@ -12,8 +12,8 @@ public class SensorValues {
 	public static final float intensityGreen = 0.117F;
 	public static final float intensityYellow = 0.52F;
 	public static final float intensityRed = 0.484F;
-	
-	public static RGBValue valueBlack = new RGBValue(0, 0, 0);
+
+	public static RGBValue valueBlack = new RGBValue(0.02245f, 0.025f, 0.0268f);
 	
 	public static float targetIntensityLinefollower = (intensityBlack+intensityWhite)/2;
 	
