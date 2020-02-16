@@ -42,6 +42,10 @@ public class RGBValue {
 		this.blue = blue;
 	}
 	
+	public RGBValue getAverage(RGBValue value) {
+		return new RGBValue((value.getRed()+red)/2, (value.getGreen()+green)/2, (value.getBlue()+blue)/2);
+	}
+	
 	public boolean isEqual(RGBValue value) {
 		if(value.getRed() == red && value.getGreen() == green && value.getBlue() == blue) {
 			return true;

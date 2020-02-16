@@ -1,5 +1,6 @@
 package ch.nte.wro.base;
 
+import ch.nte.wro.threds.DetectLineColorChange;
 import ch.nte.wro.threds.RGBChecker;
 import ch.nte.wro.threds.Timer;
 import ch.nte.wro.variables.SensorValues;
@@ -59,6 +60,9 @@ public class RGBLinefollower extends BasicMovment{
 			thread.start();
 		} else if (mode.equalsIgnoreCase("double.cross")) {
 			RGBChecker thread = new RGBChecker(running, sensorLeft, sensorRight, SensorValues.valueBlack, SensorValues.allowedRGBVariation);
+			thread.start();
+		} else if (mode.equalsIgnoreCase("double.changeLineColor")) {
+			DetectLineColorChange thread = new DetectLineColorChange(running, sensorLeft, sensorRight, SensorValues.otherLineColorDiff);
 			thread.start();
 		}
 		
