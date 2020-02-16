@@ -43,10 +43,13 @@ public class MovmentBlocks {
 	}
 	public static void driveToHouse(Robot bot, int speed, String mode) {
 
-	//if for sensitivity 
 	bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition), bot.getSensorOnPort(1), bot.getSensorOnPort(2));	
 	bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition), bot.getSensorOnPort(1), bot.getSensorOnPort(2));	
-	//if for mode
+	if (mode.equalsIgnoreCase("sandbags")){
+		Handling.unloadSandBagsInHouse(bot, speed);
+	}else {
+		Handling.unloadEvacuationRequest(bot, speed);
+	}
 	}
 }
 
