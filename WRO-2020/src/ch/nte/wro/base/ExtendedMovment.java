@@ -189,6 +189,7 @@ public class ExtendedMovment extends BasicMovment{
 		rotate(200, -0.5f); 
 		oneStepBelt(speed, true);
 	}
+	
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);
 		if(MainVariables.inverMotorDirections) {
@@ -196,19 +197,22 @@ public class ExtendedMovment extends BasicMovment{
 		}
 		Delay.msDelay(100);
 		setSpeeds(speed);
-		if(side.equalsIgnoreCase("left")) {
+		if(side.equalsIgnoreCase("right")) {
 			Delay.msDelay(10);
 			MainVariables.mLeft.rotate(angle, true);
+			MainVariables.mRight.rotate(angle*(-1));
 			Delay.msDelay(10);
-			MainVariables.mRight.rotate(-angle);
-			Delay.msDelay(10);
-		} else if (side.equalsIgnoreCase("right")) {
+		} else if (side.equalsIgnoreCase("left")) {
 			Delay.msDelay(10);
 			MainVariables.mRight.rotate(angle, true);
-			Delay.msDelay(10);
-			MainVariables.mLeft.rotate(-angle);
+			MainVariables.mLeft.rotate(angle*(-1));
 			Delay.msDelay(10);
 		}
 		Delay.msDelay(100);
+	}
+	
+	public void driveToLineMiddle(int speed, Sensor sensorLeft, Sensor sensorRight) {
+		followLineRGB(speed, "double.cross", 0, 10, sensorLeft, sensorRight);
+		rotate(speed, -0.64f);
 	}
 }

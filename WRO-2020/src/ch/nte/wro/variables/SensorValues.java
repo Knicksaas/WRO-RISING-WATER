@@ -27,6 +27,6 @@ public class SensorValues {
 	
 	public static final Map<String, Integer> sensitivity = new HashMap<String, Integer>();
 
-	public static final float otherLineColorDiff = 0.0275f;
+	public static final float otherLineColorDiff = 0.03f;
 
 }
