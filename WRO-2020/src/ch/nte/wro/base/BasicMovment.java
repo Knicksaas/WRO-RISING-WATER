@@ -11,7 +11,6 @@ public class BasicMovment implements MovmentBase {
 			setSpeeds(speed);
 			Delay.msDelay(10);
 			MainVariables.mLeft.backward();
-			Delay.msDelay(10);
 			MainVariables.mRight.backward();
 			Delay.msDelay(10);
 			setSpeeds(speed);
@@ -19,7 +18,6 @@ public class BasicMovment implements MovmentBase {
 			setSpeeds(speed);
 			Delay.msDelay(10);
 			MainVariables.mLeft.forward();
-			Delay.msDelay(10);
 			MainVariables.mRight.forward();
 			Delay.msDelay(10);
 			setSpeeds(speed);

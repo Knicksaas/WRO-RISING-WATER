@@ -8,6 +8,8 @@ import ch.nte.wro.threds.LiftingArmThread;
 import ch.nte.wro.threds.LightIntensityChecker;
 import ch.nte.wro.variables.Status;
 import ch.nte.wro.variables.MainVariables;
+import ch.nte.wro.variables.Position;
+import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedBoolean;
 import ch.nte.wro.variables.SynchedFloat;
 import lejos.utility.Delay;
@@ -138,7 +140,6 @@ public class ExtendedMovment extends BasicMovment{
 		setSpeeds(speed);
 		Delay.msDelay(10);
 		MainVariables.mLeft.rotate(angle, true);
-		Delay.msDelay(10);
 		MainVariables.mRight.rotate(angle);
 		Delay.msDelay(10);
 	}
@@ -169,8 +170,8 @@ public class ExtendedMovment extends BasicMovment{
 		}
 	}
 
-	public void sandBagPickUp(int speed, Sensor sensor) {
-		rotate(200, 0.52f);
+	public void sandBagPickUp(Sensor sensor) {
+		rotate(150, 0.52f);
 		String color = ColorGetter.getColor(sensor);
 		setArmAngle(25, 50);
 		Delay.msDelay(1500);
@@ -181,13 +182,13 @@ public class ExtendedMovment extends BasicMovment{
 		Status.slot1 = (color);
 		oneStepBelt(100, true);
 		Delay.msDelay(590);
-		rotate(speed, 0.3f);
-		setArmAngle(200, 100);
+		rotate(150, 0.3f);
+		setArmAngle(200, 200);
 		Delay.msDelay(3000);
 		Status.slot1 = (color);
 		setArmAngle(0, 300);
 		rotate(200, -0.5f); 
-		oneStepBelt(speed, true);
+		oneStepBelt(100, true);
 	}
 	
 	public void turnWithRotations(int speed, float rotations, String side) {
@@ -212,7 +213,8 @@ public class ExtendedMovment extends BasicMovment{
 	}
 	
 	public void driveToLineMiddle(int speed, Sensor sensorLeft, Sensor sensorRight) {
-		followLineRGB(speed, "double.cross", 0, 10, sensorLeft, sensorRight);
+		followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+				sensorLeft, sensorRight);
 		rotate(speed, -0.64f);
 	}
 }

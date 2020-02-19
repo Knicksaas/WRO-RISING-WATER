@@ -5,6 +5,8 @@ import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SynchedVariables;
+import lejos.hardware.Sound;
+import lejos.utility.Delay;
 
 public class TestMain {
 	
@@ -15,11 +17,18 @@ public class TestMain {
 
 		init(bot);
 			
-		Position.botPosition = "red";
-		//MovmentBlocks.driveToHouse(bot, speed, "EvacuationRequest");
+		Position.botPosition = "green";
+		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
 		//MovmentBlocks.changeSide(bot, speed, "left", "right");
-		MovmentBlocks.changeSide(bot, speed, "left", "right");
-		bot.followLineRGB(speed, "double.cross", 0, 20, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		Sound.beep();
+		bot.oneStepBelt(200, false);
+		Sound.beep();
+		bot.followLineRGB(speed, "double.cross", 0, 20,
+				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.stop();
+		bot.oneStepBelt(200, false);
+		Delay.msDelay(2000);
+				
 		
 	}
 	 
