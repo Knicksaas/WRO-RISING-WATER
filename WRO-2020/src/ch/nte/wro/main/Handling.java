@@ -49,4 +49,24 @@ public class Handling {
 		bot.rotate(speed, -0.9f);
 		
 	}
+	
+	public static void unloadSandBagsInHouseFast(Robot bot, int speed) {
+	
+		bot.turnWithRotations(speed, 1, "right");
+		bot.rotate(speed, -0.5f, "right");
+		bot.oneStepBelt(400, true);
+		Delay.msDelay(500);
+		bot.rotate(speed, -0.7f, "left");
+		bot.rotate(speed, -0.125f);
+		bot.rotate(speed, -0.2f, "right");
+		bot.rotate(speed, 0.2f);
+		bot.rotate(speed, 0.4f, "left");
+		bot.rotate(speed, 0.4f, "right");
+		bot.oneStepBelt(400, true);
+		Delay.msDelay(750);
+		bot.rotate(speed, -0.05F, "RIGHT");
+		bot.rotate(speed, -0.8f);
+	
+	}
+	
 }

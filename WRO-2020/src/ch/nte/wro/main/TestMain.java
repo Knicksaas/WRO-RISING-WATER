@@ -18,15 +18,19 @@ public class TestMain {
 		init(bot);
 			
 		Position.botPosition = "green";
-		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
+		//Handling.unloadSandBagsInHouseFast(bot, speed);
+		bot.followLineRGB(speed, "double.cross", 0, 20,
+					bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		MovmentBlocks.driveToHouse(bot, speed, "sandbagsfast");
 		//MovmentBlocks.changeSide(bot, speed, "left", "right");
 		Sound.beep();
-		bot.oneStepBelt(200, false);
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(2000);
 		Sound.beep();
-		bot.followLineRGB(speed, "double.cross", 0, 20,
-				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.stop();
-		bot.oneStepBelt(200, false);
+		//bot.followLineRGB(speed, "double.cross", 0, 20,
+		//		bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		//bot.stop();
+		bot.oneStepBelt(400, false);
 		Delay.msDelay(2000);
 				
 		

@@ -80,6 +80,8 @@ public class MovmentBlocks {
 		bot.rotate(speed, -0.1f);
 		if (mode.equalsIgnoreCase("sandbags")){
 			Handling.unloadSandBagsInHouse(bot, speed);
+		}else if (mode.equalsIgnoreCase("sandbagsfast")) {
+			Handling.unloadSandBagsInHouseFast(bot, speed);
 		} else {
 			Handling.unloadEvacuationRequest(bot, speed);
 		}
