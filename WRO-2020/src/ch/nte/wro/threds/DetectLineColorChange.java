@@ -3,8 +3,8 @@ package ch.nte.wro.threds;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.nte.wro.base.RGBValue;
 import ch.nte.wro.base.Sensor;
+import ch.nte.wro.objects.RGBValue;
 import ch.nte.wro.variables.SynchedBoolean;
 import lejos.hardware.Sound;
 import lejos.utility.Delay;

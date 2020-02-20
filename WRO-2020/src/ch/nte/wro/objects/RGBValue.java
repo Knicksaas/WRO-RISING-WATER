@@ -1,4 +1,4 @@
-package ch.nte.wro.base;
+package ch.nte.wro.objects;
 
 public class RGBValue {
 

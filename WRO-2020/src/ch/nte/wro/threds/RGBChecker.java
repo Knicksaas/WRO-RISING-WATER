@@ -1,7 +1,7 @@
 package ch.nte.wro.threds;
 
-import ch.nte.wro.base.RGBValue;
 import ch.nte.wro.base.Sensor;
+import ch.nte.wro.objects.RGBValue;
 import ch.nte.wro.variables.SynchedBoolean;
 
 public class RGBChecker extends Thread {

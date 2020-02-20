@@ -72,6 +72,23 @@ public class MovmentBlocks {
 		}
 	}
 	
+	public static void driveToOtherHouseSide(Robot bot, int speed) {
+		switch (Position.botPosition) {
+		case "green":
+			Position.botPosition = "blue";
+			break;
+		case "blue":
+			Position.botPosition = "green";
+			break;
+		case "yellow":
+			Position.botPosition = "red";
+			break;
+		case "red":
+			Position.botPosition = "yellow";
+			break;
+		}
+	}
+	
 	public static void driveToHouse(Robot bot, int speed, String mode) {
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));	

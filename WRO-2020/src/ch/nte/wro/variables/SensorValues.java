@@ -3,7 +3,7 @@ package ch.nte.wro.variables;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.nte.wro.base.RGBValue;
+import ch.nte.wro.objects.RGBValue;
 
 public class SensorValues {
 	

@@ -3,9 +3,9 @@ package ch.nte.wro.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.nte.wro.base.RGBValue;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.base.Sensor;
+import ch.nte.wro.objects.RGBValue;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.MainVariables;
 import lejos.hardware.Button;
