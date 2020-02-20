@@ -1,8 +1,12 @@
 package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
+import ch.nte.wro.objects.HouseSpot;
 import ch.nte.wro.variables.GlobalSensors;
 import ch.nte.wro.variables.SensorValues;
+import ch.nte.wro.variables.Status;
+import lejos.hardware.Button;
+import lejos.hardware.Sound;
 
 public class Initsialization {
 
@@ -20,5 +24,34 @@ public class Initsialization {
 		SensorValues.sensitivity.put("blue", 20);
 		SensorValues.sensitivity.put("green", 20);
 		SensorValues.sensitivity.put("red", 40);
+	}
+	
+	public static void housesInit() {
+		Status.houseMap.put("green", new HouseSpot("green", false, null));
+		Status.houseMap.put("blue", new HouseSpot("blue", false, null));
+		Status.houseMap.put("yellow", new HouseSpot("yellow", false, null));
+		Status.houseMap.put("red", new HouseSpot("red", false, null));
+		proveHouses();
+	}
+	
+	private static void proveHouses() {
+		int setted = 0;
+		if(Status.houseMap.get("green").isHouse()) {
+			setted++;
+		}
+		if(Status.houseMap.get("blue").isHouse()) {
+			setted++;
+		}
+		if(Status.houseMap.get("yellow").isHouse()) {
+			setted++;
+		}
+		if(Status.houseMap.get("red").isHouse()) {
+			setted++;
+		}
+		if(setted != 2) {
+			Sound.buzz();
+			System.out.println("UNALLOWED HOUSE INIT: " + setted + " SPOTS ARE FILLD!");
+			Button.waitForAnyPress();
+		}
 	}
 }
