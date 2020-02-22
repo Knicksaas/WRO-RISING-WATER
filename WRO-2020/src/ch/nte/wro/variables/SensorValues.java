@@ -23,7 +23,7 @@ public class SensorValues {
 	public static float averageIntensityHalfCross = 0F;
 	
 	public static final float allowedSensorVariation = 0.01F;
-	public static final float allowedRGBVariation = 0.04f;
+	public static final float allowedRGBVariation = 0.14f;
 	
 	public static final Map<String, Integer> sensitivity = new HashMap<String, Integer>();
 
