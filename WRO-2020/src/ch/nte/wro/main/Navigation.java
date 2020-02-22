@@ -2,6 +2,7 @@ package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.Position;
+import ch.nte.wro.variables.Status;
 
 public class Navigation {
 	
@@ -32,25 +33,92 @@ public class Navigation {
 
 	public static void unloadEvacuationRequests(Robot bot, int speed, String startPoint) {
 		switch (Position.getAreaOfNearestHouse(startPoint)) {
-		case "green":
-			MovmentBlocks.startPointToLine(bot, speed, "left", startPoint);
-			break;
-		case "blue":
-			MovmentBlocks.startPointToLine(bot, speed, "right", startPoint);
-			break;
-		case "yellow":
-			MovmentBlocks.startPointToLine(bot, speed, "left", startPoint);
-			break;
-		case "red":
-			MovmentBlocks.startPointToLine(bot, speed, "right", startPoint);
-			break;
+			case "green":
+				MovmentBlocks.startPointToLine(bot, speed, "left", startPoint);
+				break;
+			case "blue":
+				MovmentBlocks.startPointToLine(bot, speed, "right", startPoint);
+				break;
+			case "yellow":
+				MovmentBlocks.startPointToLine(bot, speed, "left", startPoint);
+				break;
+			case "red":
+				MovmentBlocks.startPointToLine(bot, speed, "right", startPoint);
+				break;
 		}
 		MovmentBlocks.driveToHouse(bot, speed, "diini Mueter");
 		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfNearestHouse(Position.botPosition));
 		MovmentBlocks.driveToHouse(bot, speed, "diini Mueter");
 	}
 	
-	public static void finishFirstHouse(Robot bot, int speed) {
-		
+	public static void upAndUnloadSandbags(Robot bot, int speed) {
+		String firstArea = Position.getNearestSandBagUploadArea(Position.botPosition);
+		navigateTo(bot, speed, Position.botPosition, firstArea);
+		switch (Position.botPosition) {
+		case "green":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			break;
+		case "blue":
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		case "yellow":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			break;
+		case "red":
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		}
+		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));
+		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
+		String secondArea = Position.getNearestSandBagUploadArea(Position.botPosition);
+		if(secondArea.equalsIgnoreCase(firstArea)) {
+			for(int i = 1; i<5; i++) {
+				switch (i) {
+				case 1:
+					secondArea = Position.getNearestSandBagUploadArea("green");
+					break;
+				case 2:
+					secondArea = Position.getNearestSandBagUploadArea("blue");
+					break;
+				case 3:
+					secondArea = Position.getNearestSandBagUploadArea("yellow");
+					break;
+				case 4:
+					secondArea = Position.getNearestSandBagUploadArea("red");
+					break;
+				}
+				if(!secondArea.equalsIgnoreCase(firstArea)) {
+					i = 6;
+				}
+			}
+		}
+		navigateTo(bot, speed, Position.botPosition, secondArea);
+		switch (Position.botPosition) {
+		case "green":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			break;
+		case "blue":
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		case "yellow":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			break;
+		case "red":
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		}
+		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));
+	}
+	
+	public static void driveToStartPosition(Robot bot, int speed, String startPosition) {
+		switch (startPosition) {
+		case "R5":
+			navigateTo(bot, speed, Position.botPosition, "red");
+			MovmentBlocks.driveToStartPoint(bot, speed);
+			break;
+		case "R6":
+			navigateTo(bot, speed, Position.botPosition, "blue");
+			MovmentBlocks.driveToStartPoint(bot, speed);
+		}
 	}
 }
