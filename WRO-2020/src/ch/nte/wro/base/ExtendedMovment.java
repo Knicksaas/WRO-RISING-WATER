@@ -138,9 +138,9 @@ public class ExtendedMovment extends BasicMovment{
 			angle *= -1;
 		}
 		setSpeeds(speed);
-		Delay.msDelay(10);
 		MainVariables.mLeft.rotate(angle, true);
 		MainVariables.mRight.rotate(angle);
+		setSpeeds(speed);
 		Delay.msDelay(10);
 	}
 	
@@ -215,6 +215,7 @@ public class ExtendedMovment extends BasicMovment{
 	public void driveToLineMiddle(int speed, Sensor sensorLeft, Sensor sensorRight) {
 		followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				sensorLeft, sensorRight);
+		accelerate(1, speed, 500);
 		rotate(speed, -0.64f);
 	}
 }

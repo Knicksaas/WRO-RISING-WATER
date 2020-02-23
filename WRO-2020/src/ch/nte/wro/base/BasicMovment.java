@@ -1,6 +1,7 @@
 package ch.nte.wro.base;
 
 import ch.nte.wro.variables.MainVariables;
+import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
 public class BasicMovment implements MovmentBase {
@@ -8,32 +9,41 @@ public class BasicMovment implements MovmentBase {
 	@Override
 	public void forward(int speed) {
 		if(MainVariables.inverMotorDirections) {
-			setSpeeds(speed);
 			Delay.msDelay(10);
+			startSynchronizationOfMotors();
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
 			Delay.msDelay(10);
 			setSpeeds(speed);
-		} else {
-			setSpeeds(speed);
+			endSynchronizationOfMotors();
 			Delay.msDelay(10);
+		} else {
+			Delay.msDelay(10);
+			startSynchronizationOfMotors();
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
 			Delay.msDelay(10);
 			setSpeeds(speed);
+			startSynchronizationOfMotors();
+			Delay.msDelay(10);
 		}
 	}
 
 	@Override
 	public void backward(int speed) {
 		if(!MainVariables.inverMotorDirections) {
+			startSynchronizationOfMotors();
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
 			setSpeeds(speed);
+			endSynchronizationOfMotors();
+			
 		} else {
+			startSynchronizationOfMotors();
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
 			setSpeeds(speed);
+			endSynchronizationOfMotors();
 		}
 	}
 
@@ -142,6 +152,15 @@ public class BasicMovment implements MovmentBase {
 	
 	public void stop() {
 		motorsOff();
+	}
+	
+	public void startSynchronizationOfMotors() {
+		MainVariables.mLeft.synchronizeWith(new RegulatedMotor[] {MainVariables.mRight});
+		MainVariables.mLeft.startSynchronization();
+	}
+	
+	public void endSynchronizationOfMotors() {
+		MainVariables.mLeft.endSynchronization();
 	}
 
 }

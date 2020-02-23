@@ -9,9 +9,9 @@ public class Handling {
 	public static void unloadEvacuationRequest(Robot bot, int speed) {
 		bot.oneStepBelt(300, false);
 		Delay.msDelay(1500);
-		bot.rotate(speed, -0.3F);
+		bot.rotate(speed, -0.35F);
 		Delay.msDelay(100);
-		bot.turnWithRotations(speed, 1.02f, "left");
+		bot.turnWithRotations(speed, 1.12f, "left");
 		Delay.msDelay(200);
 	}
 	
@@ -60,12 +60,15 @@ public class Handling {
 		bot.rotate(speed, -0.125f);
 		bot.rotate(speed, -0.2f, "right");
 		bot.rotate(speed, 0.2f);
-		bot.rotate(speed, 0.4f, "left");
-		bot.rotate(speed, 0.4f, "right");
+		bot.rotate(speed, 0.6f, "left");
+		bot.rotate(speed, 0.6f, "right");
 		bot.oneStepBelt(400, true);
 		Delay.msDelay(750);
 		bot.rotate(speed, -0.05F, "RIGHT");
-		bot.rotate(speed, -0.8f);
+		bot.rotate(speed, -1.1f);
+		bot.rotate(speed, 0.2f);
+		bot.rotate(speed, 0.4f, "right");
+		bot.rotate(speed, 0.4f, "left");
 	
 	}
 	

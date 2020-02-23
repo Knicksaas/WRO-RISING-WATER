@@ -17,7 +17,7 @@ public class Navigation {
 			MovmentBlocks.changeSide(bot, speed, "left", "right");
 		} else if (addition.contains("green") && addition.contains("red")) {
 			if(startArea.equalsIgnoreCase("green")) {
-				MovmentBlocks.changeSide(bot, speed, "righ", "right");
+				MovmentBlocks.changeSide(bot, speed, "right", "right");
 			} else {
 				MovmentBlocks.changeSide(bot, speed, "left", "left");
 			}
@@ -31,6 +31,7 @@ public class Navigation {
 	}
 
 	public static void unloadEvacuationRequests(Robot bot, int speed, String startPoint) {
+		bot.accelerate(100, speed, 200);
 		switch (Position.getAreaOfNearestHouse(startPoint)) {
 		case "green":
 			MovmentBlocks.startPointToLine(bot, speed, "left", startPoint);
