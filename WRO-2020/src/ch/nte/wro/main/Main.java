@@ -15,7 +15,8 @@ public class Main {
 		init(bot);
 		
 		Navigation.unloadEvacuationRequests(bot, speed, startPoint);
-		
+		Navigation.upAndUnloadSandbags(bot, speed);
+		Navigation.driveToStartPosition(bot, speed, startPoint);
 	}
 	
 	

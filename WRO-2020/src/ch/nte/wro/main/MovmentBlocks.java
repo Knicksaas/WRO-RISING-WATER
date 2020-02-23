@@ -111,5 +111,12 @@ public class MovmentBlocks {
 			Handling.unloadEvacuationRequest(bot, speed);
 		}
 	}
+	
+	public static void driveToStartPoint(Robot bot, int speed) {
+		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		Delay.msDelay(50);
+		bot.turnWithRotations(speed, 0.5f, "right");
+		bot.rotate(speed, 1);
+	}
 }
 

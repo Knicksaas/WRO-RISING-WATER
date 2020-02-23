@@ -218,4 +218,25 @@ public class ExtendedMovment extends BasicMovment{
 		accelerate(1, speed, 500);
 		rotate(speed, -0.64f);
 	}
+	
+	public void adjustRobot(int speed, Sensor sensorLeft, Sensor sensorRight) {
+		turnAtPlace(speed, "right");
+		float highestValueRight = 0;
+		float hightesValueLeft = 0;
+		while(highestValueRight < ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)){
+			highestValueRight = ValueGetter.getAverageSensorValues(sensorLeft, sensorRight);
+			Delay.msDelay(50);
+		}
+		turnAtPlace(speed, "left");
+		while (hightesValueLeft < ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)) {
+			hightesValueLeft = ValueGetter.getAverageSensorValues(sensorLeft, sensorRight);
+			Delay.msDelay(50);
+		}
+		if(hightesValueLeft > highestValueRight) {
+			turnAtPlace(speed, "right");
+			while(highestValueRight < ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)){
+				Delay.msDelay(50);
+			}
+		}
+	}
 }

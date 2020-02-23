@@ -93,4 +93,24 @@ public class RGBValue {
 			return false;
 		}
 	}
+	
+	public boolean isLowerThan(RGBValue value) {
+		float sumThis = red+green+blue;
+		float sumValue = value.red+value.green+value.blue;
+		if(sumThis < sumValue) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isBiggerThan(RGBValue value) {
+		float sumThis = red+green+blue;
+		float sumValue = value.red+value.green+value.blue;
+		if(sumThis > sumValue) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

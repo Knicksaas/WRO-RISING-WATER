@@ -35,4 +35,9 @@ public class Sensor implements SensorBase {
 		checkSenor();
 		return getValue();
 	}
+	
+	public float getIndex(int index) {
+		checkSenor();
+		return getValue()[index];
+	}
 }
