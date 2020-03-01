@@ -23,16 +23,16 @@ public class Initsialization {
 	
 	public static void sensitivityInit() {
 		SensorValues.sensitivity.put("yellow", 100);
-		SensorValues.sensitivity.put("blue", 30);
-		SensorValues.sensitivity.put("green", 30);
+		SensorValues.sensitivity.put("blue", 40);
+		SensorValues.sensitivity.put("green", 40);
 		SensorValues.sensitivity.put("red", 80);
 	}
 	
 	public static void housesInit() {
-		Status.houseMap.put("green", new HouseSpot("green", true, "blue"));
-		Status.houseMap.put("blue", new HouseSpot("blue", false, null));
-		Status.houseMap.put("yellow", new HouseSpot("yellow", false, null));
-		Status.houseMap.put("red", new HouseSpot("red", true, "green"));
+		Status.houseMap.put("green", new HouseSpot("green", false, null));
+		Status.houseMap.put("blue", new HouseSpot("blue", true, "blue"));
+		Status.houseMap.put("yellow", new HouseSpot("yellow", true, "green"));
+		Status.houseMap.put("red", new HouseSpot("red", false, null));
 		proveHouses();
 	}
 	

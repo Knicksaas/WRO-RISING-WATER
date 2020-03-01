@@ -12,7 +12,7 @@ public class MovmentBlocks {
 	public static void changeSide(Robot bot, int speed, String side1, String side2) {
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		Delay.msDelay(50);
-		bot.turnWithRotations(speed, 0.54f, side1);
+		bot.turnWithRotations(speed, "quarter", side1);
 		Delay.msDelay(100);
 		bot.accelerate(1, speed, 150);
 		bot.forward(1);
@@ -38,18 +38,18 @@ public class MovmentBlocks {
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.rotate(speed, 0.54F);
-		bot.turnWithRotations(speed, 0.5f, side);
+		bot.turnWithRotations(speed, "quarter", side);
 		bot.followLine(speed, "double.cross", 0, 70, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.sandBagPickUp(bot.getSensorOnPort(3));
-		bot.turnWithRotations(speed, 1.03f, side);
+		bot.turnWithRotations(speed, "half", side);
 		bot.followLine(speed, "double.time", speed*500/200, 80,
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.setSpeeds(1);
 		Delay.msDelay(100);
 		if(side.equalsIgnoreCase("right")) {
-			bot.turnWithRotations(speed, 0.5f, "left");
+			bot.turnWithRotations(speed, "quarter", "left");
 		} else {
-			bot.turnWithRotations(speed, 0.5f, "right");
+			bot.turnWithRotations(speed, "quarter", "right");
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class MovmentBlocks {
 				SensorValues.intensityWhite, SensorValues.allowedSensorVariation*8);
 		new BeepThread().start();
 		bot.rotate(speed, 0.72f);
-		bot.turnWithRotations(speed, 0.51f, side);
+		bot.turnWithRotations(speed, "quarter", side);
 		if(startPoint.equalsIgnoreCase("R6")) {
 			if(side.equalsIgnoreCase("right")) {
 				Position.botPosition = "blue";
@@ -115,7 +115,7 @@ public class MovmentBlocks {
 	public static void driveToStartPoint(Robot bot, int speed) {
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		Delay.msDelay(50);
-		bot.turnWithRotations(speed, 0.5f, "right");
+		bot.turnWithRotations(speed, "quarter", "right");
 		bot.rotate(speed, 1);
 	}
 }

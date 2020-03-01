@@ -11,7 +11,7 @@ public class Handling {
 		Delay.msDelay(1500);
 		bot.rotate(speed, -0.35F);
 		Delay.msDelay(100);
-		bot.turnWithRotations(speed, 1.12f, "left");
+		bot.turnWithRotations(speed, "half", "left");
 		Delay.msDelay(200);
 	}
 	
@@ -33,7 +33,7 @@ public class Handling {
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
 		bot.rotate(speed, -0.4f);
-		bot.turnWithRotations(speed, 1.04f, "left");
+		bot.turnWithRotations(speed, "half", "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.oneStepBelt(400, true);
@@ -52,7 +52,7 @@ public class Handling {
 	
 	public static void unloadSandBagsInHouseFast(Robot bot, int speed) {
 	
-		bot.turnWithRotations(speed, 1, "right");
+		bot.turnWithRotations(speed, "half", "right");
 		bot.rotate(speed, -0.5f, "right");
 		bot.oneStepBelt(400, true);
 		Delay.msDelay(500);

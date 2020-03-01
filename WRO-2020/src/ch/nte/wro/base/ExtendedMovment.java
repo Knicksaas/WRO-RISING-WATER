@@ -226,7 +226,6 @@ public class ExtendedMovment extends BasicMovment{
 			MainVariables.mRight.waitComplete();
 		}
 		Delay.msDelay(100);
-		fixTurn(speed, side);
 	}
 	
 	/*
@@ -238,10 +237,13 @@ public class ExtendedMovment extends BasicMovment{
 	public void turnWithRotations(int speed, String mode, String side) {
 		if(mode.contains("quarter")) {
 			turnWithRotations(speed, 0.51f, side);
+			fixTurn(speed, side);
 		} else if (mode.contains("half")) {
 			turnWithRotations(speed, 1.025f, side);
+			fixTurn(speed, side);
 		} else if (mode.contains("full")) {
 			turnWithRotations(speed, 2.05f, side);
+			fixTurn(speed, side);
 		}
 		
 	}
