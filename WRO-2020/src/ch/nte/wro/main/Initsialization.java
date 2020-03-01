@@ -3,10 +3,12 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.objects.HouseSpot;
 import ch.nte.wro.variables.GlobalSensors;
+import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.Status;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
+import lejos.robotics.RegulatedMotor;
 
 public class Initsialization {
 
@@ -53,5 +55,9 @@ public class Initsialization {
 			System.out.println("UNALLOWED HOUSE INIT: " + setted + " SPOTS ARE FILLD!");
 			Button.waitForAnyPress();
 		}
+	}
+	
+	public static void synchInit() {
+		MainVariables.mLeft.synchronizeWith(new RegulatedMotor[] {MainVariables.mRight});
 	}
 }

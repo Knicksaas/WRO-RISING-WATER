@@ -1,7 +1,7 @@
 package ch.nte.wro.base;
 
+import ch.nte.wro.main.Initsialization;
 import ch.nte.wro.variables.MainVariables;
-import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
 public class BasicMovment implements MovmentBase {
@@ -13,37 +13,39 @@ public class BasicMovment implements MovmentBase {
 			startSynchronizationOfMotors();
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
-			Delay.msDelay(10);
-			setSpeeds(speed);
 			endSynchronizationOfMotors();
 			Delay.msDelay(10);
+			setSpeeds(speed);
 		} else {
 			Delay.msDelay(10);
 			startSynchronizationOfMotors();
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
-			Delay.msDelay(10);
-			setSpeeds(speed);
 			startSynchronizationOfMotors();
 			Delay.msDelay(10);
+			setSpeeds(speed);
 		}
 	}
 
 	@Override
 	public void backward(int speed) {
 		if(!MainVariables.inverMotorDirections) {
+			Delay.msDelay(10);
 			startSynchronizationOfMotors();
 			MainVariables.mLeft.backward();
 			MainVariables.mRight.backward();
-			setSpeeds(speed);
 			endSynchronizationOfMotors();
+			Delay.msDelay(10);
+			setSpeeds(speed);
 			
 		} else {
+			Delay.msDelay(10);
 			startSynchronizationOfMotors();
 			MainVariables.mLeft.forward();
 			MainVariables.mRight.forward();
-			setSpeeds(speed);
 			endSynchronizationOfMotors();
+			Delay.msDelay(10);
+			setSpeeds(speed);
 		}
 	}
 
@@ -52,25 +54,33 @@ public class BasicMovment implements MovmentBase {
 		if(side.equalsIgnoreCase("left")) {
 			if(MainVariables.inverMotorDirections) {
 				setSpeeds(speed);
+				startSynchronizationOfMotors();
 				MainVariables.mLeft.forward();
 				MainVariables.mRight.backward();
+				endSynchronizationOfMotors();
 				setSpeeds(speed);
 			} else {
 				setSpeeds(speed);
+				startSynchronizationOfMotors();
 				MainVariables.mLeft.backward();
 				MainVariables.mRight.forward();
+				endSynchronizationOfMotors();
 				setSpeeds(speed);
 			}
 		} else {
 			if(!MainVariables.inverMotorDirections) {
 				setSpeeds(speed);
+				startSynchronizationOfMotors();
 				MainVariables.mLeft.forward();
 				MainVariables.mRight.backward();
+				endSynchronizationOfMotors();
 				setSpeeds(speed);
 			} else {
 				setSpeeds(speed);
+				startSynchronizationOfMotors();
 				MainVariables.mLeft.backward();
 				MainVariables.mRight.forward();
+				endSynchronizationOfMotors();
 				setSpeeds(speed);
 			}
 		}
@@ -127,18 +137,21 @@ public class BasicMovment implements MovmentBase {
 
 	@Override
 	public void setSpeeds(int speed) {
+		startSynchronizationOfMotors();
 		MainVariables.mLeft.setSpeed(speed);
 		MainVariables.mRight.setSpeed(speed);
+		endSynchronizationOfMotors();
 	}
 
 	@Override
 	public void motorsOff() {
 		setSpeeds(0);
+		startSynchronizationOfMotors();
 		MainVariables.mLeft.stop();
 		MainVariables.mRight.stop();
+		endSynchronizationOfMotors();
 		Delay.msDelay(50);
 		setSpeeds(100);
-		Delay.msDelay(50);
 	}
 
 	@Override
@@ -154,8 +167,11 @@ public class BasicMovment implements MovmentBase {
 		motorsOff();
 	}
 	
+	public void initSynchronistation() {
+		Initsialization.synchInit();
+	}
+	
 	public void startSynchronizationOfMotors() {
-		MainVariables.mLeft.synchronizeWith(new RegulatedMotor[] {MainVariables.mRight});
 		MainVariables.mLeft.startSynchronization();
 	}
 	

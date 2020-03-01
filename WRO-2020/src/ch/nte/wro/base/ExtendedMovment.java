@@ -6,12 +6,14 @@ import ch.nte.wro.threds.ConveyorBeltThread;
 import ch.nte.wro.threds.DynamicSensitivity;
 import ch.nte.wro.threds.LiftingArmThread;
 import ch.nte.wro.threds.LightIntensityChecker;
+import ch.nte.wro.threds.RGBValueMeter;
 import ch.nte.wro.variables.Status;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedBoolean;
 import ch.nte.wro.variables.SynchedFloat;
+import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
 public class ExtendedMovment extends BasicMovment{
@@ -138,10 +140,12 @@ public class ExtendedMovment extends BasicMovment{
 			angle *= -1;
 		}
 		setSpeeds(speed);
+		startSynchronizationOfMotors();
 		MainVariables.mLeft.rotate(angle, true);
-		MainVariables.mRight.rotate(angle);
-		setSpeeds(speed);
-		Delay.msDelay(10);
+		MainVariables.mRight.rotate(angle, true);
+		endSynchronizationOfMotors();
+		MainVariables.mLeft.waitComplete();
+		MainVariables.mRight.waitComplete();
 	}
 	
 	public void forwardUntil(int speed, Sensor sensorLeft, Sensor sensorRight, float targetValue, float diff) {
@@ -191,6 +195,12 @@ public class ExtendedMovment extends BasicMovment{
 		oneStepBelt(100, true);
 	}
 	
+	/*
+	 * ROTATIONS ANGLES:
+	 * 	- whole turn: 2.05
+	 * 	- half turn: 1.025
+	 * 	- quarter turn: 0.51
+	 */
 	public void turnWithRotations(int speed, float rotations, String side) {
 		int angle = Math.round(rotations*360);
 		if(MainVariables.inverMotorDirections) {
@@ -200,16 +210,40 @@ public class ExtendedMovment extends BasicMovment{
 		setSpeeds(speed);
 		if(side.equalsIgnoreCase("right")) {
 			Delay.msDelay(10);
+			startSynchronizationOfMotors();
 			MainVariables.mLeft.rotate(angle, true);
-			MainVariables.mRight.rotate(angle*(-1));
-			Delay.msDelay(10);
+			MainVariables.mRight.rotate(angle*(-1), true);
+			endSynchronizationOfMotors();
+			MainVariables.mLeft.waitComplete();
+			MainVariables.mRight.waitComplete();
 		} else if (side.equalsIgnoreCase("left")) {
 			Delay.msDelay(10);
+			startSynchronizationOfMotors();
 			MainVariables.mRight.rotate(angle, true);
-			MainVariables.mLeft.rotate(angle*(-1));
-			Delay.msDelay(10);
+			MainVariables.mLeft.rotate(angle*(-1), true);
+			endSynchronizationOfMotors();
+			MainVariables.mLeft.waitComplete();
+			MainVariables.mRight.waitComplete();
 		}
 		Delay.msDelay(100);
+		fixTurn(speed, side);
+	}
+	
+	/*
+	 * MODES:
+	 * 	- quarter
+	 * 	- half
+	 * 	- full
+	 */
+	public void turnWithRotations(int speed, String mode, String side) {
+		if(mode.contains("quarter")) {
+			turnWithRotations(speed, 0.51f, side);
+		} else if (mode.contains("half")) {
+			turnWithRotations(speed, 1.025f, side);
+		} else if (mode.contains("full")) {
+			turnWithRotations(speed, 2.05f, side);
+		}
+		
 	}
 	
 	public void driveToLineMiddle(int speed, Sensor sensorLeft, Sensor sensorRight) {
@@ -219,16 +253,44 @@ public class ExtendedMovment extends BasicMovment{
 		rotate(speed, -0.64f);
 	}
 	
+	public void adjustBot(int speed, Sensor sensorLeft, Sensor sensorRight) {
+		RGBValueMeter threadLeft = new RGBValueMeter(sensorLeft, sensorRight);
+		threadLeft.start();
+		turnWithRotations(speed, 0.1f, "left");
+		threadLeft.end();
+		float lowestValueLeft = threadLeft.getLowestValue();
+		turnWithRotations(speed, 0.1f, "right");
+		RGBValueMeter threadRight = new RGBValueMeter(sensorLeft, sensorRight);
+		threadRight.start();
+		turnWithRotations(speed, 0.1f, "right");
+		threadRight.end();
+		float lowestValueRight = threadRight.getLowestValue();
+		turnWithRotations(speed, 0.1f, "left");
+		float diff = 0.03f;
+		if(lowestValueLeft<lowestValueRight) {
+			Sound.beep();
+			turnAtPlace(speed, "left");
+			while (ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)-diff>lowestValueLeft) {
+			}
+		} else {
+			Sound.beep();
+			Sound.beep();
+			turnAtPlace(speed, "right");
+			while (ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)-diff>lowestValueRight) {
+			}
+		}
+	}
+	
 	public void adjustRobot(int speed, Sensor sensorLeft, Sensor sensorRight) {
 		turnAtPlace(speed, "right");
-		float highestValueRight = 0;
-		float hightesValueLeft = 0;
-		while(highestValueRight < ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)){
+		float highestValueRight = 2;
+		float hightesValueLeft = 2;
+		while(highestValueRight > ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)){
 			highestValueRight = ValueGetter.getAverageSensorValues(sensorLeft, sensorRight);
 			Delay.msDelay(50);
 		}
 		turnAtPlace(speed, "left");
-		while (hightesValueLeft < ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)) {
+		while (hightesValueLeft > ValueGetter.getAverageSensorValues(sensorLeft, sensorRight)) {
 			hightesValueLeft = ValueGetter.getAverageSensorValues(sensorLeft, sensorRight);
 			Delay.msDelay(50);
 		}
@@ -238,5 +300,10 @@ public class ExtendedMovment extends BasicMovment{
 				Delay.msDelay(50);
 			}
 		}
+	}
+	
+	public void fixTurn(int speed, String side) {
+		float modifyer = 0.01f;
+		turnWithRotations(speed, modifyer, side);
 	}
 }
