@@ -175,10 +175,12 @@ public class ExtendedMovment extends BasicMovment{
 	}
 
 	public void sandBagPickUp(Sensor sensor) {
-		rotate(150, 0.52f);
+		rotate(150, 0.55f);
 		String color = ColorGetter.getColor(sensor);
-		setArmAngle(25, 50);
-		Delay.msDelay(1500);
+		Delay.msDelay(200);
+		Sound.twoBeeps();
+		setArmAngle(30, 75);
+		Delay.msDelay(1200);
 		setArmAngle(200, 100);
 		rotate(150, -0.3f);
 		Delay.msDelay(2000);
@@ -188,9 +190,9 @@ public class ExtendedMovment extends BasicMovment{
 		Delay.msDelay(590);
 		rotate(150, 0.3f);
 		setArmAngle(200, 200);
-		Delay.msDelay(3000);
+		Delay.msDelay(2000);
 		Status.slot1 = (color);
-		setArmAngle(0, 300);
+		setArmAngle(0, 200);
 		rotate(200, -0.5f); 
 		oneStepBelt(100, true);
 	}
@@ -239,7 +241,7 @@ public class ExtendedMovment extends BasicMovment{
 			turnWithRotations(speed, 0.51f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("half")) {
-			turnWithRotations(speed, 1.025f, side);
+			turnWithRotations(speed, 1.035f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("full")) {
 			turnWithRotations(speed, 2.05f, side);

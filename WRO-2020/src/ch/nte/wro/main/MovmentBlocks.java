@@ -37,20 +37,15 @@ public class MovmentBlocks {
 		Delay.msDelay(50);
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.rotate(speed, 0.54F);
-		bot.turnWithRotations(speed, "quarter", side);
-		bot.followLine(speed, "double.cross", 0, 70, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.sandBagPickUp(bot.getSensorOnPort(3));
-		bot.turnWithRotations(speed, "half", side);
-		bot.followLine(speed, "double.time", speed*500/200, 80,
+		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.setSpeeds(1);
-		Delay.msDelay(100);
-		if(side.equalsIgnoreCase("right")) {
-			bot.turnWithRotations(speed, "quarter", "left");
-		} else {
-			bot.turnWithRotations(speed, "quarter", "right");
-		}
+		bot.rotate(speed, -0.195F);
+		bot.turnWithRotations(speed, "quarter", side);
+		bot.rotate(speed, -0.2f);
+		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.sandBagPickUp(bot.getSensorOnPort(3));
+		bot.rotate(speed, -0.5f);
+		bot.turnWithRotations(speed, "quarter", side);
 	}
 	
 	public static void startPointToLine(Robot bot, int speed, String side, String startPoint) {

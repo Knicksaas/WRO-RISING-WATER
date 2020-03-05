@@ -1,20 +1,29 @@
 package ch.nte.wro.test;
 
-import lejos.hardware.motor.EV3MediumRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-import lejos.robotics.RegulatedMotor;
+import ch.nte.wro.base.Robot;
+import ch.nte.wro.main.Initsialization;
+import ch.nte.wro.main.MovmentBlocks;
+import ch.nte.wro.variables.MainVariables;
+import ch.nte.wro.variables.Position;
+import ch.nte.wro.variables.SensorValues;
 import lejos.utility.Delay;
 
 public class MediumMotorTester {
 	
 	public static void main(String[] args) {
-		RegulatedMotor mArm = new EV3MediumRegulatedMotor(MotorPort.D);
-		mArm.setSpeed(200);
-		mArm.rotate(240);
-		Delay.msDelay(1000);
-		mArm.rotate(-240);
-		mArm.stop();
-		mArm.close();
+		Robot bot = new Robot("tEst boii", MainVariables.mLeft, MainVariables.mRight);
+		Initsialization.synchInit();
+		Initsialization.sensitivityInit();
+		Initsialization.sensorInit(bot);
+		 
+		Position.botPosition = "green";
+		MovmentBlocks.pickUpSandBags(bot, 200, "right");
+		bot.followLineRGB(200, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.stop();
+		bot.oneStepBelt(200, false);
+		Delay.msDelay(2000);
+		bot.oneStepBelt(200, false);
 	}
 
 }

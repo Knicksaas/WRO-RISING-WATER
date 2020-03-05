@@ -16,7 +16,7 @@ public class TestMain {
 		init(bot);
 		
 	
-		Navigation.unloadEvacuationRequests(bot, speed, "R6");
+		Navigation.unloadEvacuationRequests(bot, speed, "R5");
 		Sound.beep();
 		bot.oneStepBelt(400, true);
 		Delay.msDelay(2000);

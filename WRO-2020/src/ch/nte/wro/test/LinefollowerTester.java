@@ -19,8 +19,8 @@ public class LinefollowerTester {
 		while (true) {
 			bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 					bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.stop();
 			bot.turnWithRotations(speed, "half", "right");
-			bot.fixTurn(speed, "right");
 		}
 	}
 }
