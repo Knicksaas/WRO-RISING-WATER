@@ -105,6 +105,18 @@ public class ExtendedMovment extends BasicMovment{
 		thread.start();
 	}
 	
+	public void setArmAngle(int angle, int speed, boolean immediateReturn) {
+		if(immediateReturn) {
+			setArmAngle(angle, speed);
+		} else {
+			SynchedBoolean carrier = new SynchedBoolean();
+			carrier.set(true);
+			LiftingArmThread thread = new LiftingArmThread(angle, speed, carrier);
+			thread.start();
+			while (carrier.get()) {}
+		}
+	}
+	
 	public int getArmAngle() {
 		return MainVariables.armAngle;
 	}
@@ -175,25 +187,27 @@ public class ExtendedMovment extends BasicMovment{
 	}
 
 	public void sandBagPickUp(Sensor sensor) {
-		rotate(150, 0.55f);
+		rotate(150, 0.56f);
 		String color = ColorGetter.getColor(sensor);
 		Delay.msDelay(200);
 		Sound.twoBeeps();
-		setArmAngle(30, 75);
+		setArmAngle(35, 75);
 		Delay.msDelay(1200);
-		setArmAngle(200, 100);
+		setArmAngle(150, 100);
 		rotate(150, -0.3f);
-		Delay.msDelay(2000);
-		setArmAngle(0, 200);
+		Delay.msDelay(1000);
+		setArmAngle(200, 500);
+		Delay.msDelay(1500);
+		setArmAngle(0, 300);
 		Status.slot1 = (color);
 		oneStepBelt(100, true);
 		Delay.msDelay(590);
 		rotate(150, 0.3f);
-		setArmAngle(200, 200);
-		Delay.msDelay(2000);
+		setArmAngle(150, 200, false);
+		setArmAngle(200, 500);
+		rotate(200, -0.5f);
 		Status.slot1 = (color);
 		setArmAngle(0, 200);
-		rotate(200, -0.5f); 
 		oneStepBelt(100, true);
 	}
 	
