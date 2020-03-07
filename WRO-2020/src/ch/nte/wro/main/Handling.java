@@ -37,13 +37,13 @@ public class Handling {
 		bot.rotate(speed, -0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.oneStepBelt(400, true);
-		Delay.msDelay(1500);
+		Delay.msDelay(1300);
 		bot.rotate(speed, 0.5f, "left");
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.oneStepBelt(400, true);
-		Delay.msDelay(1500);
+		Delay.msDelay(1300);
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, 0.5F, "left");
 		bot.rotate(speed, -0.9f);

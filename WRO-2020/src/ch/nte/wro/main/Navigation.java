@@ -57,16 +57,16 @@ public class Navigation {
 		navigateTo(bot, speed, Position.botPosition, firstArea);
 		switch (Position.botPosition) {
 		case "green":
-			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
 			break;
 		case "blue":
-			MovmentBlocks.pickUpSandBags(bot, speed, "right");
-			break;
-		case "yellow":
 			MovmentBlocks.pickUpSandBags(bot, speed, "left");
 			break;
-		case "red":
+		case "yellow":
 			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		case "red":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
 			break;
 		}
 		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));

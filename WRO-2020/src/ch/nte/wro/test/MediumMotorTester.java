@@ -1,29 +1,18 @@
 package ch.nte.wro.test;
 
 import ch.nte.wro.base.Robot;
-import ch.nte.wro.main.Initsialization;
-import ch.nte.wro.main.MovmentBlocks;
 import ch.nte.wro.variables.MainVariables;
-import ch.nte.wro.variables.Position;
-import ch.nte.wro.variables.SensorValues;
 import lejos.utility.Delay;
 
 public class MediumMotorTester {
 	
 	public static void main(String[] args) {
 		Robot bot = new Robot("tEst boii", MainVariables.mLeft, MainVariables.mRight);
-		Initsialization.synchInit();
-		Initsialization.sensitivityInit();
-		Initsialization.sensorInit(bot);
-		 
-		Position.botPosition = "green";
-		MovmentBlocks.pickUpSandBags(bot, 200, "right");
-		bot.followLineRGB(200, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
-				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.stop();
-		bot.oneStepBelt(200, false);
+		bot.setArmAngle(100, 130);
 		Delay.msDelay(2000);
-		bot.oneStepBelt(200, false);
+		bot.setArmAngle(170, 150);
+		Delay.msDelay(2000);
+		bot.setArmAngle(0, 200);
 	}
 
 }

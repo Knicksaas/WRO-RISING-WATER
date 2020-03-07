@@ -29,10 +29,10 @@ public class Initsialization {
 	}
 	
 	public static void housesInit() {
-		Status.houseMap.put("green", new HouseSpot("green", false, null));
-		Status.houseMap.put("blue", new HouseSpot("blue", true, "blue"));
+		Status.houseMap.put("green", new HouseSpot("green", true, "green"));
+		Status.houseMap.put("blue", new HouseSpot("blue", false, null));
 		Status.houseMap.put("yellow", new HouseSpot("yellow", false, null));
-		Status.houseMap.put("red", new HouseSpot("red", true, "green"));
+		Status.houseMap.put("red", new HouseSpot("red", true, "blue"));
 		proveHouses();
 	}
 	

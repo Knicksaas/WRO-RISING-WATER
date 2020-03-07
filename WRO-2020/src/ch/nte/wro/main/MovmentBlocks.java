@@ -41,10 +41,10 @@ public class MovmentBlocks {
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.rotate(speed, -0.195F);
 		bot.turnWithRotations(speed, "quarter", side);
-		bot.rotate(speed, -0.2f);
-		bot.followLine(speed, "double.cross", 0, 60, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.rotate(speed, -0.3f);
+		bot.followLine(speed, "double.cross", 0, 55, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.sandBagPickUp(bot.getSensorOnPort(3));
-		bot.rotate(speed, -0.5f);
+		bot.rotate(speed, -0.55f);
 		bot.turnWithRotations(speed, "quarter", side);
 	}
 	
@@ -96,8 +96,6 @@ public class MovmentBlocks {
 		if (mode.equalsIgnoreCase("sandbags")){
 			bot.rotate(speed, -0.1f);
 			Handling.unloadSandBagsInHouse(bot, speed);
-			bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
-					bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		}else if (mode.equalsIgnoreCase("sandbagsfast")) {
 			bot.rotate(speed, -0.1f);
 			Handling.unloadSandBagsInHouseFast(bot, speed);

@@ -16,16 +16,6 @@ public class Speedtest {
 		Delay.msDelay(1500);
 		bot.oneStepBelt(200, false);
 		Delay.msDelay(1500);
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(1500);
 //		bot.oneStepBelt(300, false);
 		
 	}
