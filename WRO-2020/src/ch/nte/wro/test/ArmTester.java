@@ -8,7 +8,7 @@ public class ArmTester {
 
 	public static void main(String[] args) {
 		Robot bot = new Robot("tEst boii", MainVariables.mLeft, MainVariables.mRight);
-		bot.setArmAngle(180, 400);
+		bot.setArmAngle(170, 400);
 		Delay.msDelay(2000);
 		bot.setArmAngle(0, 400);
 		Delay.msDelay(2000);

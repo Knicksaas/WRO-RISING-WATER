@@ -1,11 +1,9 @@
 package ch.nte.wro.main;
 
 import ch.nte.wro.base.Robot;
+import ch.nte.wro.threds.BeltCorrectionThread;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.Status;
-import lejos.hardware.Button;
-import lejos.hardware.Sound;
-import lejos.hardware.lcd.LCD;
 
 public class Navigation {
 	
@@ -72,13 +70,9 @@ public class Navigation {
 			MovmentBlocks.pickUpSandBags(bot, speed, "left");
 			break;
 		}
-		LCD.clear();
-		LCD.drawString(Position.botPosition, 0, 0);
-		LCD.drawString(Position.getAreaOfHouse(Status.slot2), 0, 1);
-		Sound.beep();
-		Button.waitForAnyPress();
 		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));
 		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
+		new BeltCorrectionThread(bot, 4).start();
 		String secondArea = Position.getNearestSandBagUploadArea(Position.botPosition);
 		if(secondArea.equalsIgnoreCase(firstArea)) {
 			for(int i = 1; i<5; i++) {

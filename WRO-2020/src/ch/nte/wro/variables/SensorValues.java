@@ -9,14 +9,14 @@ public class SensorValues {
 	
 //	NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN: colorIDs of Ev3ColorSensor (0-7)
 	
-	public static final float intensityBlack = 0.066F;
-	public static final float intensityWhite = 0.561F;
+	public static final float intensityBlack = 0.07F;
+	public static final float intensityWhite = 0.581F;
 	public static final float intensityBlue = 0.090F;
-	public static final float intensityGreen = 0.123F;
-	public static final float intensityYellow = 0.534F;
-	public static final float intensityRed = 0.505F;
+	public static final float intensityGreen = 0.119F;
+	public static final float intensityYellow = 0.560F;
+	public static final float intensityRed = 0.528F;
 
-	public static RGBValue valueBlack = new RGBValue(0.0201f, 0.0228f, 0.0220f);
+	public static RGBValue valueBlack = new RGBValue(0.0214f, 0.0238f, 0.0236f);
 	
 	public static float targetIntensityLinefollower = (intensityBlack+intensityWhite)/2;
 	

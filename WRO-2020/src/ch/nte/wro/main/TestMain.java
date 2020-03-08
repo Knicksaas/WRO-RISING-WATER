@@ -4,8 +4,6 @@ import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SynchedVariables;
-import lejos.hardware.Sound;
-import lejos.utility.Delay;
 
 public class TestMain {
 	
@@ -16,18 +14,7 @@ public class TestMain {
 
 		init(bot);
 		
-		Position.botPosition = "green";
-	
-		bot.oneStepBelt(400, false);
-		Delay.msDelay(2500);
-		Sound.beep();
-		bot.oneStepBelt(400, false);
-		Delay.msDelay(2500);
-		bot.oneStepBelt(400, false);
-		Delay.msDelay(2500);
-		Sound.beep();
-		bot.oneStepBelt(400, false);
-		Delay.msDelay(2500);
+		Position.botPosition = "red";
 		
 		Navigation.upAndUnloadSandbags(bot, speed);
 
