@@ -3,6 +3,9 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.Status;
+import lejos.hardware.Button;
+import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
 
 public class Navigation {
 	
@@ -69,6 +72,11 @@ public class Navigation {
 			MovmentBlocks.pickUpSandBags(bot, speed, "left");
 			break;
 		}
+		LCD.clear();
+		LCD.drawString(Position.botPosition, 0, 0);
+		LCD.drawString(Position.getAreaOfHouse(Status.slot2), 0, 1);
+		Sound.beep();
+		Button.waitForAnyPress();
 		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));
 		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
 		String secondArea = Position.getNearestSandBagUploadArea(Position.botPosition);
@@ -88,27 +96,30 @@ public class Navigation {
 					secondArea = Position.getNearestSandBagUploadArea("red");
 					break;
 				}
-				if(!secondArea.equalsIgnoreCase(firstArea)) {
-					i = 6;
+				if(secondArea != null) {
+					if(!secondArea.equalsIgnoreCase(firstArea)) {
+						i = 6;
+					}
 				}
 			}
 		}
 		navigateTo(bot, speed, Position.botPosition, secondArea);
 		switch (Position.botPosition) {
 		case "green":
-			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
 			break;
 		case "blue":
-			MovmentBlocks.pickUpSandBags(bot, speed, "right");
-			break;
-		case "yellow":
 			MovmentBlocks.pickUpSandBags(bot, speed, "left");
 			break;
-		case "red":
+		case "yellow":
 			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		case "red":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
 			break;
 		}
 		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));
+		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
 	}
 	
 	public static void driveToStartPosition(Robot bot, int speed, String startPosition) {

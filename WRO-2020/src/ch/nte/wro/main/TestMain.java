@@ -18,13 +18,18 @@ public class TestMain {
 		
 		Position.botPosition = "green";
 	
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(2500);
+		Sound.beep();
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(2500);
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(2500);
+		Sound.beep();
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(2500);
+		
 		Navigation.upAndUnloadSandbags(bot, speed);
-		Sound.beep();
-		bot.oneStepBelt(400, true);
-		Delay.msDelay(2000);
-		Sound.beep();
-		bot.oneStepBelt(400, true);
-		Delay.msDelay(2000);
 
 	}
 	 

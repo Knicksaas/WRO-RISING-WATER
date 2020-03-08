@@ -31,8 +31,8 @@ public class Initsialization {
 	public static void housesInit() {
 		Status.houseMap.put("green", new HouseSpot("green", true, "green"));
 		Status.houseMap.put("blue", new HouseSpot("blue", false, null));
-		Status.houseMap.put("yellow", new HouseSpot("yellow", false, null));
-		Status.houseMap.put("red", new HouseSpot("red", true, "blue"));
+		Status.houseMap.put("yellow", new HouseSpot("yellow", true, "blue"));
+		Status.houseMap.put("red", new HouseSpot("red", false, null));
 		proveHouses();
 	}
 	

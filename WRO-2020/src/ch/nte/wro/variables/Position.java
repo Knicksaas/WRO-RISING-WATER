@@ -1,5 +1,9 @@
 package ch.nte.wro.variables;
 
+import lejos.hardware.Button;
+import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
+
 public class Position {
 
 	public static String botPosition;
@@ -74,39 +78,59 @@ public class Position {
 		case "green":
 			if(Status.houseMap.get("green").isHouse()) {
 				if(Status.houseMap.get("blue").isHouse()) {
-					return "red";
+					if(Status.houseMap.get("red").isHouse()) {
+						return "yellow";
+					} else {
+						return "red";
+					}
 				} else {
 					return "blue";
 				}
+			} else {
+				return "green";
 			}
-			break;
 		case "blue":
 			if(Status.houseMap.get("blue").isHouse()) {
 				if(Status.houseMap.get("green").isHouse()) {
-					return "yellow";
+					if(Status.houseMap.get("yellow").isHouse()) {
+						return "red";
+					} else {
+						return "yellow";
+					}
 				} else {
 					return "green";
 				}
+			} else {
+				return "blue";
 			}
-			break;
 		case "yellow":
 			if(Status.houseMap.get("yellow").isHouse()) {
 				if(Status.houseMap.get("red").isHouse()) {
-					return "green";
+					if(Status.houseMap.get("green").isHouse()) {
+						return "blue";
+					} else {
+						return "green";
+					}
 				} else {
 					return "red";
 				}
+			} else {
+				return "yellow";
 			}
-			break;
 		case "red":
 			if(Status.houseMap.get("red").isHouse()) {
 				if(Status.houseMap.get("yellow").isHouse()) {
-					return "blue";
+					if(Status.houseMap.get("blue").isHouse()) {
+						return "green";
+					} else {
+						return "blue";
+					}
 				} else {
 					return "yellow";
 				}
+			} else {
+				return "red";
 			}
-			break;
 		}
 		return null;
 	}
@@ -114,21 +138,28 @@ public class Position {
 	public static String getAreaOfHouse(String color) {
 		if(Status.houseMap.get("green").isHouse()) {
 			if(Status.houseMap.get("green").getHouseColor().equalsIgnoreCase(color)) {
-				return Status.houseMap.get("green").getHouseColor();
-			}
-		} else if(Status.houseMap.get("blue").isHouse()) {
-			if(Status.houseMap.get("blue").getHouseColor().equalsIgnoreCase(color)) {
-				return Status.houseMap.get("blue").getHouseColor();
-			}
-		} else if(Status.houseMap.get("yellow").isHouse()) {
-			if(Status.houseMap.get("yellow").getHouseColor().equalsIgnoreCase(color)) {
-				return Status.houseMap.get("yellow").getHouseColor();
-			}
-		} else if(Status.houseMap.get("red").isHouse()) {
-			if(Status.houseMap.get("red").getHouseColor().equalsIgnoreCase(color)) {
-				return Status.houseMap.get("red").getHouseColor();
+				return Status.houseMap.get("green").getArea();
 			}
 		} 
+		if(Status.houseMap.get("blue").isHouse()) {
+			if(Status.houseMap.get("blue").getHouseColor().equalsIgnoreCase(color)) {
+				return Status.houseMap.get("blue").getArea();
+			}
+		} 
+		if(Status.houseMap.get("yellow").isHouse()) {
+			if(Status.houseMap.get("yellow").getHouseColor().equalsIgnoreCase(color)) {
+				return Status.houseMap.get("yellow").getArea();
+			}
+		} 
+		if(Status.houseMap.get("red").isHouse()) {
+			if(Status.houseMap.get("red").getHouseColor().equalsIgnoreCase(color)) {
+				return Status.houseMap.get("red").getArea();
+			}
+		} 
+		LCD.clear();
+		LCD.drawString("Wrong or no color given!", 0, 0);
+		Sound.buzz();
+		Button.waitForAnyPress();
 		return null;
 	}
 }
