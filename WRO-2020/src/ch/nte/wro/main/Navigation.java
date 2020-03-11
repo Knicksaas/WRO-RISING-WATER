@@ -120,11 +120,11 @@ public class Navigation {
 		switch (startPosition) {
 		case "R5":
 			navigateTo(bot, speed, Position.botPosition, "red");
-			MovmentBlocks.driveToStartPoint(bot, speed);
+			MovmentBlocks.driveToStartPoint(bot, speed, "right");
 			break;
 		case "R6":
 			navigateTo(bot, speed, Position.botPosition, "blue");
-			MovmentBlocks.driveToStartPoint(bot, speed);
+			MovmentBlocks.driveToStartPoint(bot, speed, "left");
 		}
 	}
 }

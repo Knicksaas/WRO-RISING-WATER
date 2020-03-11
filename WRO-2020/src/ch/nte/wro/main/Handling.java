@@ -7,12 +7,11 @@ import lejos.utility.Delay;
 public class Handling {
 
 	public static void unloadEvacuationRequest(Robot bot, int speed) {
-		bot.oneStepBelt(300, false);
-		Delay.msDelay(1500);
-		bot.rotate(speed, -0.35F);
-		Delay.msDelay(100);
-		bot.turnWithRotations(speed, "half", "left");
-		Delay.msDelay(200);
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(800);
+		bot.rotate(speed, -0.2F);
+		bot.turnWithRotations(speed, "half", "right");
+		bot.turnWithRotations(speed, 0.06f, "right");
 	}
 	
 	public static void uploadSandBags(Robot bot, String side, float lineintensity, int speed) {
@@ -32,21 +31,22 @@ public class Handling {
 	}
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
+		speed = (int) (speed*1.5);
 		bot.rotate(speed, -0.4f);
 		bot.turnWithRotations(speed, "half", "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.oneStepBelt(400, true);
-		Delay.msDelay(1300);
+		Delay.msDelay(800);
 		bot.rotate(speed, 0.5f, "left");
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.oneStepBelt(400, true);
-		Delay.msDelay(1300);
+		Delay.msDelay(800);
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, 0.5F, "left");
-		bot.rotate(speed, -0.9f);
+		bot.rotate(250, -0.9f);
 		
 	}
 	

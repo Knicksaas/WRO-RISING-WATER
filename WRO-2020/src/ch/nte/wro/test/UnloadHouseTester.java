@@ -6,7 +6,6 @@ import ch.nte.wro.main.MovmentBlocks;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SensorValues;
-import lejos.utility.Delay;
 
 public class UnloadHouseTester {
 
@@ -18,14 +17,12 @@ public class UnloadHouseTester {
 		
 		Position.botPosition = "green";
 		
-		MovmentBlocks.driveToHouse(bot, 250, "sandbags");
+		MovmentBlocks.driveToHouse(bot, 200, "asdhflkas j");
 		
 		bot.followLineRGB(200, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.stop();
-		bot.oneStepBelt(200, false);
-		Delay.msDelay(2000);
-		bot.oneStepBelt(200, false);
+		bot.oneStepBelt(400, true);
 	}
 
 }

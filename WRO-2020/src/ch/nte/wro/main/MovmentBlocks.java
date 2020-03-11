@@ -17,14 +17,14 @@ public class MovmentBlocks {
 		bot.accelerate(1, speed, 150);
 		bot.forward(1);
 		Delay.msDelay(100);
-		bot.accelerate(speed, speed*3, 700);
+		bot.accelerate(speed, speed*4, 700);
 		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityBlack, SensorValues.allowedSensorVariation*4);
 		Sound.beep();
-		bot.forwardUntil(speed*3, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
+		bot.forwardUntil(speed*4, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityBlack, SensorValues.allowedSensorVariation*4);
 		Delay.msDelay(100);
-		bot.accelerate(speed*3, speed, 200);
+		bot.accelerate(speed*4, speed, 200);
 		bot.rotate(speed, 1F);
 		if(Position.botPosition.equalsIgnoreCase("red") || Position.botPosition.equalsIgnoreCase("yellow")) {
 			startPointToLine(bot, speed, side2, "R6");
@@ -105,10 +105,10 @@ public class MovmentBlocks {
 		}
 	}
 	
-	public static void driveToStartPoint(Robot bot, int speed) {
+	public static void driveToStartPoint(Robot bot, int speed, String side) {
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		Delay.msDelay(50);
-		bot.turnWithRotations(speed, "quarter", "right");
+		bot.turnWithRotations(speed, "quarter", side);
 		bot.rotate(speed, 1);
 	}
 }
