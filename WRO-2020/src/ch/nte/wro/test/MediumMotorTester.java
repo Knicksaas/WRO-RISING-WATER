@@ -8,11 +8,14 @@ public class MediumMotorTester {
 	
 	public static void main(String[] args) {
 		Robot bot = new Robot("tEst boii", MainVariables.mLeft, MainVariables.mRight);
-		bot.setArmAngle(100, 130);
+		bot.oneStepBelt(300, true);
 		Delay.msDelay(2000);
-		bot.setArmAngle(170, 150);
+		bot.oneStepBelt(300, true);
 		Delay.msDelay(2000);
-		bot.setArmAngle(0, 200);
+		bot.oneStepBelt(300, false);
+		Delay.msDelay(2000);
+		bot.oneStepBelt(300, false);
+		
 	}
 
 }

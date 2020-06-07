@@ -22,10 +22,10 @@ public class Initsialization {
 	}
 	
 	public static void sensitivityInit() {
-		SensorValues.sensitivity.put("yellow", 100);
-		SensorValues.sensitivity.put("blue", 40);
-		SensorValues.sensitivity.put("green", 40);
-		SensorValues.sensitivity.put("red", 80);
+		SensorValues.sensitivity.put("yellow", 110);
+		SensorValues.sensitivity.put("blue", 50);
+		SensorValues.sensitivity.put("green", 50);
+		SensorValues.sensitivity.put("red", 90);
 	}
 	
 	public static void housesInit() {

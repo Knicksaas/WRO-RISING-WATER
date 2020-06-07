@@ -11,7 +11,6 @@ public class Handling {
 		Delay.msDelay(800);
 		bot.rotate(speed, -0.2F);
 		bot.turnWithRotations(speed, "half", "right");
-		bot.turnWithRotations(speed, 0.06f, "right");
 	}
 	
 	public static void uploadSandBags(Robot bot, String side, float lineintensity, int speed) {
@@ -31,7 +30,7 @@ public class Handling {
 	}
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
-		speed = (int) (speed*1.5);
+//		speed = (int) (speed*1.5);
 		bot.rotate(speed, -0.4f);
 		bot.turnWithRotations(speed, "half", "left");
 		bot.rotate(speed, -0.5f, "right");

@@ -3,6 +3,7 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
+import lejos.utility.Delay;
 
 public class Main {
 	
@@ -16,6 +17,8 @@ public class Main {
 		Navigation.unloadEvacuationRequests(bot, speed, "R6");
 		Navigation.upAndUnloadSandbags(bot, speed);
 		Navigation.driveToStartPosition(bot, speed, "R6");
+		bot.oneStepBelt(400, false);
+		Delay.msDelay(1000);
 		bot.oneStepBelt(400, false);
 	}
 	
