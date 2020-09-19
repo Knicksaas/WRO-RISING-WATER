@@ -17,7 +17,11 @@ import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
 public class ExtendedMovment extends BasicMovment{
+	
 
+	/*
+	 * Accelerates
+	 */
 	public void accelerate(int speedFrom, int speedTo, int msTime) {
 		AccelerationThred thread = new AccelerationThred(speedFrom, speedTo, msTime);
 		thread.start();
