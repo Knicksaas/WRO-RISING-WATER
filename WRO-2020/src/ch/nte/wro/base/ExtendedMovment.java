@@ -328,7 +328,24 @@ public class ExtendedMovment extends BasicMovment{
 	}
 	
 	public void fixTurn(int speed, String side) {
-		float modifyer = 0.01f;
+		float modifyer = 0.02f;
 		turnWithRotations(speed, modifyer, side);
+			
+	}
+	
+	public void fixTurnOld(int speed, String side) {
+		float modifyer = 0.02f;
+		if(side.equalsIgnoreCase("right")) {
+			turnWithRotations(speed, modifyer, "left");
+			Sound.beep();
+		} else if(side.equalsIgnoreCase("left")){
+			turnWithRotations(speed, modifyer, "right");
+			Sound.buzz();
+		}else {
+			Sound.buzz();
+			Delay.msDelay(190);
+			Sound.buzz();
+		}
+			
 	}
 }

@@ -3,11 +3,11 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
-import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
 
-public class TestChangeSide {
-	public static final int speed = 175;
+public class TurnTester {
+
+public static final int speed = 175;
 	
 	public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
@@ -16,9 +16,11 @@ public class TestChangeSide {
 		
 		Position.botPosition = "blue";
 		
-		MovmentBlocks.changeSide(bot, speed, "right", "left");
-		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
-				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.turnWithRotations(speed, "quarter", "right");
+		bot.turnWithRotations(speed, "quarter", "left");
+		
+		bot.turnWithRotations(speed, "quarter", "left");
+		bot.turnWithRotations(speed, "quarter", "right");
 	}
 	
 	
