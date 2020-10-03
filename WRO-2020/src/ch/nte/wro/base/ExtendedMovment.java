@@ -225,9 +225,32 @@ public class ExtendedMovment extends BasicMovment{
 	 * 	- quarter turn: 0.51
 	 */
 	public void turnWithRotations(int speed, float rotations, String side) {
-		int angle = Math.round(rotations*360);
+		int angle = Math.round(rotations*360.0f);
 		if(MainVariables.inverMotorDirections) {
-			angle *= -1;
+			angle *= -1.0f;
+		}
+		Delay.msDelay(100);
+		setSpeeds(speed);
+		if(side.equalsIgnoreCase("right")) {
+			Delay.msDelay(10);
+			MainVariables.mLeft.rotate(angle, true);
+			MainVariables.mRight.rotate(angle*(-1), true);
+			MainVariables.mLeft.waitComplete();
+			MainVariables.mRight.waitComplete();
+		} else if (side.equalsIgnoreCase("left")) {
+			Delay.msDelay(10);
+			MainVariables.mRight.rotate(angle, true);
+			MainVariables.mLeft.rotate(angle*(-1), true);
+			MainVariables.mLeft.waitComplete();
+			MainVariables.mRight.waitComplete();
+		}
+		Delay.msDelay(100);
+	}
+	
+	public void turnWithRotationsOld(int speed, float rotations, String side) {
+		int angle = Math.round(rotations*360.0f);
+		if(MainVariables.inverMotorDirections) {
+			angle *= -1.0f;
 		}
 		Delay.msDelay(100);
 		setSpeeds(speed);
@@ -259,13 +282,27 @@ public class ExtendedMovment extends BasicMovment{
 	 */
 	public void turnWithRotations(int speed, String mode, String side) {
 		if(mode.contains("quarter")) {
-			turnWithRotations(speed, 0.51f, side);
+			turnWithRotations(speed, 0.525f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("half")) {
-			turnWithRotations(speed, 1.035f, side);
+			turnWithRotations(speed, 1.06f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("full")) {
 			turnWithRotations(speed, 2.05f, side);
+			fixTurn(speed, side);
+		}
+		
+	}
+	
+	public void turnWithRotationsOld(int speed, String mode, String side) {
+		if(mode.contains("quarter")) {
+			turnWithRotationsOld(speed, 0.51f, side);
+			fixTurn(speed, side);
+		} else if (mode.contains("half")) {
+			turnWithRotationsOld(speed, 1.035f, side);
+			fixTurn(speed, side);
+		} else if (mode.contains("full")) {
+			turnWithRotationsOld(speed, 2.05f, side);
 			fixTurn(speed, side);
 		}
 		
@@ -328,13 +365,13 @@ public class ExtendedMovment extends BasicMovment{
 	}
 	
 	public void fixTurn(int speed, String side) {
-		float modifyer = 0.02f;
+		float modifyer = 0.01f;
 		turnWithRotations(speed, modifyer, side);
 			
 	}
 	
 	public void fixTurnOld(int speed, String side) {
-		float modifyer = 0.02f;
+		float modifyer = 0.01f;
 		if(side.equalsIgnoreCase("right")) {
 			turnWithRotations(speed, modifyer, "left");
 			Sound.beep();

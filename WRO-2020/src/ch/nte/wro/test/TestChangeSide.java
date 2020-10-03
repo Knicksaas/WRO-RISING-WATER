@@ -1,13 +1,15 @@
-package ch.nte.wro.main;
+package ch.nte.wro.test;
 
 import ch.nte.wro.base.Robot;
+import ch.nte.wro.main.Initsialization;
+import ch.nte.wro.main.MovmentBlocks;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
 
 public class TestChangeSide {
-	public static final int speed = 175;
+	public static final int speed = 200;
 	
 	public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);

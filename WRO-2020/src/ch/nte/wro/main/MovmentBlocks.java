@@ -10,6 +10,7 @@ import lejos.utility.Delay;
 public class MovmentBlocks {
 
 	public static void changeSide(Robot bot, int speed, String side1, String side2) {
+		speed = 175;
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.fixTurn(speed, side1);
 		Delay.msDelay(50);
