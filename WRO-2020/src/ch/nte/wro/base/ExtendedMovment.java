@@ -280,7 +280,7 @@ public class ExtendedMovment extends BasicMovment{
 	 * 	- half
 	 * 	- full
 	 */
-	public void turnWithRotations(int speed, String mode, String side) {
+	public void turnWithRotationsOld(int speed, String mode, String side) {
 		
 		float turn;
 		if(mode.contains("quarter")) {
@@ -306,12 +306,12 @@ public class ExtendedMovment extends BasicMovment{
 		
 	}
 	
-	public void turnWithRotationsOld(int speed, String mode, String side) {
+	public void turnWithRotations(int speed, String mode, String side) {
 		if(mode.contains("quarter")) {
-			turnWithRotationsOld(speed, 0.51f, side);
+			turnWithRotationsOld(speed, 0.53f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("half")) {
-			turnWithRotationsOld(speed, 1.035f, side);
+			turnWithRotationsOld(speed, 1.035f, "right");
 			fixTurn(speed, side);
 		} else if (mode.contains("full")) {
 			turnWithRotationsOld(speed, 2.05f, side);

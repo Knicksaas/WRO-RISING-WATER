@@ -5,10 +5,8 @@ import ch.nte.wro.main.Initsialization;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SynchedVariables;
-import lejos.hardware.Sound;
-import lejos.utility.Delay;
 
-public class TurnTester {
+public class TurnQuarterTester {
 
 public static final int speed = 200;
 	
@@ -43,7 +41,7 @@ public static final int speed = 200;
 		Sound.buzz(); 
 		*/
 		for(int y = 0; y < 8; y++) {
-			bot.turnWithRotations(speed, "half", "right");
+			bot.turnWithRotations(speed, "quarter", "left");
 		}
 
 		
