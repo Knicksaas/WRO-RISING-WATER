@@ -308,19 +308,24 @@ public class ExtendedMovment extends BasicMovment{
 	
 	public void turnWithRotations(int speed, String mode, String side) {
 		if(mode.contains("quarter")) {
-			turnWithRotationsOld(speed, 0.53f, side);
+			turnWithRotations(speed, 0.52f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("half")) {
-			turnWithRotationsOld(speed, 1.035f, "right");
+			turnWithRotations(speed, 1.065f, "right");
 			fixTurn(speed, side);
 		} else if (mode.contains("full")) {
-			turnWithRotationsOld(speed, 2.05f, side);
+			turnWithRotations(speed, 2.05f, side);
 			fixTurn(speed, side);
 		}
-		
 	}
 	
 	public void driveToLineMiddle(int speed, Sensor sensorLeft, Sensor sensorRight) {
+		followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+				sensorLeft, sensorRight);
+		rotate(speed, -0.64f);
+	}
+	
+	public void driveToLineMiddleOld(int speed, Sensor sensorLeft, Sensor sensorRight) {
 		followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				sensorLeft, sensorRight);
 		accelerate(1, speed, 500);

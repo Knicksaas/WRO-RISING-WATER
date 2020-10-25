@@ -18,9 +18,20 @@ public class TestChangeSide {
 		
 		Position.botPosition = "blue";
 		
-		MovmentBlocks.changeSide(bot, speed, "right", "left");
-		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
-				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		doCycle(bot, 3);
+	}
+	
+	private static void doCycle(Robot bot, int repeats) {
+		for(int i = 0;i<repeats;i++) {
+			MovmentBlocks.changeSide(bot, speed, "right", "right");
+			bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+					bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.turnWithRotations(speed, "half", "right");
+			MovmentBlocks.changeSide(bot, speed, "left", "left");
+			bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+					bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+			bot.turnWithRotations(speed, "half", "right");
+		}
 	}
 	
 	
