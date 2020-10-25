@@ -31,6 +31,8 @@ public class MovmentBlocks {
 		}
 	}
 
+	//IDEA: give more time to accelerate form speed to speed*4 
+	// 		and start directly form 200 and do not accelerate at the beginning that fast
 	public static void changeSideOld(Robot bot, int speed, String side1, String side2) {
 		speed = 175;
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));

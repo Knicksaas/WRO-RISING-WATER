@@ -1,6 +1,7 @@
-package ch.nte.wro.main;
+package ch.nte.wro.test;
 
 import ch.nte.wro.base.Robot;
+import ch.nte.wro.main.Initsialization;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
 import lejos.utility.Delay;
