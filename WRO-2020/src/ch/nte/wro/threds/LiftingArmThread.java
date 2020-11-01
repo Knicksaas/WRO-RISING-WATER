@@ -55,12 +55,12 @@ public class LiftingArmThread extends Thread {
 		if(MainVariables.armAngle < angle) {
 			MainVariables.mArm.setSpeed(speed);
 			int todo = angle-MainVariables.armAngle;
+			todo *= -1;
 			MainVariables.mArm.rotate((int) Math.round(todo*10/3));
 			MainVariables.armAngle = angle;
 		} else {
 			MainVariables.mArm.setSpeed(speed);
 			int todo = MainVariables.armAngle-angle;
-			todo *= -1;
 			MainVariables.mArm.rotate((int) Math.round(todo*10/3));
 			MainVariables.armAngle = angle;
 		}

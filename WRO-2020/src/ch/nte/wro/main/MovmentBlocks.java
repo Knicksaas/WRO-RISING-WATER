@@ -34,14 +34,12 @@ public class MovmentBlocks {
 	//IDEA: give more time to accelerate form speed to speed*4 
 	// 		and start directly form 200 and do not accelerate at the beginning that fast
 	public static void changeSideOld(Robot bot, int speed, String side1, String side2) {
-		speed = 175;
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.fixTurn(speed, side1);
 		Delay.msDelay(50);
 		bot.turnWithRotations(speed, "quarter", side1);
 		Delay.msDelay(100);
-		bot.accelerate(1, speed, 150);
-		bot.forward(1);
+		bot.forward(speed);
 		Delay.msDelay(100);
 		bot.accelerate(speed, speed*4, 700);
 		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
