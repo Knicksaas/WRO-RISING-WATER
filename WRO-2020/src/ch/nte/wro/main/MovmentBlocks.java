@@ -13,9 +13,7 @@ public class MovmentBlocks {
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		Delay.msDelay(50);
 		bot.turnWithRotations(speed, "quarter", side1);
-		Delay.msDelay(100);
-		bot.accelerate(1, speed, 150);
-		bot.forward(1);
+		bot.forward(speed*2);
 		Delay.msDelay(100);
 		bot.forwardUntil(speed*3, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityBlack, SensorValues.allowedSensorVariation*4);

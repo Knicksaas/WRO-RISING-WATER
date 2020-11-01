@@ -5,6 +5,7 @@ import ch.nte.wro.main.Initsialization;
 import ch.nte.wro.main.MovmentBlocks;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.Position;
+import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
 
 public class DemoUnloadSandbags {
@@ -19,6 +20,8 @@ public static final int speed = 200;
 		Position.botPosition = "blue";
 		
 		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
+		bot.followLineRGB(speed, "double.time", 3000, SensorValues.sensitivity.get(Position.botPosition),
+				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 	}
 	
 	

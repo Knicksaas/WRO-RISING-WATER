@@ -8,7 +8,7 @@ import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
 
-public class DemoEvacutationRequest {
+public class DemoChangeSide {
 
 public static final int speed = 200;
 	
@@ -17,10 +17,10 @@ public static final int speed = 200;
 
 		init(bot);
 		
-		Position.botPosition = "blue";
+		Position.botPosition = "yellow";
 		
-		MovmentBlocks.driveToHouse(bot, speed, "lol");
-		bot.followLineRGB(speed, "double.time", 3000, SensorValues.sensitivity.get(Position.botPosition),
+		MovmentBlocks.changeSide(bot, speed, "right", "left");
+		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 	}
 	
