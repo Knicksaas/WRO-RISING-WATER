@@ -8,7 +8,7 @@ import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SensorValues;
 import ch.nte.wro.variables.SynchedVariables;
 
-public class UnloadEvacutationRequestTester {
+public class ChangeSideTester {
 	
 	public static final int speed = 250;
 	
@@ -18,8 +18,7 @@ public class UnloadEvacutationRequestTester {
 		init(bot);
 		
 		Position.botPosition = "red";
-		MovmentBlocks.driveToHouse(bot, speed, "evacutation requests");
-		bot.oneStepBelt(speed, true);
+		MovmentBlocks.changeSide(bot, speed, "right", "left");
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 	}

@@ -10,22 +10,20 @@ import ch.nte.wro.variables.SynchedVariables;
 
 public class UnloadSandbagsTester {
 	
-public static final int speed = 200;
+public static final int speed = 250;
 	
 	public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
 		
-		Position.botPosition = "green";
-		for(int i = 0;i<5;i++) {
-			MovmentBlocks.driveToHouse(bot, speed, "sandbags");
-			bot.oneStepBelt(200, false);
-			bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
-					bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-			bot.oneStepBelt(200, false);
-			bot.turnWithRotations(speed, "half", "right");
-		}
+		Position.botPosition = "yellow";
+		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
+		bot.oneStepBelt(200, false);
+		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.stop();
+		bot.oneStepBelt(200, false);
 	}
 	
 	

@@ -8,8 +8,9 @@ public class Handling {
 
 	public static void unloadEvacuationRequest(Robot bot, int speed) {
 		bot.oneStepBelt(400, false);
-		Delay.msDelay(800);
-		bot.rotate(speed, -0.2F);
+		Delay.msDelay(400);
+		bot.backward(speed);
+		Delay.msDelay(500);
 		bot.turnWithRotations(speed, "half", "right");
 	}
 	
@@ -30,22 +31,23 @@ public class Handling {
 	}
 	
 	public static void unloadSandBagsInHouse(Robot bot, int speed) {
-//		speed = (int) (speed*1.5);
-		bot.rotate(speed, -0.4f);
+		speed = 220;
+		int speedSlow = 200;
+		bot.rotate(speedSlow, -0.3f);
 		bot.turnWithRotations(speed, "half", "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.oneStepBelt(400, true);
-		Delay.msDelay(800);
+		Delay.msDelay(700);
 		bot.rotate(speed, 0.5f, "left");
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.oneStepBelt(400, true);
-		Delay.msDelay(800);
+		Delay.msDelay(700);
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, 0.5F, "left");
-		bot.rotate(250, -0.9f);
+		bot.rotate(speedSlow, -0.8f);
 		
 	}
 	

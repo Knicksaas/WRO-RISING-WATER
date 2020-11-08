@@ -7,14 +7,14 @@ import lejos.utility.Delay;
 
 public class Main {
 	
-	public static final int speed = 200;
+	public static final int speed = 250;
 	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
 
 		init(bot);
 		
-		Navigation.unloadEvacuationRequests(bot, speed, "R6");
+		Navigation.unloadEvacuationRequests(bot, speed, "R5");
 		Navigation.upAndUnloadSandbags(bot, speed);
 		Navigation.driveToStartPosition(bot, speed, "R6");
 		bot.oneStepBelt(400, false);

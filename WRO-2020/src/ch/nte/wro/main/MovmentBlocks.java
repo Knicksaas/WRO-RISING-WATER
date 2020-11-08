@@ -4,21 +4,23 @@ import ch.nte.wro.base.Robot;
 import ch.nte.wro.threds.BeepThread;
 import ch.nte.wro.variables.Position;
 import ch.nte.wro.variables.SensorValues;
+import ch.nte.wro.variables.SynchedVariables;
 import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
 public class MovmentBlocks {
 	
 	public static void changeSide(Robot bot, int speed, String side1, String side2) {
+		int speedSlow = 200;
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		Delay.msDelay(50);
 		bot.turnWithRotations(speed, "quarter", side1);
 		bot.forward(speed*2);
 		Delay.msDelay(100);
-		bot.forwardUntil(speed*3, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
+		bot.forwardUntil(speedSlow*3, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityBlack, SensorValues.allowedSensorVariation*4);
 		Sound.beep();
-		bot.forwardUntil(speed*3, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
+		bot.forwardUntil(speedSlow*3, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityBlack, SensorValues.allowedSensorVariation*4);
 		Delay.msDelay(100);
 		bot.rotate(speed, 1F);
@@ -56,17 +58,20 @@ public class MovmentBlocks {
 	}
 	
 	public static void pickUpSandBags(Robot bot, int speed, String side) {
+		int speedNew = speed;
+		speed = 200;
 		Delay.msDelay(50);
+		bot.followLineRGB(speedNew, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		bot.setSpeeds(speed);
+		SynchedVariables.globalSpeed.set(speed);
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
-				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
-		bot.rotate(speed, -0.195F);
+		bot.rotate(speed, -0.2F);
 		bot.turnWithRotations(speed, "quarter", side);
-		bot.rotate(speed, -0.4f);
 		bot.followLine(speed, "double.cross", 0, 70, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		bot.sandBagPickUp(bot.getSensorOnPort(3));
-		bot.rotate(speed, -0.55f);
+		bot.rotate(speed, -0.54f);
 		bot.turnWithRotations(speed, "quarter", side);
 	}
 	
@@ -111,13 +116,16 @@ public class MovmentBlocks {
 	}
 	
 	public static void driveToHouse(Robot bot, int speed, String mode) {
-		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
+		int speedNew = speed;
+		speed = 200;
+		bot.followLineRGB(speedNew, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
+		SynchedVariables.globalSpeed.set(speed);
 		bot.followLineRGB(speed, "double.cross", 0, SensorValues.sensitivity.get(Position.botPosition),
 				bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		if (mode.equalsIgnoreCase("sandbags")){
 			bot.rotate(speed, -0.1f);
-			Handling.unloadSandBagsInHouse(bot, speed);
+			Handling.unloadSandBagsInHouse(bot, speedNew);
 		}else if (mode.equalsIgnoreCase("sandbagsfast")) {
 			bot.rotate(speed, -0.1f);
 			Handling.unloadSandBagsInHouseFast(bot, speed);

@@ -142,17 +142,17 @@ public class ExtendedMovment extends BasicMovment{
 				angle *= -1;
 			}
 			setSpeed(speed, "left");
-			Delay.msDelay(50);
+			Delay.msDelay(20);
 			MainVariables.mLeft.rotate(angle);
-			Delay.msDelay(50);
+			Delay.msDelay(20);
 		} else if (side.equalsIgnoreCase("right")) {
 			if(MainVariables.inverMotorDirections) {
 				angle *= -1;
 			}
 			setSpeed(speed, "right");
-			Delay.msDelay(50);
+			Delay.msDelay(20);
 			MainVariables.mRight.rotate(angle);
-			Delay.msDelay(50);
+			Delay.msDelay(20);
 		}
 	}
 	public void rotate(int speed, float rotations) {
@@ -200,22 +200,21 @@ public class ExtendedMovment extends BasicMovment{
 		String color = ColorGetter.getColor(sensor);
 		Delay.msDelay(200);
 		Sound.twoBeeps();
-		setArmAngle(35, 200);
-		Delay.msDelay(1200);
-		setArmAngle(175, 300, 230);
+		setArmAngle(35, 300);
+		Delay.msDelay(800);
+		setArmAngle(175, 400, 230);
 		rotate(150, -0.3f);
-		Delay.msDelay(1500);
-		setArmAngle(0, 600);
+		Delay.msDelay(1000);
+		setArmAngle(0, 1000);
 		Status.slot1 = (color);
 		oneStepBelt(100, true);
-		Delay.msDelay(590);
+		Delay.msDelay(500);
 		rotate(150, 0.32f);
-		setArmAngle(175, 300, false);
-		accelerate(100, 200, 500);
-		rotate(100, -0.53f);
+		setArmAngle(175, 400, false);
+		rotate(200, -0.53f);
 		Status.slot1 = (color);
 		oneStepBelt(100, true);
-		setArmAngle(0, 600);
+		setArmAngle(0, 800);
 	}
 	
 	/*
@@ -225,6 +224,7 @@ public class ExtendedMovment extends BasicMovment{
 	 * 	- quarter turn: 0.51
 	 */
 	public void turnWithRotations(int speed, float rotations, String side) {
+		speed = 200;
 		int angle = Math.round(rotations*360.0f);
 		if(MainVariables.inverMotorDirections) {
 			angle *= -1.0f;
@@ -248,6 +248,7 @@ public class ExtendedMovment extends BasicMovment{
 	}
 	
 	public void turnWithRotationsOld(int speed, float rotations, String side) {
+		speed = 200;
 		int angle = Math.round(rotations*360.0f);
 		if(MainVariables.inverMotorDirections) {
 			angle *= -1.0f;
@@ -281,7 +282,7 @@ public class ExtendedMovment extends BasicMovment{
 	 * 	- full
 	 */
 	public void turnWithRotationsOld(int speed, String mode, String side) {
-		
+		speed = 200;
 		float turn;
 		if(mode.contains("quarter")) {
 			if(side.contains("left")) {
@@ -307,6 +308,7 @@ public class ExtendedMovment extends BasicMovment{
 	}
 	
 	public void turnWithRotations(int speed, String mode, String side) {
+		speed = 200;
 		if(mode.contains("quarter")) {
 			turnWithRotations(speed, 0.52f, side);
 			fixTurn(speed, side);
