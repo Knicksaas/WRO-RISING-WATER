@@ -47,9 +47,7 @@ public class Linefollower extends BasicMovment{
 		running.set(true);
 		float valueSensorLeft;
 		float valueSensorRight;
-		if(SynchedVariables.globalSpeed.get() == 0) {
-			SynchedVariables.globalSpeed.set(finalSpeed);
-		}
+		SynchedVariables.globalSpeed.set(finalSpeed);
 		forward(SynchedVariables.globalSpeed.get());
 		if(mode.equalsIgnoreCase("double.time")) {
 			if(msTime < 1) {

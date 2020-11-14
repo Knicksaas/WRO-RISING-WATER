@@ -46,9 +46,7 @@ public class RGBLinefollower extends BasicMovment{
 		float valueLeft;
 		float valueRight;
 		float err;
-		if(SynchedVariables.globalSpeed.get() == 0) {
-			SynchedVariables.globalSpeed.set(finalSpeed);
-		}
+		SynchedVariables.globalSpeed.set(finalSpeed);
 		forward(SynchedVariables.globalSpeed.get());
 		
 //		Modes

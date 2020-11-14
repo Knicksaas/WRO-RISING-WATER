@@ -3,9 +3,11 @@ package ch.nte.wro.main;
 import ch.nte.wro.base.Robot;
 import ch.nte.wro.variables.MainVariables;
 import ch.nte.wro.variables.SynchedVariables;
+import lejos.hardware.Button;
+import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
-public class Main {
+public class runWRO {
 	
 	public static final int speed = 250;
 	
@@ -14,9 +16,13 @@ public class Main {
 
 		init(bot);
 		
+		Sound.beep();
+		Button.waitForAnyPress();
+		Delay.msDelay(800);
+		
 		Navigation.unloadEvacuationRequests(bot, speed, "R5");
 		Navigation.upAndUnloadSandbags(bot, speed);
-		Navigation.driveToStartPosition(bot, speed, "R6");
+		Navigation.driveToStartPosition(bot, speed, "R5");
 		bot.oneStepBelt(400, false);
 		Delay.msDelay(1000);
 		bot.oneStepBelt(400, false);
