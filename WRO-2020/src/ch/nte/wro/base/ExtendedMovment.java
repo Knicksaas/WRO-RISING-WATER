@@ -201,16 +201,16 @@ public class ExtendedMovment extends BasicMovment{
 		Delay.msDelay(200);
 		Sound.twoBeeps();
 		setArmAngle(35, 300);
-		Delay.msDelay(800);
-		setArmAngle(175, 400, 230);
-		rotate(150, -0.3f);
 		Delay.msDelay(1000);
+		setArmAngle(175, 300, 230);
+		rotate(150, -0.3f);
+		Delay.msDelay(1300);
 		setArmAngle(0, 1000);
 		Status.slot1 = (color);
 		oneStepBelt(100, true);
-		Delay.msDelay(500);
+		Delay.msDelay(800);
 		rotate(150, 0.32f);
-		setArmAngle(175, 400, false);
+		setArmAngle(175, 300, false);
 		rotate(200, -0.53f);
 		Status.slot1 = (color);
 		oneStepBelt(100, true);
@@ -313,7 +313,7 @@ public class ExtendedMovment extends BasicMovment{
 			turnWithRotations(speed, 0.52f, side);
 			fixTurn(speed, side);
 		} else if (mode.contains("half")) {
-			turnWithRotations(speed, 1.065f, "right");
+			turnWithRotations(speed, 1.06f, "right");
 			fixTurn(speed, side);
 		} else if (mode.contains("full")) {
 			turnWithRotations(speed, 2.05f, side);

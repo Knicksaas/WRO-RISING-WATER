@@ -12,6 +12,7 @@ public class MovmentBlocks {
 	
 	public static void changeSide(Robot bot, int speed, String side1, String side2) {
 		int speedSlow = 200;
+		speed = 200;
 		bot.driveToLineMiddle(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2));
 		Delay.msDelay(50);
 		bot.turnWithRotations(speed, "quarter", side1);
@@ -79,7 +80,7 @@ public class MovmentBlocks {
 		bot.forwardUntil(speed, bot.getSensorOnPort(1), bot.getSensorOnPort(2),
 				SensorValues.intensityWhite, SensorValues.allowedSensorVariation*8);
 		new BeepThread().start();
-		bot.rotate(speed, 0.72f);
+		bot.rotate(speed, 0.73f);
 		bot.turnWithRotations(speed, "quarter", side);
 		if(startPoint.equalsIgnoreCase("R6")) {
 			if(side.equalsIgnoreCase("right")) {

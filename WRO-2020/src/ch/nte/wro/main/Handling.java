@@ -8,7 +8,8 @@ public class Handling {
 
 	public static void unloadEvacuationRequest(Robot bot, int speed) {
 		bot.oneStepBelt(400, false);
-		Delay.msDelay(400);
+		Delay.msDelay(800);
+		bot.rotate(speed, 0.05f);
 		bot.backward(speed);
 		Delay.msDelay(500);
 		bot.turnWithRotations(speed, "half", "right");
@@ -34,7 +35,7 @@ public class Handling {
 		speed = 220;
 		int speedSlow = 200;
 		bot.rotate(speedSlow, -0.3f);
-		bot.turnWithRotations(speed, "half", "left");
+		bot.turnWithRotations(speedSlow, "half", "left");
 		bot.rotate(speed, -0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.oneStepBelt(400, true);
@@ -43,6 +44,8 @@ public class Handling {
 		bot.rotate(speed, 0.5f, "right");
 		bot.rotate(speed, -0.5f, "left");
 		bot.rotate(speed, -0.5f, "right");
+		bot.oneStepBelt(400, true);
+		Delay.msDelay(700);
 		bot.oneStepBelt(400, true);
 		Delay.msDelay(700);
 		bot.rotate(speed, 0.5f, "right");

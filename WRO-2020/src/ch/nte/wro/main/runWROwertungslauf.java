@@ -7,9 +7,9 @@ import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.utility.Delay;
 
-public class runWRO {
-	
-	public static final int speed = 250;
+public class runWROwertungslauf {
+
+	public static final int speed = 220;
 	
 	 public static void main(String[] args) {
 		Robot bot = new Robot("Robot", MainVariables.mLeft, MainVariables.mRight);
@@ -21,7 +21,7 @@ public class runWRO {
 		Delay.msDelay(800);
 		
 		Navigation.unloadEvacuationRequests(bot, speed, "R6");
-		Navigation.upAndUnloadSandbags(bot, speed);
+		Navigation.upAndUnloadOneSandbag(bot, speed);
 		Navigation.driveToStartPosition(bot, speed, "R6");
 		bot.oneStepBelt(400, false);
 		Delay.msDelay(1000);

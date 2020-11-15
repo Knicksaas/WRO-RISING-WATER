@@ -33,7 +33,6 @@ public class Navigation {
 	}
 
 	public static void unloadEvacuationRequests(Robot bot, int speed, String startPoint) {
-		bot.accelerate(100, speed, 200);
 		switch (Position.getAreaOfNearestHouse(startPoint)) {
 			case "green":
 				MovmentBlocks.startPointToLine(bot, speed, "left", startPoint);
@@ -116,15 +115,37 @@ public class Navigation {
 		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
 	}
 	
+	public static void upAndUnloadOneSandbag(Robot bot, int speed) {
+		String firstArea = Position.getNearestSandBagUploadArea(Position.botPosition);
+		navigateTo(bot, speed, Position.botPosition, firstArea);
+		switch (Position.botPosition) {
+		case "green":
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		case "blue":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			break;
+		case "yellow":
+			MovmentBlocks.pickUpSandBags(bot, speed, "right");
+			break;
+		case "red":
+			MovmentBlocks.pickUpSandBags(bot, speed, "left");
+			break;
+		}
+		navigateTo(bot, speed, Position.botPosition, Position.getAreaOfHouse(Status.slot2));
+		MovmentBlocks.driveToHouse(bot, speed, "sandbags");
+		new BeltCorrectionThread(bot, 4).start();
+	}
+	
 	public static void driveToStartPosition(Robot bot, int speed, String startPosition) {
 		switch (startPosition) {
-		case "R5":
-			navigateTo(bot, speed, Position.botPosition, "red");
-			MovmentBlocks.driveToStartPoint(bot, speed, "right");
-			break;
-		case "R6":
-			navigateTo(bot, speed, Position.botPosition, "blue");
-			MovmentBlocks.driveToStartPoint(bot, speed, "left");
+			case "R5":
+				navigateTo(bot, speed, Position.botPosition, "red");
+				MovmentBlocks.driveToStartPoint(bot, speed, "right");
+				break;
+			case "R6":
+				navigateTo(bot, speed, Position.botPosition, "blue");
+				MovmentBlocks.driveToStartPoint(bot, speed, "left");
 		}
 	}
 }
